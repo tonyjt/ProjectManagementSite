@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="2a14dfdb-c806-4288-bbcb-19794c60abbf" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="98260e84-e744-4b7a-a6d9-8e2a505dc165" name="DB" />
+    <layer Id="3df89535-fa88-472a-b960-562e2e1f94fa" name="Cache" />
+    <layer Id="d74adf22-219c-44b8-a991-8dfcfe46d62b" name="BL" />
+    <layer Id="5729450a-855e-4bcd-8a8f-1dc8619f9d4f" name="SI" />
+    <layer Id="9c40d3b3-b1b5-4e16-9454-587990fb1801" name="UI" />
+  </layers>
+</layerModel>
