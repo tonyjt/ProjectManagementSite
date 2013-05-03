@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<useCaseModelRoot xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" dslVersion="1.0.0.0" Id="fa607982-9fdf-4292-9d6f-a31a0988b10b" name="usecase" linkedPackageId="8ab77a21-a4b7-4ab2-9bb2-7420742f2490" xmlns="http://schemas.microsoft.com/dsltools/UseCaseModel">
+  <profileInstances>
+    <packageHasProfileInstances Id="168efccd-5037-4e1c-b0ef-dec3db1466aa">
+      <profileInstance Id="8633d2ff-ba39-47d1-80dc-a2c978f0fdc0" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="3de1e174-347c-4123-a65c-1036ab5edbc5">
+      <profileInstance Id="97e3b1f9-822a-44a0-9f26-c69ed76ad247" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <useCaseModelRootHasTypes>
+      <actor Id="d17a8253-b879-498d-aed0-10b77b9a8762" name="需求管理员" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a5f22043-30f8-4a44-a07f-745523c14fae" />
+        <suppliersInternal>
+          <dependency Id="e768d33e-0fd4-466b-b319-79b205e70634">
+            <useCaseMoniker Id="b90fd555-11ec-4ea4-a7d6-55b4f80bddeb" LastKnownName="版本管理" />
+            <elementDefinition Id="9a8e03e4-e183-4aad-890b-706a7331456d" />
+          </dependency>
+          <dependency Id="46bcc4a3-abdd-4df7-8847-c733090e3e43">
+            <useCaseMoniker Id="96fee42e-7f04-41ac-b5e6-7b17481a24bd" LastKnownName="需求管理" />
+            <elementDefinition Id="f5fee946-9129-41b6-92c8-a9621fe708e6" />
+          </dependency>
+          <dependency Id="21144619-97f1-42fb-bc79-1948e80dad12">
+            <useCaseMoniker Id="b41d635b-eefd-455e-94b6-80b95340cf43" LastKnownName="验收" />
+            <elementDefinition Id="44320d2c-8bc4-4137-a436-3b2b437a3088" />
+          </dependency>
+        </suppliersInternal>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b90fd555-11ec-4ea4-a7d6-55b4f80bddeb" name="版本管理" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="d3bddc69-c80a-4c0b-9895-a1922061372f" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="96fee42e-7f04-41ac-b5e6-7b17481a24bd" name="需求管理" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="17f2b415-fdc9-4a15-a118-3ab07cf07c3b" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="1f54c389-7281-4221-8039-04e1281711d4" name="项目管理者" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="907ae332-c133-4b1e-8261-0699e1fdf764" />
+        <suppliersInternal>
+          <dependency Id="527b539b-5bcf-46c4-8058-bc36aab87fad">
+            <useCaseMoniker Id="b90fd555-11ec-4ea4-a7d6-55b4f80bddeb" LastKnownName="版本管理" />
+            <elementDefinition Id="461fa735-2293-461b-8fe8-b4ed29b77a92" />
+          </dependency>
+          <dependency Id="cb607c78-a367-4581-8835-c303e875b8df">
+            <useCaseMoniker Id="96fee42e-7f04-41ac-b5e6-7b17481a24bd" LastKnownName="需求管理" />
+            <elementDefinition Id="b6f57eb4-6fff-42d4-a4ed-592fb536634b" />
+          </dependency>
+          <dependency Id="365eaafe-4a24-4cd0-a151-a302d4284a7c">
+            <useCaseMoniker Id="0b9fe285-8029-4462-9b53-1543b5ffebe3" LastKnownName="计划维护" />
+            <elementDefinition Id="9d0a3344-32f8-4932-ab57-bbdc62cf3f67" />
+          </dependency>
+          <dependency Id="09848e67-5cb4-4309-ac4a-3039c7908ebb">
+            <useCaseMoniker Id="4a3ea7ad-05e6-4326-ab31-6ae876c164b2" LastKnownName="进度维护" />
+            <elementDefinition Id="c0375492-ccb0-4a19-920e-d6e3b0ec2a4a" />
+          </dependency>
+          <dependency Id="54ef219c-4a85-407f-92ab-35b1358899e9">
+            <useCaseMoniker Id="b41d635b-eefd-455e-94b6-80b95340cf43" LastKnownName="验收" />
+            <elementDefinition Id="65fafdc5-925e-44bf-a8db-c45c0a8b6765" />
+          </dependency>
+          <dependency Id="68641f7d-6376-45fc-ae16-af00e11eb146">
+            <useCaseMoniker Id="2f713c52-2f4e-4f33-bb9c-641b0cbf02ef" LastKnownName="提出需求或变更" />
+            <elementDefinition Id="670ffb67-9b2a-4f5d-b3f6-c80d91fbe6ac" />
+          </dependency>
+        </suppliersInternal>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="0b9fe285-8029-4462-9b53-1543b5ffebe3" name="计划维护" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="8eb53807-e5d5-429b-a2bf-25bf26f8fa5a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="2d99cd15-c5eb-4f52-9270-977fac0eae41" name="开发者" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="5c3b0340-9d21-42d9-b532-a8014e3eff12" />
+        <suppliersInternal>
+          <dependency Id="cd4c2a94-1027-437e-9a74-5d1aae75b57b">
+            <useCaseMoniker Id="0b9fe285-8029-4462-9b53-1543b5ffebe3" LastKnownName="计划维护" />
+            <elementDefinition Id="9a4ad8e7-6130-4180-8442-2bcb934344e3" />
+          </dependency>
+          <dependency Id="1ead2e45-38a1-4b12-8b41-3b2597fae4cc">
+            <useCaseMoniker Id="d84f7219-1373-4cde-85dd-c3044a55abad" LastKnownName="功能开发" />
+            <elementDefinition Id="9cc7bdf1-cb02-4a36-8b01-0339c6a9e718" />
+          </dependency>
+          <dependency Id="f2ed58bf-16be-4ebe-9eb2-83adb55e26d8">
+            <useCaseMoniker Id="c25ec79f-9428-4df9-9a04-986b6b4ec84d" LastKnownName="修复bug" />
+            <elementDefinition Id="d060c55e-b50e-40be-81c5-6f1ecf5f223a" />
+          </dependency>
+          <dependency Id="35da7ccf-682d-4c52-a622-10a99fa1cc9a">
+            <useCaseMoniker Id="4a3ea7ad-05e6-4326-ab31-6ae876c164b2" LastKnownName="进度维护" />
+            <elementDefinition Id="7c5345c6-4923-4cea-8b17-97bf19ac0f40" />
+          </dependency>
+        </suppliersInternal>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="a30773bf-00d5-4a6b-9de9-2deaa63df956" name="测试员" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="91d48b20-2598-42e1-b566-61161144214a" />
+        <suppliersInternal>
+          <dependency Id="3e95f308-6abe-4a88-ba21-bf8b7c46cd82">
+            <useCaseMoniker Id="0b9fe285-8029-4462-9b53-1543b5ffebe3" LastKnownName="计划维护" />
+            <elementDefinition Id="4cd84af0-8de7-4c97-8906-37db2f463e54" />
+          </dependency>
+          <dependency Id="e6566897-6ebf-4653-aa1a-e33c9544ea4e">
+            <useCaseMoniker Id="c03f8e75-9a27-4b97-9316-ac71bc022e6c" LastKnownName="测试" />
+            <elementDefinition Id="d1851723-4990-4300-82e5-0b7548469c72" />
+          </dependency>
+          <dependency Id="999a06a0-4e90-4a66-81cf-2125b735c4d2">
+            <useCaseMoniker Id="4a3ea7ad-05e6-4326-ab31-6ae876c164b2" LastKnownName="进度维护" />
+            <elementDefinition Id="5965eb5e-a3e2-4575-b548-df1628ceea50" />
+          </dependency>
+        </suppliersInternal>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="d84f7219-1373-4cde-85dd-c3044a55abad" name="功能开发" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="096f6b8c-9000-4a84-a1af-a6c21658d9eb" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c03f8e75-9a27-4b97-9316-ac71bc022e6c" name="测试" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a87aa921-d0dc-4e7a-8888-ebec8c2f79ca" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="c25ec79f-9428-4df9-9a04-986b6b4ec84d" name="修复bug" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="6192bedc-2eca-4c93-9bd9-66f30e04d928" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="05b51e97-49b2-46d8-a5ea-125119eaff9b" name="运维" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="2c1dc185-4eb4-4a2c-ad1c-5c15b78fcefe" />
+        <suppliersInternal>
+          <dependency Id="88fe3eaa-2932-4f03-b8df-176c86ed922e">
+            <useCaseMoniker Id="0bea2205-5f96-4793-8c64-dc863649aa03" LastKnownName="部署" />
+            <elementDefinition Id="2ca7081e-65cb-4ffe-845c-d30ae17812db" />
+          </dependency>
+          <dependency Id="6891b0dc-3aa5-4983-baad-3c259197abab">
+            <useCaseMoniker Id="f4b702e7-506a-4e2b-a4be-64b020a63703" LastKnownName="维护" />
+            <elementDefinition Id="b3cc2495-e295-4c86-828d-d9d01aaa636c" />
+          </dependency>
+        </suppliersInternal>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="0bea2205-5f96-4793-8c64-dc863649aa03" name="部署" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="29ce9584-8383-47c5-947f-0a03249cba10" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="f4b702e7-506a-4e2b-a4be-64b020a63703" name="维护" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="91211f42-1307-4ba1-87eb-bca8913b485a" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="b41d635b-eefd-455e-94b6-80b95340cf43" name="验收" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="a8226dc8-011a-4e77-bc93-cd911ef0e121" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="4a3ea7ad-05e6-4326-ab31-6ae876c164b2" name="进度维护" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="62b0b157-efe8-48da-9147-86f843f489d0" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <actor Id="2bf9636a-a715-4609-9d2a-b0d9e9fdfe80" name="客户" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="95ab0f18-bd99-4926-8fed-45e47ec4e67b" />
+        <suppliersInternal>
+          <dependency Id="03084228-a848-47e5-8cce-6aa0cd088ae4">
+            <useCaseMoniker Id="2f713c52-2f4e-4f33-bb9c-641b0cbf02ef" LastKnownName="提出需求或变更" />
+            <elementDefinition Id="06f59a85-4608-4699-acde-5ce2b2c86682" />
+          </dependency>
+          <dependency Id="3834df0b-1899-4294-85fc-6b72d344cd44">
+            <useCaseMoniker Id="b41d635b-eefd-455e-94b6-80b95340cf43" LastKnownName="验收" />
+            <elementDefinition Id="7e9971aa-8b58-4dfa-aac9-21283c51c632" />
+          </dependency>
+        </suppliersInternal>
+      </actor>
+    </useCaseModelRootHasTypes>
+    <useCaseModelRootHasTypes>
+      <useCase Id="2f713c52-2f4e-4f33-bb9c-641b0cbf02ef" name="提出需求或变更" isAbstract="false" isLeaf="false">
+        <elementDefinition Id="4e711a72-0d99-4f83-987d-3cb5dc85dccb" />
+      </useCase>
+    </useCaseModelRootHasTypes>
+  </packagedElements>
+  <package Id="8ab77a21-a4b7-4ab2-9bb2-7420742f2490" name="Modeling">
+    <elementDefinition Id="6143af38-8130-4f7e-b020-6a4c0b750cde" />
+  </package>
+</useCaseModelRoot>

@@ -1,0 +1,409 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<activityRootModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" xmlns:dm9="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm10="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm11="http://schemas.microsoft.com/dsltools/UseCaseModel" dslVersion="1.0.0.0" Id="0b457657-5e66-4c14-b434-814452f3c072" name="workflow" linkedPackageId="1c632580-a8bf-4bec-954e-5f9a7e831c12" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner">
+  <ownedCommentsInternal>
+    <comment Id="27919198-dcbc-4521-820a-d97ecc5ce1cd">
+      <elementDefinition Id="195d3c7f-dd8e-4219-9051-3d04cd2298fc" />
+      <body>开发人员</body>
+    </comment>
+    <comment Id="4da1c95e-6ad5-4ce7-ad89-65df7925fbe3">
+      <elementDefinition Id="d379a19b-c773-4314-bf8a-4ff7acbd16bf" />
+      <body>需求管理员</body>
+    </comment>
+    <comment Id="d24a859c-1b84-4b3f-838c-13cd3902eebc">
+      <elementDefinition Id="d0855a7f-d4cb-471b-a39e-80ef4f86a2bf" />
+      <body>测试人员</body>
+    </comment>
+    <comment Id="07d6c48c-3351-4671-8fe0-3519ca727bc4">
+      <elementDefinition Id="3a73f8d8-bfbc-420b-bb98-a5ea662e0c07" />
+      <body>运维人员</body>
+    </comment>
+    <comment Id="b0cc0af6-9182-4f39-a0ee-50cfb544511b">
+      <elementDefinition Id="6edd8134-5578-4e56-a5ce-280be9f0889f" />
+      <body>项目管理者</body>
+    </comment>
+    <comment Id="bb4e0c90-0906-4a66-9212-51a4f739bc85">
+      <elementDefinition Id="933677e1-eebe-4038-99d6-41adb5bd23a8" />
+      <body>客户</body>
+    </comment>
+  </ownedCommentsInternal>
+  <profileInstances>
+    <packageHasProfileInstances Id="9e06b33c-1a1f-4359-a644-7d7a3bade310">
+      <profileInstance Id="76867f65-4943-40a5-8849-cef9a47f7f99" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="ad255ce1-ca3f-4a4e-b5f4-36a09967e8cf">
+      <profileInstance Id="a32b03d6-d981-4b2e-a8dd-7608906835b1" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <activityRootModelHasActivity>
+      <activity Id="23206c50-1146-406b-a032-9bbba508b3b8" name="workflow" isAbstract="false" isLeaf="false" isActiveClass="false" isReentrant="false" isReadOnly="false" isSingleExecution="false">
+        <elementDefinition Id="d05feefd-5312-4c45-ab5d-ba9120cd94d3" />
+        <nodes>
+          <initialNode Id="c22cbdc0-e20d-4048-b602-e73a19c5f527" name="Initial1" isLeaf="false">
+            <elementDefinition Id="470ecc50-46d1-4803-b7ce-46c780e2303f" />
+            <flowNodeTargets>
+              <controlFlow Id="2971848a-12c1-4183-b388-698b07544ce5" isLeaf="false">
+                <opaqueActionMoniker Id="febbd85b-c21e-4eb2-a051-6be8a290147d" LastKnownName="提出需求" />
+                <elementDefinition Id="18a63720-f8ee-4963-9f10-eec5ad768d93" />
+              </controlFlow>
+            </flowNodeTargets>
+          </initialNode>
+          <opaqueAction Id="38bf3e59-26a7-417a-a49d-4cc4643f776a" name="开发任务分配" isLeaf="false">
+            <elementDefinition Id="6148becc-7cf1-4f1b-8987-47ab06d77335" />
+            <flowNodeTargets>
+              <controlFlow Id="30902261-7993-440a-bfb1-001f9469c169" isLeaf="false">
+                <opaqueActionMoniker Id="a4da3331-cd25-43e9-ae6f-894584f0f505" LastKnownName="填写开发计划" />
+                <elementDefinition Id="5ca03c7f-20fc-4f5e-919f-7153b33e5d2f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="a4da3331-cd25-43e9-ae6f-894584f0f505" name="填写开发计划" isLeaf="false">
+            <elementDefinition Id="0512cb0b-fe2e-43dd-ab40-54dee6c81b5e" />
+            <flowNodeTargets>
+              <controlFlow Id="27018929-40e0-4b20-892d-b391b54b974c" isLeaf="false">
+                <opaqueActionMoniker Id="15b2e35c-2eb1-46f2-aa97-0d642948ff00" LastKnownName="计划确认" />
+                <elementDefinition Id="735f6228-d5be-471e-8ebf-49130f38867f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="91e2807e-caca-4ba1-a550-4f2aae1e2ee4" name="开发" isLeaf="false">
+            <elementDefinition Id="2166e093-9f7f-46d5-b32f-0554e766e9ef" />
+            <flowNodeTargets>
+              <controlFlow Id="77f9d01d-a17c-4cca-895a-e99483b05d31" isLeaf="false">
+                <opaqueActionMoniker Id="67fd315a-a240-4e94-bc08-756ff74746f1" LastKnownName="开发完成" />
+                <elementDefinition Id="53bd0ef9-fa60-4851-a316-b73604e7100d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e407d0d0-34ec-467d-a0b4-094dd15bf301" name="测试任务分配" isLeaf="false">
+            <elementDefinition Id="e7544730-2a37-4d6e-b073-bbe8e89aa9aa" />
+          </opaqueAction>
+          <opaqueAction Id="5a485208-64e4-4ef2-808a-f6ba31510d31" name="填写测试计划" isLeaf="false">
+            <elementDefinition Id="e9749059-93bd-40e6-95bc-e9b3a500e100" />
+            <flowNodeTargets>
+              <controlFlow Id="22648017-0c5c-45f2-8be3-0ddc20a09db5" isLeaf="false">
+                <opaqueActionMoniker Id="0f15ece1-c86e-49ba-914b-1fcfb4341d08" LastKnownName="计划确认" />
+                <elementDefinition Id="09c501e4-1d84-4d80-b3b4-3c16582a7993" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="a09ea67d-c887-4d61-bbde-d3f75faf7f04" name="填写测试用例" isLeaf="false">
+            <elementDefinition Id="cb608b42-9f86-44e4-8623-da8ed5a5d5dd" />
+          </opaqueAction>
+          <opaqueAction Id="67fd315a-a240-4e94-bc08-756ff74746f1" name="开发完成" isLeaf="false">
+            <elementDefinition Id="61ab7e02-b496-49aa-849f-ea1c92f08939" />
+            <flowNodeTargets>
+              <controlFlow Id="76789e4e-90c1-48f0-8c42-552d6b1f067f" guard="提交测试" isLeaf="false">
+                <opaqueActionMoniker Id="e1cce65f-85c5-442d-a508-f1a0fa36131b" LastKnownName="测试" />
+                <elementDefinition Id="86536051-ceea-4467-a2dc-ba4c544d3c5b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e1cce65f-85c5-442d-a508-f1a0fa36131b" name="测试" isLeaf="false">
+            <elementDefinition Id="882cf340-e0ad-4564-8927-b71a6c341af1" />
+            <flowNodeTargets>
+              <controlFlow Id="c1479416-cbf8-452e-833b-935ae032d001" name="c" isLeaf="false">
+                <decisionNodeMoniker Id="cfcfb52f-a6c6-44df-8838-e3a6e17ca887" LastKnownName="测试通过" />
+                <description>c</description>
+                <elementDefinition Id="bc9b1614-996d-4aee-aa39-4c307423bbc3" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="cfcfb52f-a6c6-44df-8838-e3a6e17ca887" name="测试通过" isLeaf="false">
+            <description>测试通过</description>
+            <elementDefinition Id="6f718ab3-fb88-47da-b538-134a5fbec12d" />
+            <flowNodeTargets>
+              <controlFlow Id="c5563fd2-5a1b-4669-83ad-c74789cb3504" guard="未通过" isLeaf="false">
+                <opaqueActionMoniker Id="2a4b4d55-a2a6-4d53-9a1d-1df4d81d2834" LastKnownName="修复bug" />
+                <elementDefinition Id="75972f34-085b-4ddc-95cb-b028a848b04f" />
+              </controlFlow>
+              <controlFlow Id="b472e6d5-185f-4758-a27d-4024870e7d35" guard="测试通过" isLeaf="false">
+                <opaqueActionMoniker Id="e66a697c-a930-4ac7-9f16-d5e33414eba3" LastKnownName="部署确认" />
+                <elementDefinition Id="7876a674-82dd-4171-97c1-23f01877c751" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="2a4b4d55-a2a6-4d53-9a1d-1df4d81d2834" name="修复bug" isLeaf="false">
+            <elementDefinition Id="c6c89247-4c0d-43aa-83c3-dd96e64a9ee0" />
+            <flowNodeTargets>
+              <controlFlow Id="238bbb39-5c6c-4ccc-bd94-185f7234a866" isLeaf="false">
+                <opaqueActionMoniker Id="c3b36ad1-026c-4770-949f-569f7bf3fe86" LastKnownName="确认修复" />
+                <elementDefinition Id="25b283c0-cc61-4e06-9631-dc81bbcb0bd5" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="c3b36ad1-026c-4770-949f-569f7bf3fe86" name="确认修复" isLeaf="false">
+            <elementDefinition Id="92f9479a-b275-439e-9d77-cebc8759668e" />
+            <flowNodeTargets>
+              <controlFlow Id="805012e5-027d-42d8-9888-78b643ca0244" guard="提交测试" isLeaf="false">
+                <opaqueActionMoniker Id="e1cce65f-85c5-442d-a508-f1a0fa36131b" LastKnownName="测试" />
+                <elementDefinition Id="5fd63777-18aa-4faf-a85b-8b7db963591b" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="a73b15e8-34a5-43ed-a859-d28e5e03a81c" name="部署上线" isLeaf="false">
+            <elementDefinition Id="ecb15d2e-adce-4435-91ed-a66433546ea6" />
+            <flowNodeTargets>
+              <controlFlow Id="de4db927-0171-492e-81ce-2be5fe44eaa7" isLeaf="false">
+                <opaqueActionMoniker Id="d5185457-b6f8-44c9-8877-d4840d53c549" LastKnownName="测试" />
+                <elementDefinition Id="7698c2e3-e056-4c8f-8832-a53edf6d77bf" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="febbd85b-c21e-4eb2-a051-6be8a290147d" name="提出需求" isLeaf="false">
+            <elementDefinition Id="b77c91d7-afad-49cf-b780-60fcb1d8d4ee" />
+            <flowNodeTargets>
+              <controlFlow Id="527c0cbd-61b7-4473-9064-ab558a0ebd7a" isLeaf="false">
+                <opaqueActionMoniker Id="98954a05-1dd9-49ef-8c5d-d71d201fc478" LastKnownName="确认需求" />
+                <elementDefinition Id="e00c920e-a7a9-4597-81c9-b0c31b9bb1cc" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="98954a05-1dd9-49ef-8c5d-d71d201fc478" name="确认需求" isLeaf="false">
+            <elementDefinition Id="5a9ab1f2-724e-426e-a936-8375b2a56158" />
+            <flowNodeTargets>
+              <controlFlow Id="9b04d01f-8800-41f1-a8b0-1a76fd9b8513" isLeaf="false">
+                <decisionNodeMoniker Id="ae35223f-31af-428e-9865-b19be1eb8573" LastKnownName="Decision11" />
+                <elementDefinition Id="6937c721-4732-4a84-83a2-755da874e361" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="ae35223f-31af-428e-9865-b19be1eb8573" name="Decision11" isLeaf="false">
+            <elementDefinition Id="e1a7591c-0a31-42c1-bc58-2722c3476ecc" />
+            <flowNodeTargets>
+              <controlFlow Id="b5fc3c89-fa30-409c-91e1-13ac113ee79b" guard="取消" isLeaf="false">
+                <opaqueActionMoniker Id="a941c044-334e-4239-a9ea-c7d9a3cca415" LastKnownName="取消确认" />
+                <elementDefinition Id="7950b828-ed5c-4ac0-9b89-e164e7a96c89" />
+              </controlFlow>
+              <controlFlow Id="6e5787be-8e92-417c-a6fa-aa83e5a44944" guard="通过" isLeaf="false">
+                <opaqueActionMoniker Id="727fdf3c-b60b-4952-adb7-62e460bec858" LastKnownName="添加需求" />
+                <elementDefinition Id="1cbaad34-6586-4f3c-81df-b219781f2fa6" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="a941c044-334e-4239-a9ea-c7d9a3cca415" name="取消确认" isLeaf="false">
+            <elementDefinition Id="ca2fd0b1-1dc9-42bb-814d-15300883be95" />
+            <flowNodeTargets>
+              <controlFlow Id="972e6f35-a883-4328-ada6-1d75e01bb12c" isLeaf="false">
+                <activityFinalNodeMoniker Id="157cde53-3efc-4c6a-9556-a0e2fe70a5f6" LastKnownName="ActivityFinal1" />
+                <elementDefinition Id="71610358-6f4b-40d5-b2f4-7e1baa568fe2" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="157cde53-3efc-4c6a-9556-a0e2fe70a5f6" name="ActivityFinal1" isLeaf="false">
+            <elementDefinition Id="9b49645c-8bf0-4716-ac36-36a062876f18" />
+          </activityFinalNode>
+          <opaqueAction Id="727fdf3c-b60b-4952-adb7-62e460bec858" name="添加需求" isLeaf="false">
+            <elementDefinition Id="774201cd-2814-4e21-80ab-7eac0cf1f261" />
+            <flowNodeTargets>
+              <controlFlow Id="414eb34d-16e7-4a9f-ad59-7321c99a3a69" isLeaf="false">
+                <opaqueActionMoniker Id="cf626f17-e9f4-4a5b-9b22-19e4162778aa" LastKnownName="需求启动" />
+                <elementDefinition Id="9d037b4b-d723-4cfe-92d3-c7beac440d89" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="cf626f17-e9f4-4a5b-9b22-19e4162778aa" name="需求启动" isLeaf="false">
+            <elementDefinition Id="4b069624-8377-493d-b21f-c189e6ca06e2" />
+            <flowNodeTargets>
+              <controlFlow Id="16a708bc-5c53-44f6-9c6c-5fec36cc530e" isLeaf="false">
+                <opaqueActionMoniker Id="38bf3e59-26a7-417a-a49d-4cc4643f776a" LastKnownName="开发任务分配" />
+                <elementDefinition Id="9f86d291-5022-4607-8a08-7071423a2a06" />
+              </controlFlow>
+              <controlFlow Id="638ffbf7-ed26-485e-998a-606eef1a45bc" isLeaf="false">
+                <opaqueActionMoniker Id="e407d0d0-34ec-467d-a0b4-094dd15bf301" LastKnownName="测试任务分配" />
+                <elementDefinition Id="7a7db6e9-d3f7-4836-bb2d-d87fb700d5e7" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="15b2e35c-2eb1-46f2-aa97-0d642948ff00" name="计划确认" isLeaf="false">
+            <elementDefinition Id="863c2569-5900-4597-9be6-e9ba56ca26f5" />
+            <flowNodeTargets>
+              <controlFlow Id="a9e602fd-d924-4769-a6c4-a058fbec3b19" isLeaf="false">
+                <decisionNodeMoniker Id="5a8fc3c5-3cd2-4dc2-a06c-0740de70886e" LastKnownName="Decision1" />
+                <elementDefinition Id="e306249a-0ce4-4318-95ad-c9cad436777f" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="5a8fc3c5-3cd2-4dc2-a06c-0740de70886e" name="Decision1" isLeaf="false">
+            <elementDefinition Id="14e4d632-307e-4ad6-a69c-e8d489cf246c" />
+            <flowNodeTargets>
+              <controlFlow Id="0569e0b4-c846-4d8f-a5db-671bb8903278" guard="未通过" isLeaf="false">
+                <opaqueActionMoniker Id="a4da3331-cd25-43e9-ae6f-894584f0f505" LastKnownName="填写开发计划" />
+                <elementDefinition Id="24e2c4b2-e1bf-486f-bf20-054fe3085691" />
+              </controlFlow>
+              <controlFlow Id="3d2bfe53-ca9c-4ace-a42c-78d09b3f9304" guard="通过" isLeaf="false">
+                <forkNodeMoniker Id="72b20004-9688-48a7-ba9b-fad289ee47bb" LastKnownName="Fork1" />
+                <elementDefinition Id="1fdad840-9102-47f5-b0ae-76627f83ac24" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <forkNode Id="72b20004-9688-48a7-ba9b-fad289ee47bb" name="Fork1" isLeaf="false">
+            <elementDefinition Id="69bda40f-4233-4614-a154-dd61aeee224b" />
+            <flowNodeTargets>
+              <controlFlow Id="5eda7f03-f252-4ab6-ab72-3b9e7421f01d" isLeaf="false">
+                <opaqueActionMoniker Id="91e2807e-caca-4ba1-a550-4f2aae1e2ee4" LastKnownName="开发" />
+                <elementDefinition Id="2a35b9d2-a3ba-4482-b1be-678eaa933f6d" />
+              </controlFlow>
+              <controlFlow Id="2c01da99-2114-40dd-81f3-c4b99ae8b900" isLeaf="false">
+                <opaqueActionMoniker Id="5a485208-64e4-4ef2-808a-f6ba31510d31" LastKnownName="填写测试计划" />
+                <elementDefinition Id="7192e409-9495-41ad-bda8-7b69978f7eb9" />
+              </controlFlow>
+            </flowNodeTargets>
+          </forkNode>
+          <opaqueAction Id="0f15ece1-c86e-49ba-914b-1fcfb4341d08" name="计划确认" isLeaf="false">
+            <elementDefinition Id="acc32853-cc77-4922-88a3-6dc2718dc477" />
+            <flowNodeTargets>
+              <controlFlow Id="8a6e985c-07fa-44b9-b210-dd937231ddd2" isLeaf="false">
+                <decisionNodeMoniker Id="9e5c7149-126f-4bc7-809e-3d12b03e04ee" LastKnownName="Decision12" />
+                <elementDefinition Id="95ad102a-2555-4e32-a202-801718afbcec" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="9e5c7149-126f-4bc7-809e-3d12b03e04ee" name="Decision12" isLeaf="false">
+            <elementDefinition Id="a73f557a-1fdd-475e-ab4b-cff513e66ddf" />
+            <flowNodeTargets>
+              <controlFlow Id="0ca17982-14c1-46df-be49-2cab4405e8f1" guard="未通过" isLeaf="false">
+                <opaqueActionMoniker Id="5a485208-64e4-4ef2-808a-f6ba31510d31" LastKnownName="填写测试计划" />
+                <elementDefinition Id="fb5282fd-92c5-4a94-a7f7-a9f1a68a6c62" />
+              </controlFlow>
+              <controlFlow Id="15085484-94f8-4674-b704-3a1a4bc5e879" isLeaf="false">
+                <opaqueActionMoniker Id="a09ea67d-c887-4d61-bbde-d3f75faf7f04" LastKnownName="填写测试用例" />
+                <elementDefinition Id="23839165-2e81-4e7d-b6c6-ac24346fa286" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="e66a697c-a930-4ac7-9f16-d5e33414eba3" name="部署确认" isLeaf="false">
+            <elementDefinition Id="65a31980-fe8b-4c7c-90d5-d8b644d2e024" />
+            <flowNodeTargets>
+              <controlFlow Id="0bc7c54a-67cb-4987-b0a9-e485332dc790" isLeaf="false">
+                <decisionNodeMoniker Id="4b36e5a4-fbaa-46fa-8eda-2b88eb9e6acf" LastKnownName="Decision2" />
+                <elementDefinition Id="9fc1d123-d19e-4782-992f-20ccb8cc1c74" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="4b36e5a4-fbaa-46fa-8eda-2b88eb9e6acf" name="Decision2" isLeaf="false">
+            <elementDefinition Id="2db1a0de-5f54-4eaf-a5b9-fca8c49af3d3" />
+            <flowNodeTargets>
+              <controlFlow Id="fe77ee1b-b330-4232-aeb2-a21be133bb7d" guard="不需要部署" isLeaf="false">
+                <opaqueActionMoniker Id="e66a697c-a930-4ac7-9f16-d5e33414eba3" LastKnownName="部署确认" />
+                <elementDefinition Id="f582a33f-00d9-43eb-a55e-604ce510a6d2" />
+              </controlFlow>
+              <controlFlow Id="8772ef0e-b9a0-459c-a24f-04d9d7ff36ed" guard="可以部署" isLeaf="false">
+                <opaqueActionMoniker Id="a73b15e8-34a5-43ed-a859-d28e5e03a81c" LastKnownName="部署上线" />
+                <elementDefinition Id="dcc595cf-a964-49e7-a0e6-9f7c155d7e1e" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="d5185457-b6f8-44c9-8877-d4840d53c549" name="测试" isLeaf="false">
+            <elementDefinition Id="16728778-a428-463b-b202-60f41e8fa73e" />
+            <flowNodeTargets>
+              <controlFlow Id="f8c14f09-f325-4f67-a0e2-c6668c6ac327" isLeaf="false">
+                <decisionNodeMoniker Id="92d36bfb-5bcd-45c1-9591-6e5077c49af0" LastKnownName="测试通过1" />
+                <elementDefinition Id="f21f96b8-bc2a-4bd9-bf9a-24d1c9d27e9c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="92d36bfb-5bcd-45c1-9591-6e5077c49af0" name="测试通过1" isLeaf="false">
+            <description>测试通过</description>
+            <elementDefinition Id="80f54fb5-a083-4c10-acdc-6a7cb69b03f3" />
+            <flowNodeTargets>
+              <controlFlow Id="fdc38d76-50d8-4948-981f-09bee66411c0" guard="未通过" isLeaf="false">
+                <opaqueActionMoniker Id="fecc89fc-fd23-4fe0-8c3b-9a31fd947947" LastKnownName="修复bug" />
+                <elementDefinition Id="6655f7f5-184b-4cc2-b07f-3b2f0d5a4964" />
+              </controlFlow>
+              <controlFlow Id="94851ec3-2abb-4a33-9677-0f73ef655fec" isLeaf="false">
+                <opaqueActionMoniker Id="e7ba4dd2-87da-4d48-99ed-7b3e23b3e63f" LastKnownName="验收" />
+                <elementDefinition Id="551bdd2e-0b74-4871-93e2-0d5c1307576c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="fecc89fc-fd23-4fe0-8c3b-9a31fd947947" name="修复bug" isLeaf="false">
+            <elementDefinition Id="3afb7dcf-0895-4c51-a506-a3a3c8c0c9fa" />
+            <flowNodeTargets>
+              <controlFlow Id="b7a585de-ed1b-4a54-a73b-e85cb0623a68" isLeaf="false">
+                <opaqueActionMoniker Id="e0f1d666-9bad-4e2a-9416-d5b8072fedcf" LastKnownName="确认修复" />
+                <elementDefinition Id="cef42f21-a853-4b16-a5dd-9ecd5e843837" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e0f1d666-9bad-4e2a-9416-d5b8072fedcf" name="确认修复" isLeaf="false">
+            <elementDefinition Id="e8cd7bf1-c93d-4b41-b13b-8a5ba832595e" />
+            <flowNodeTargets>
+              <controlFlow Id="ac4f64f4-6d5c-4eff-8f1a-33cf33cd16a1" guard="通知更新" isLeaf="false">
+                <opaqueActionMoniker Id="a73b15e8-34a5-43ed-a859-d28e5e03a81c" LastKnownName="部署上线" />
+                <elementDefinition Id="fe532e81-8b25-402d-b64f-ea173a78d0a6" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <opaqueAction Id="e7ba4dd2-87da-4d48-99ed-7b3e23b3e63f" name="验收" isLeaf="false">
+            <elementDefinition Id="8a69aaa4-d895-4fac-b866-011ddc04fdd5" />
+            <flowNodeTargets>
+              <controlFlow Id="c178c43c-c27d-4f97-95b9-84c93059dcc9" isLeaf="false">
+                <decisionNodeMoniker Id="ecbfd48c-095f-4565-9917-670d37cf965d" LastKnownName="测试通过11" />
+                <elementDefinition Id="58aef297-2091-4eb4-9659-011f56faf52d" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="ecbfd48c-095f-4565-9917-670d37cf965d" name="测试通过11" isLeaf="false">
+            <description>测试通过</description>
+            <elementDefinition Id="6f629553-b6d0-4876-b111-390eae239c0a" />
+            <flowNodeTargets>
+              <controlFlow Id="00205c06-a5cc-4213-a0b4-0612b3548d85" guard="未通过" isLeaf="false">
+                <opaqueActionMoniker Id="d5185457-b6f8-44c9-8877-d4840d53c549" LastKnownName="测试" />
+                <elementDefinition Id="541cdb81-9fb9-4bb4-9c68-9b17a44bfd43" />
+              </controlFlow>
+              <controlFlow Id="d3e08fd8-40a7-433a-861f-dfac856e151d" guard="通知验收" isLeaf="false">
+                <opaqueActionMoniker Id="7441e124-5960-4788-9868-49afd5a57503" LastKnownName="验收" />
+                <elementDefinition Id="0dcf8631-a76f-485b-a960-cee55b9af1b2" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="7441e124-5960-4788-9868-49afd5a57503" name="验收" isLeaf="false">
+            <elementDefinition Id="076de9b0-6d3f-4573-a117-0b6363a063fb" />
+            <flowNodeTargets>
+              <controlFlow Id="ecb79953-bc71-43ff-b44e-c80ef31eea5a" isLeaf="false">
+                <decisionNodeMoniker Id="2e83f9de-17a9-47c2-9f02-67be71748504" LastKnownName="测试通过111" />
+                <elementDefinition Id="bd3c4bd0-4f22-46e9-af2c-b3589101b9ac" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <decisionNode Id="2e83f9de-17a9-47c2-9f02-67be71748504" name="测试通过111" isLeaf="false">
+            <description>测试通过</description>
+            <elementDefinition Id="375ae7b4-7bc7-4a2f-81bb-9067f422a121" />
+            <flowNodeTargets>
+              <controlFlow Id="79497cdc-bfe0-4426-b41c-ee064a053e22" guard="未通过" isLeaf="false">
+                <opaqueActionMoniker Id="e7ba4dd2-87da-4d48-99ed-7b3e23b3e63f" LastKnownName="验收" />
+                <elementDefinition Id="96574a97-3212-461d-a85d-aeaef4e4dcb2" />
+              </controlFlow>
+              <controlFlow Id="98b122d7-56f8-460b-9808-1e1c94e45fe0" guard="通过" isLeaf="false">
+                <opaqueActionMoniker Id="962f0e2e-5414-4201-9d1e-3dcb1a96ffc6" LastKnownName="需求完成" />
+                <elementDefinition Id="006b9758-0734-463d-925b-09529232e3ab" />
+              </controlFlow>
+            </flowNodeTargets>
+          </decisionNode>
+          <opaqueAction Id="962f0e2e-5414-4201-9d1e-3dcb1a96ffc6" name="需求完成" isLeaf="false">
+            <elementDefinition Id="f000a808-9362-4343-9273-fdf3abe18f5c" />
+            <flowNodeTargets>
+              <controlFlow Id="1693a14c-aa72-40b0-8f69-f779818dedce" isLeaf="false">
+                <activityFinalNodeMoniker Id="73275cc6-c170-439f-97f6-8d76710faebf" LastKnownName="ActivityFinal2" />
+                <elementDefinition Id="8ddb6c22-2d21-479d-9174-f24b1e364b4c" />
+              </controlFlow>
+            </flowNodeTargets>
+          </opaqueAction>
+          <activityFinalNode Id="73275cc6-c170-439f-97f6-8d76710faebf" name="ActivityFinal2" isLeaf="false">
+            <elementDefinition Id="56577cf1-2c74-46e8-8af7-30d8bd214e86" />
+          </activityFinalNode>
+        </nodes>
+      </activity>
+    </activityRootModelHasActivity>
+  </packagedElements>
+  <package Id="1c632580-a8bf-4bec-954e-5f9a7e831c12" name="Modeling">
+    <elementDefinition Id="6143af38-8130-4f7e-b020-6a4c0b750cde" />
+  </package>
+</activityRootModel>

@@ -22,6 +22,20 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\ArchitectureTools\Microsoft.VisualStudio.TeamArchitect.ModelingProject.targets" Condition="'$(VSToolsPath)' != ''" />
   <ItemGroup>
+    <Content Include="usecase.usecasediagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="usecase.usecasediagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>usecase.usecasediagram</DependentUpon>
+    </Content>
+    <Content Include="workflow.activitydiagram">
+      <SubType>Content</SubType>
+    </Content>
+    <Content Include="workflow.activitydiagram.layout">
+      <SubType>Content</SubType>
+      <DependentUpon>workflow.activitydiagram</DependentUpon>
+    </Content>
     <Folder Include="ModelDefinition\" />
     <Content Include="ModelDefinition\Modeling.uml">
       <SubType>Content</SubType>
