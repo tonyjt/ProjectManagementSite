@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Project]
+(
+	[ProjectId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [Name] NVARCHAR(64) NOT NULL
+)

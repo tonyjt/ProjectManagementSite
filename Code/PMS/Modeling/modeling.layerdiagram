@@ -1,10 +1,47 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="2a14dfdb-c806-4288-bbcb-19794c60abbf" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <comments>
+    <comment Id="24f57a5a-4e46-45ca-b9d7-e15b23a2f9e4" name="Comment1">
+      <body>数据访问</body>
+    </comment>
+    <comment Id="4efadab0-bc73-4363-a032-c564f20d3e66" name="Comment2">
+      <body>数据存储</body>
+    </comment>
+    <comment Id="0924b413-cbec-48e1-85b3-f5a08fba8151" name="Comment3">
+      <body>业务处理</body>
+    </comment>
+    <comment Id="b0137deb-cb99-40dc-8b75-1c3c98698715" name="Comment4">
+      <body>前端显示</body>
+    </comment>
+    <comment Id="f6b13860-105c-4efa-9307-d99c73aba3da" name="Comment5">
+      <body>模块划分</body>
+    </comment>
+  </comments>
   <layers>
-    <layer Id="98260e84-e744-4b7a-a6d9-8e2a505dc165" name="Sql " />
-    <layer Id="3df89535-fa88-472a-b960-562e2e1f94fa" name="Cache" />
-    <layer Id="d74adf22-219c-44b8-a991-8dfcfe46d62b" name="BL" />
-    <layer Id="5729450a-855e-4bcd-8a8f-1dc8619f9d4f" name="SI" />
-    <layer Id="9c40d3b3-b1b5-4e16-9454-587990fb1801" name="UI" />
+    <layer Id="98260e84-e744-4b7a-a6d9-8e2a505dc165" name="Sql  Server" />
+    <layer Id="3df89535-fa88-472a-b960-562e2e1f94fa" name="&#xD;&#xA;Redis NOSQL" />
+    <layer Id="d74adf22-219c-44b8-a991-8dfcfe46d62b" name="Business Logic Layer" />
+    <layer Id="9c40d3b3-b1b5-4e16-9454-587990fb1801" name="Asp.net MVC Site" />
+    <layer Id="9c0e647a-749b-47aa-902a-7bbdea927886" name="Entity Framework" />
+    <layer Id="9b90815d-4d9b-4873-9e25-cace9b855127" name="Redis Wrapper" />
+    <layer Id="ca70a0a7-c52f-437a-a2a2-adfe5784c8c9" name="Cache Layer" />
+    <layer Id="08d27f80-13b4-4211-b1a6-602e818377d5" name="Layer1">
+      <childLayers>
+        <layer Id="2efcc3ff-53d3-4714-80a3-7b0ad67944ca" name="Configuration" />
+        <layer Id="20dddaf4-6699-47ed-ac0f-47c54e5084cf" name="Log4net" />
+        <layer Id="16fb1a24-54d5-4c97-b47d-962bbed56208" name="Common" />
+      </childLayers>
+    </layer>
+    <layer Id="a6451b89-1fa3-41d8-b7ac-18dd1cb72b8f" name="项目" />
+    <layer Id="431420ae-17c6-49ae-ac5f-cd7fdf408482" name="需求" />
+    <layer Id="963a5499-b84e-4878-97a9-3284992f3550" name="计划" />
+    <layer Id="6eba8231-b61b-41e9-828d-ba2565898dae" name="测试用例" />
+    <layer Id="06958f3d-79a1-4ed7-b222-bb82d72f3ba7" name="Bug" />
+    <layer Id="422a1ba5-81a0-4a52-9037-94750841e766" name="任务" />
+    <layer Id="0e1cd581-7c74-41c6-904a-78b10a394534" name="流程" />
+    <layer Id="e8c4114e-a915-4f0d-9d00-2b232ae315dc" name="用户" />
+    <layer Id="3ef6844f-7433-47e5-913a-21c4d112d1d8" name="角色" />
+    <layer Id="54857936-8bd0-49d0-87b7-ca6f419e6e56" name="通知" />
+    <layer Id="502a08c3-ab66-4c3c-949a-1cf241cb08f1" name="部署" />
   </layers>
 </layerModel>
