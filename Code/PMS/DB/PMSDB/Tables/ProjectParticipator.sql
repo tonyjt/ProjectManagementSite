@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[ProjectParticipator]
+(
+	[ProjectId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    [Roles] SMALLINT NOT NULL, 
+    [JoinTime] DATETIME NOT NULL
+)
