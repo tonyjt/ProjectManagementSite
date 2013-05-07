@@ -19,16 +19,16 @@ namespace PMSSite
                         "~/Scripts/jquery.validate*"));
 
             bundles.Add(new ScriptBundle("~/bundles/template").Include(
-                        "~/Scripts/ace-elements.min.js",
-                        "~/Scripts/ace.min.js",
-                        "~/Scripts/bootstrap.min.js"));
+                        "~/Scripts/ace-elements.js",
+                        "~/Scripts/ace.js",
+                        "~/Scripts/bootstrap.js"));
 
             // 使用要用于开发和学习的 Modernizr 的开发版本。然后，当你做好
             // 生产准备时，请使用 http://modernizr.com 上的生成工具来仅选择所需的测试。
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/css/base").Include("~/Content/css/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
@@ -44,13 +44,13 @@ namespace PMSSite
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
 
-            bundles.Add(new StyleBundle("~/Content/template").Include(
-                        "~/Content/ace.min.css",
-                        "~/Content/ace-responsive.min.css",
-                        "~/Content/ace-skins.min.css",
-                        "~/Content/bootstrap-responsive.min.css",
-                        "~/Content/bootstrap.min.css",
-                        "~/Content/font-awesome.min.css"));
+            bundles.Add(new StyleBundle("~/Content/css/template").Include(
+                        "~/Content/css/bootstrap.css",
+                        "~/Content/css/ace.css",
+                        "~/Content/css/ace-responsive.css",
+                        "~/Content/css/ace-skins.css",
+                        "~/Content/css/bootstrap-responsive.css",
+                        "~/Content/css/font-awesome.css"));
         }
     }
 }

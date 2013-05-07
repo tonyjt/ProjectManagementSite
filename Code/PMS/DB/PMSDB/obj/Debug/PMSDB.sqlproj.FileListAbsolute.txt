@@ -1,0 +1,5 @@
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.dacpac
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\PMSDB.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\PMSDB.pdb

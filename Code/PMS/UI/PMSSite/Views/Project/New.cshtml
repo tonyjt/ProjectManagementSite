@@ -1,0 +1,85 @@
+﻿@{
+    ViewBag.Title = "All";
+    ViewBag.PageTitle = "添加新项目";
+
+    
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-horizontal">
+	
+		<div class="control-group">
+			<label class="control-label" for="form-field-1">项目名称</label>
+			<div class="controls">
+				<input type="text" id="form-field-1" placeholder="项目名称">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="form-field-2">开始时间</label>
+			<div class="controls">
+				<input type="password" id="form-field-2" placeholder="Password">
+				<span class="help-inline">Inline help text</span>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="form-input-readonly">Readonly field</label>
+			<div class="controls">
+				<input readonly="" type="text" id="form-input-readonly" value="This text field is readonly!">
+				&nbsp; &nbsp;
+				<input type="checkbox" id="id-disable-check">
+				<label class="lbl" for="id-disable-check"> Disable it!</label>
+			</div>
+		</div>
+		
+		
+		<div class="control-group">
+			<label class="control-label" for="form-field-4">Relative Sizing</label>
+			<div class="controls">
+				<input class="input-mini" type="text" id="form-field-4" placeholder=".input-mini">
+				<div class="help-block ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="input-size-slider" style="width: 200px;" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a></div>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="form-field-5">Grid Sizing</label>
+			<div class="controls">
+				<input class="span1" type="text" id="form-field-5" placeholder=".span1">
+				<input class="span11" type="text" placeholder=".span11">
+				<div class="help-block ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all" id="input-span-slider" aria-disabled="false"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><a class="ui-slider-handle ui-state-default ui-corner-all" href="#" style="left: 0%;"></a></div>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label">Input with Icon</label>
+			<div class="controls">
+				<span class="input-icon">
+					<input type="text" id="form-field-icon-1">
+					<i class="icon-leaf"></i>
+				</span>
+				
+				<span class="input-icon input-icon-right">
+					<input type="text" id="form-field-icon-2">
+					<i class="icon-leaf"></i>
+				</span>
+			</div>
+		</div>
+		
+		<div class="control-group">
+			<label class="control-label" for="form-field-6">Tooltip and help button</label>
+			<div class="controls">
+				<input class="ace-tooltip" type="text" id="form-field-6" placeholder="Tooltip on hover" title="" data-placement="bottom" data-original-title="Hello Tooltip!">
+				<span class="help-button ace-popover" data-trigger="hover" data-placement="left" data-content="More details." title="" data-original-title="Popover on hover">?</span>
+			</div>
+		</div>
+
+	
+		<div class="form-actions">
+			<button class="btn btn-info" type="submit"><i class="icon-ok"></i> Submit</button>
+			&nbsp; &nbsp; &nbsp;
+			<button class="btn" type="reset"><i class="icon-undo"></i> Reset</button>
+		</div>
+	
+	
+	 </form>

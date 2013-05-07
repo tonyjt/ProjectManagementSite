@@ -1,0 +1,5 @@
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\bin\Debug\PMS.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\bin\Debug\PMS.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.csprojResolveAssemblyReference.cache
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.pdb

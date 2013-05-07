@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "Index";
+    ViewBag.PageTitle = "项目列表";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    项目名称
+                </th>
+                <th>
+                    创建人
+                </th>
+                <th>
+                    创建日期
+                </th>
+                <th>
+                    是否参与
+                </th>
+                
+              
+                <th>
+                    状态
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    QPlus
+                </td>
+                <td>
+                    Tony Liu
+                </td>
+                <td>
+                    2012-04-01
+                </td>
+                <td>
+                    <i class="icon-ok"></i>
+                </td>
+              
+                <td>
+                                        <span class="label arrowed">未开始</span>
+
+                </td>
+                <td style="width:10%;">
+                <div class="hidden-phone visible-desktop btn-group">
+							<button class="btn btn-mini btn-info"><i class="icon-share-alt"></i></button>
+
+                            <button class="btn btn-mini btn-success"><i class="icon-play"></i></button>
+                            <button class="btn btn-mini btn-warnning"><i class="icon-pause"></i></button>
+							<button class="btn btn-mini btn-danger"><i class="icon-stop"></i></button>
+
+					</div>
+                </td>
+            </tr>
+               <tr>
+                <td>
+                    QPlus
+                </td>
+                <td>
+                    Tony Liu
+                </td>
+                <td>
+                    2012-04-01
+                </td>
+                <td>
+                    <i class="icon-remove"></i>
+                </td>
+               
+                <td>
+                    <span class="label arrowed">未开始</span>
+                    
+                </td>
+                <td style="width:10%;">
+                    <div class="hidden-phone visible-desktop btn-group">
+							<button class="btn btn-mini btn-info"><i class="icon-share-alt"></i></button>
+
+                            <button class="btn btn-mini btn-success"><i class="icon-play"></i></button>
+                            <button class="btn btn-mini btn-warnning"><i class="icon-pause"></i></button>
+							<button class="btn btn-mini btn-danger"><i class="icon-stop"></i></button>
+
+					</div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
