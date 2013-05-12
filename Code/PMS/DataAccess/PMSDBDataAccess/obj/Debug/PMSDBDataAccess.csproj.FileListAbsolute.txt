@@ -1,0 +1,13 @@
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\obj\Debug\PMSDBDataAccess.csprojResolveAssemblyReference.cache
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\PMS.PMSDBDataAccess.dll.config
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\PMS.PMSDBDataAccess.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\PMS.PMSDBDataAccess.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\EFUtil.Core.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\EFUtil.Repository.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\EntityFramework.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\PMS.Model.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\PMS.Model.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\EntityFramework.xml
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\obj\Debug\PMS.PMSDBDataAccess.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\obj\Debug\PMS.PMSDBDataAccess.pdb

@@ -3,7 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+@section styles{
+     @RenderSection("styles",false)
+}
 		<div class="navbar navbar-inverse">
 		  <div class="navbar-inner">
 		   <div class="container-fluid">
@@ -318,7 +320,7 @@
 					<li>
 					  <a href="#" class="dropdown-toggle">
 						<i class="icon-th"></i>
-						<span>项目维护</span>
+						<span>项目</span>
                           <b class="arrow icon-angle-down"></b>
 					  </a>
 			            <ul class="submenu">
@@ -389,3 +391,8 @@
 	
 
 <div class="tooltip top in" style="display: none;"><div class="tooltip-inner"></div></div>
+
+
+@section  scripts{
+    @RenderSection("scripts",false)
+}

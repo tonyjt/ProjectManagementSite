@@ -25,7 +25,7 @@
     <layer Id="9c0e647a-749b-47aa-902a-7bbdea927886" name="Entity Framework" />
     <layer Id="9b90815d-4d9b-4873-9e25-cace9b855127" name="Redis Wrapper" />
     <layer Id="ca70a0a7-c52f-437a-a2a2-adfe5784c8c9" name="Cache Layer" />
-    <layer Id="08d27f80-13b4-4211-b1a6-602e818377d5" name="Layer1">
+    <layer Id="08d27f80-13b4-4211-b1a6-602e818377d5" name="&#xD;&#xA;">
       <childLayers>
         <layer Id="2efcc3ff-53d3-4714-80a3-7b0ad67944ca" name="Configuration" />
         <layer Id="20dddaf4-6699-47ed-ac0f-47c54e5084cf" name="Log4net" />

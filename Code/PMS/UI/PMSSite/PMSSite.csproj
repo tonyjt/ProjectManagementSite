@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PMSSite</RootNamespace>
-    <AssemblyName>PMSSite</AssemblyName>
+    <RootNamespace>PMS.PMSSite</RootNamespace>
+    <AssemblyName>PMS.PMSSite</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -39,6 +39,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CustomExtension, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\CustomExtension.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -182,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -189,6 +194,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -198,7 +204,26 @@
     <Content Include="Content\css\bootstrap-responsive.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
+    <Content Include="Content\css\jquery-ui-1.10.3.custom.css" />
+    <Content Include="Content\css\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="Content\img\animated-overlay.gif" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\ui-bg_flat_55_999999_40x100.png" />
+    <Content Include="Content\img\ui-bg_flat_75_aaaaaa_40x100.png" />
+    <Content Include="Content\img\ui-bg_glass_45_0078ae_1x400.png" />
+    <Content Include="Content\img\ui-bg_glass_55_f8da4e_1x400.png" />
+    <Content Include="Content\img\ui-bg_glass_75_79c9ec_1x400.png" />
+    <Content Include="Content\img\ui-bg_gloss-wave_45_e14f1c_500x100.png" />
+    <Content Include="Content\img\ui-bg_gloss-wave_50_6eac2c_500x100.png" />
+    <Content Include="Content\img\ui-bg_gloss-wave_75_2191c0_500x100.png" />
+    <Content Include="Content\img\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\img\ui-icons_0078ae_256x240.png" />
+    <Content Include="Content\img\ui-icons_056b93_256x240.png" />
+    <Content Include="Content\img\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\img\ui-icons_e0fdff_256x240.png" />
+    <Content Include="Content\img\ui-icons_f5e175_256x240.png" />
+    <Content Include="Content\img\ui-icons_f7a50d_256x240.png" />
+    <Content Include="Content\img\ui-icons_fcd113_256x240.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -264,6 +289,7 @@
     <Content Include="Content\font\fontawesome-webfont.woff" />
     <Content Include="Content\font\fontawesome-webfont.eot" />
     <Content Include="Content\font\fontawesome-webfont.ttf" />
+    <Content Include="Configs\connectionStrings.config" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Scripts\ace-elements.min.js" />
@@ -271,7 +297,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
-    <Content Include="Scripts\jquery-ui-1.10.2.custom.min.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.custom.js" />
+    <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
     <Content Include="Scripts\jquery.easy-pie-chart.min.js" />
     <Content Include="Scripts\jquery.flot.min.js" />
     <Content Include="Scripts\jquery.flot.pie.min.js" />
@@ -291,6 +318,7 @@
     <Content Include="Scripts\ace-elements.js" />
     <Content Include="Scripts\ace.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\project.new.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -326,6 +354,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\BusinessLogic\PMSComp\PMSBLL.csproj">
+      <Project>{bdb4ef20-3f60-4b34-b05b-d59294aa1f44}</Project>
+      <Name>PMSBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PMS\Model\Model\Model.csproj">
+      <Project>{e51d3db3-56ca-4e43-b2a8-362dab6c9363}</Project>
+      <Name>Model %28Model\Model%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

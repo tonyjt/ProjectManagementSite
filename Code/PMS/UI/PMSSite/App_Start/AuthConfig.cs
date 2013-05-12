@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.Web.WebPages.OAuth;
 using PMSSite.Models;
 
-namespace PMSSite
+namespace PMS.PMSSite
 {
     public static class AuthConfig
     {

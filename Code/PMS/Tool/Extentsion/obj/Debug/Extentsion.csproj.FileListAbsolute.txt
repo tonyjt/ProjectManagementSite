@@ -1,0 +1,7 @@
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\bin\Debug\Extentsion.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\bin\Debug\Extentsion.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\bin\Debug\CustomExtension.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\bin\Debug\CustomExtension.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\Extentsion.csprojResolveAssemblyReference.cache
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\Extentsion.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\Extentsion.pdb

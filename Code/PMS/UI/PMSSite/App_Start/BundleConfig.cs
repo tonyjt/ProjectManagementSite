@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace PMSSite
+namespace PMS.PMSSite
 {
     public class BundleConfig
     {
@@ -12,7 +12,7 @@ namespace PMSSite
                         "~/Scripts/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui-{version}.js"));
+                        "~/Scripts/jquery-ui-{version}.custom.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
@@ -51,6 +51,10 @@ namespace PMSSite
                         "~/Content/css/ace-skins.css",
                         "~/Content/css/bootstrap-responsive.css",
                         "~/Content/css/font-awesome.css"));
+
+            bundles.Add(new StyleBundle("~/Content/css/jqueryui").Include(
+                        "~/Content/css/jquery-ui-{version}.custom.css"
+                ));
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿@{
+﻿@model ProjectIndexModel
+
+@{
     ViewBag.Title = "Index";
     ViewBag.PageTitle = "项目列表";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -19,10 +21,11 @@
                     创建日期
                 </th>
                 <th>
+                    开始日期
+                </th>
+                <th>
                     是否参与
                 </th>
-                
-              
                 <th>
                     状态
                 </th>
@@ -30,64 +33,39 @@
             </tr>
         </thead>
         <tbody>
+            @foreach(PMS.Model.Project item in Model.Projects)
+            {
             <tr>
                 <td>
-                    QPlus
+                    @item.Name
                 </td>
                 <td>
-                    Tony Liu
+                    @item.User.UserName
                 </td>
                 <td>
-                    2012-04-01
+                    @item.CreateTime.ToStandardDateString()
+                </td>
+                <td>
+                    @(item.StartDate.HasValue?item.StartDate.Value.ToStandardDateString():"--")
                 </td>
                 <td>
                     <i class="icon-ok"></i>
                 </td>
-              
                 <td>
-                                        <span class="label arrowed">未开始</span>
+                    @item.ProjectStatus.ToString()
 
+                    @*<span class="label arrowed">未开始</span>*@
                 </td>
                 <td style="width:10%;">
                 <div class="hidden-phone visible-desktop btn-group">
 							<button class="btn btn-mini btn-info"><i class="icon-share-alt"></i></button>
-
                             <button class="btn btn-mini btn-success"><i class="icon-play"></i></button>
                             <button class="btn btn-mini btn-warnning"><i class="icon-pause"></i></button>
 							<button class="btn btn-mini btn-danger"><i class="icon-stop"></i></button>
-
 					</div>
                 </td>
             </tr>
-               <tr>
-                <td>
-                    QPlus
-                </td>
-                <td>
-                    Tony Liu
-                </td>
-                <td>
-                    2012-04-01
-                </td>
-                <td>
-                    <i class="icon-remove"></i>
-                </td>
-               
-                <td>
-                    <span class="label arrowed">未开始</span>
-                    
-                </td>
-                <td style="width:10%;">
-                    <div class="hidden-phone visible-desktop btn-group">
-							<button class="btn btn-mini btn-info"><i class="icon-share-alt"></i></button>
-
-                            <button class="btn btn-mini btn-success"><i class="icon-play"></i></button>
-                            <button class="btn btn-mini btn-warnning"><i class="icon-pause"></i></button>
-							<button class="btn btn-mini btn-danger"><i class="icon-stop"></i></button>
-
-					</div>
-                </td>
-            </tr>
+            }
         </tbody>
     </table>
 </div>

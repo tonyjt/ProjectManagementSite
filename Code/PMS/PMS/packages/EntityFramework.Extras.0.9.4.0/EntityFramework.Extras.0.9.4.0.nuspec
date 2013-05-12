@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>EntityFramework.Extras</id>
+    <version>0.9.4.0</version>
+    <title>Entity Framework Code First Extensions</title>
+    <authors>Sergey Barskiy</authors>
+    <owners>Sergey Barskiy</owners>
+    <licenseUrl>http://efcodefirstextras.codeplex.com/license</licenseUrl>
+    <projectUrl>http://efcodefirstextras.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>This package contains extensions for entity framework code first.  This includes read/write repositories, global conventions and attribute conventions</description>
+    <summary>This package contains extensions for entity framework code first.  This includes read/write repositories, global conventions and attribute conventions</summary>
+    <releaseNotes>This package contains extensions for entity framework code first.  This includes read/write repositories, global conventions and attribute conventions</releaseNotes>
+    <copyright>Sergey Barskiy</copyright>
+    <language />
+    <tags>Entity Framework;Code First;Repository;Coventions</tags>
+    <dependencies>
+      <dependency id="EntityFramework" version="4.3.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Data" targetFramework="" />
+      <frameworkAssembly assemblyName="System.Data.Entity" targetFramework="" />
+    </frameworkAssemblies>
+    <references>
+      <reference file="EFUtil.Core.dll" />
+      <reference file="EFUtil.Repository.dll" />
+    </references>
+  </metadata>
+</package>

@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace PMSSite
+namespace PMS.PMSSite
 {
     public class RouteConfig
     {
