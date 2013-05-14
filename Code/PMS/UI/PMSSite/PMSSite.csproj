@@ -195,6 +195,7 @@
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ProjectModels.cs" />
+    <Compile Include="Models\ViewMessageModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -318,6 +319,7 @@
     <Content Include="Scripts\ace-elements.js" />
     <Content Include="Scripts\ace.js" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\project.index.js" />
     <Content Include="Scripts\project.new.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -348,6 +350,7 @@
     <Content Include="Views\Shared\_MainLayout.cshtml" />
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\New.cshtml" />
+    <Content Include="Views\Shared\_ViewMessagePartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

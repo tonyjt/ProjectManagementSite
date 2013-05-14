@@ -58,10 +58,15 @@
                 </td>
                 <td style="width:10%;">
                 <div class="hidden-phone visible-desktop btn-group">
-							<button class="btn btn-mini btn-info"><i class="icon-share-alt"></i></button>
-                            <button class="btn btn-mini btn-success"><i class="icon-play"></i></button>
-                            <button class="btn btn-mini btn-warnning"><i class="icon-pause"></i></button>
-							<button class="btn btn-mini btn-danger"><i class="icon-stop"></i></button>
+							<a href="#" class="btn btn-mini btn-info"><i class="icon-share-alt"></i></a>
+
+                            <a href="@(item.AllowStart?Url.Action("list","project",new {projectId=item.ProjectId,op="start"}):"javascript:void(0);")" id="btnStart" class="btn btn-mini btn-success @(item.AllowStart?"":"disabled")"><i class="icon-play"></i></a>
+
+                            <a href="@(item.AllowPause?Url.Action("list","project",new {projectId=item.ProjectId,op="pause"}):"javascript:void(0);")" id="btnPause" class="btn btn-mini btn-warning @(item.AllowPause?"":"disabled")"><i class="icon-pause"></i></a>
+
+							<a href="@(item.AllowStop?Url.Action("list","project",new {projectId=item.ProjectId,op="stop"}):"javascript:void(0);")"id="btnStop" class="btn btn-mini btn-danger @(item.AllowStop?"":"disabled")"><i class="icon-stop"></i></a>
+                
+                            <a href="@Url.Action("list","project",new {projectId=item.ProjectId,op="delete"})" id="btnDelete" class="btn btn-mini" onclick='return confirm("删除后无法恢复，请确认是否删除！")'><i class="icon-remove"></i></a>
 					</div>
                 </td>
             </tr>
@@ -69,3 +74,10 @@
         </tbody>
     </table>
 </div>
+@section scripts{
+    <script type="text/javascript">
+        var startUrl = '@Url.Action("Start","Project")';
+        
+    </script>
+    @Scripts.Render("~/Scripts/project.index.js") 
+}

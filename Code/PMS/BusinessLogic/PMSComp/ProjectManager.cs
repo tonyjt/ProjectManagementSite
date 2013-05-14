@@ -55,12 +55,104 @@ namespace PMS.PMSBLL
 
                 projects = projects.Where(p => p.ProjectStatus != ProjectStatus.Delete);
 
-                return projects;
+                return projects.OrderByDescending(p=>p.CreateTime);
             }
             catch (Exception ex)
             {
                 log.ErrorInFunction(ex);
                 return new List<Project>();
+            }
+        }
+
+        public static bool StartProject(Guid projectId) 
+        {
+            IEnumerable<ProjectStatus> referStatus = new List<ProjectStatus>{
+               ProjectStatus.Ready,
+               ProjectStatus.Pause,
+               ProjectStatus.Stop
+           };
+
+           return UpdateProjectStatus(projectId,ProjectStatus.Start,referStatus);
+        }
+        public static bool PauseProject(Guid projectId)
+        {
+            IEnumerable<ProjectStatus> referStatus = new List<ProjectStatus>{
+               ProjectStatus.Start
+           };
+
+            return UpdateProjectStatus(projectId, ProjectStatus.Pause, referStatus);
+        }
+
+        public static bool StopProject(Guid projectId)
+        {
+            IEnumerable<ProjectStatus> referStatus = new List<ProjectStatus>{
+               ProjectStatus.Start,
+               ProjectStatus.Pause
+           };
+
+            return UpdateProjectStatus(projectId, ProjectStatus.Stop, referStatus);
+        }
+
+        public static bool DeleteProject(Guid projectId)
+        {
+            IEnumerable<ProjectStatus> referStatus = new List<ProjectStatus>{
+               ProjectStatus.Ready,
+               ProjectStatus.Start,
+               ProjectStatus.Pause,
+               ProjectStatus.Stop
+           };
+
+            return UpdateProjectStatus(projectId, ProjectStatus.Delete, referStatus);
+        }
+
+        public static bool UpdateProjectStatus(Guid projectId, ProjectStatus status,IEnumerable<ProjectStatus> referStatus)
+        {
+            if (GuidHelper.IsValid(projectId))
+            {
+                Project project = GetProject(projectId);
+
+                if (project != null)
+                {
+                    if (referStatus.Contains(project.ProjectStatus))
+                    {
+                        project.ProjectStatus = status;
+
+                        return UpdateProject(project);
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static Project GetProject(Guid projectId,bool nullable = false)
+        {
+            try
+            {
+                Project project = dataAccess.GetProject(projectId);
+                if (!nullable && project!=null)
+                {
+                    if (project.ProjectStatus == ProjectStatus.Delete)
+                        project = null;
+                }
+                return project;
+            }
+            catch (Exception ex)
+            {
+                log.ErrorInFunction(ex);
+                return null;
+            }
+        }
+
+        public static bool UpdateProject(Project project)
+        {
+            try
+            {
+                return dataAccess.UpdateProject(project);
+            }
+            catch (Exception ex)
+            {
+                log.ErrorInFunction(ex);
+                return false;
             }
         }
     }

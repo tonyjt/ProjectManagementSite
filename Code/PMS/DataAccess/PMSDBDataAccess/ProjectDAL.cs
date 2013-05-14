@@ -33,5 +33,40 @@ namespace PMS.PMSDBDataAccess
                 return projects.ToArray();
             }
         }
+
+        public Project GetProject(Guid projectId)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                return (from p in context.Projects
+                        where p.ProjectId == projectId
+                        select p).SingleOrDefault();
+            }
+        }
+
+        public bool UpdateProject(Project project)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var model = (from p in context.Projects
+                            where p.ProjectId == project.ProjectId
+                            select p).SingleOrDefault();
+
+                if (model != null)
+                {
+                    model.Description = project.Description;
+                    model.Name = project.Name;
+                    model.ProjectStatus = project.ProjectStatus;
+                    model.StartDate = project.StartDate;
+                    context.SaveChanges();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

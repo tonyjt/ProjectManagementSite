@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewMessageModel modalMessage;
+    if (ViewData["ViewMessage"] != null)
+    {
+        modalMessage = (ViewMessageModel)ViewData["ViewMessage"];
+    }
+    else if (TempData["ViewMessage"] != null)
+    {
+        modalMessage = (ViewMessageModel)TempData["ViewMessage"];
+    }
+    else if (ViewBag.ViewMessage != null)
+    {
+        modalMessage = ViewBag.ViewMessage;
+    }
+    else
+    {
+        modalMessage = new ViewMessageModel { Display = false };
+    }
+    if (modalMessage != null && modalMessage.Display && modalMessage.DisplayType == ViewMessageDispayType.Top)
+    {
+
+    <div class="row-fluid" >
+        <div class="span3"></div>
+        <div class="span6">
+            <div class="" style="width: 100%; height: 25px;" id="viewMessageDivAlert">
+                <a class="close" data-dismiss="alert" href="#">×</a>
+                <h4 id="viewMessageTitle" class="text-center"></h4>
+            </div>
+        </div>
+        <div class="span3"></div>
+    </div>
+        if (modalMessage != null && modalMessage.Display)
+        {
+
+            string alertClass;
+            switch (modalMessage.MessageType)
+            {
+                case MessageType.Success:
+                    alertClass = "alert-success";
+                    break;
+                case MessageType.Info:
+                    alertClass = "alert-info";
+                    break;
+                case MessageType.Block:
+                    alertClass = "alert-block";
+                    break;
+                default:
+                    alertClass = "alert-error";
+                    break;
+            }
+    <script type="text/javascript">
+        $(function () {
+            $("#viewMessageDivAlert").addClass("alert @alertClass");
+
+            $("#viewMessageTitle").text("@modalMessage.Message");
+
+            $("#viewMessageDivAlert").fadeIn(1000, function () {
+                    setInterval(hideMessage, 3000);
+                });
+
+            });
+            var hideMessage = function () {
+                $("#viewMessageDivAlert").fadeOut(10000, function () { });
+            }
+    </script>
+        }
+
+
+    }
+}
+

@@ -19,5 +19,32 @@ namespace PMS.Model
                 Status = (byte)value;
             }
         }
+
+        [NotMapped]
+        public bool AllowStart
+        {
+            get
+            {
+                return ProjectStatus != ProjectStatus.Start;
+            }
+        }
+        [NotMapped]
+        public bool AllowPause
+        {
+            get
+            {
+                return ProjectStatus == ProjectStatus.Start;
+            }
+        }
+        [NotMapped]
+        public bool AllowStop
+        {
+            get
+            {
+                return ProjectStatus == ProjectStatus.Start || ProjectStatus == ProjectStatus.Pause;
+            }
+        }
+
+
     }
 }

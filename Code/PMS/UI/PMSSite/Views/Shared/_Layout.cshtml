@@ -14,13 +14,15 @@
 
 
         @RenderSection("styles",false)
+
+        
+    @Scripts.Render("~/bundles/jquery")
     </head>
     <body>
 
         @RenderBody()
 
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/template")
     @RenderSection("scripts",false)
         </body>

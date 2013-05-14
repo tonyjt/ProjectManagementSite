@@ -5,3 +5,5 @@ C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\bi
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\PMS.Tool.dll
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\PMS.Tool.pdb
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\Tool.csprojResolveAssemblyReference.cache
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\bin\Debug\log4net.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\bin\Debug\log4net.xml

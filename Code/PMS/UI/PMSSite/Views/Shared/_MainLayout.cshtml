@@ -6,7 +6,7 @@
 @section styles{
      @RenderSection("styles",false)
 }
-		<div class="navbar navbar-inverse">
+		<div class="navbar navbar-inverse navbar-fixed-top">
 		  <div class="navbar-inner">
 		   <div class="container-fluid">
 
@@ -215,6 +215,8 @@
 
 		   </div><!--/.container-fluid-->
 		  </div><!--/.navbar-inner-->
+
+          @Html.Partial("_ViewMessagePartial")
 		</div><!--/.navbar-->
 
 <div class="container-fluid" id="main-container">
