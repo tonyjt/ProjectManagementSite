@@ -126,21 +126,63 @@ namespace PMS.PMSBLL
 
         public static Project GetProject(Guid projectId,bool nullable = false)
         {
-            try
+            Project project = ManagerHelper.GetModel<Project>(projectId, dataAccess.GetProject, log);
+
+            return GetProjectNullable(project, nullable);
+        }
+
+        public static Project GetProject(string projectName, bool nullable = false)
+        {
+            Project project = ManagerHelper.GetModel<Project>(projectName,dataAccess.GetProject, log);
+
+            return GetProjectNullable(project, nullable);
+        }
+
+        private static Project GetProjectNullable(Project project, bool nullable)
+        {
+            if (!nullable && project != null)
             {
-                Project project = dataAccess.GetProject(projectId);
-                if (!nullable && project!=null)
-                {
-                    if (project.ProjectStatus == ProjectStatus.Delete)
-                        project = null;
-                }
-                return project;
+                if (project.ProjectStatus == ProjectStatus.Delete)
+                    project = null;
             }
-            catch (Exception ex)
-            {
-                log.ErrorInFunction(ex);
+            return project;
+        }
+
+        public static ProjectParticipator GetLastJoinProjectForUser(Guid userId)
+        {
+            IEnumerable<ProjectParticipator> projectList = GetAllProjectsForUser(userId);
+
+            if (projectList != null && projectList.Count() > 0)
+                return projectList.OrderByDescending(p => p.JoinTime).FirstOrDefault();
+            else
                 return null;
+        }
+
+        public static IEnumerable<ProjectParticipator> GetAllProjectsForUser(Guid userId)
+        {
+            IEnumerable<ProjectParticipator> projectList = ManagerHelper.GetModel<IEnumerable<ProjectParticipator>>(userId, dataAccess.GetAllProjectForUser, log);
+
+            foreach (ProjectParticipator pp in projectList)
+            {
+                pp.Project = GetProjectNullable(pp.Project, false);
             }
+            return projectList.Where(p => p.Project != null);
+        }
+
+        public static IEnumerable<Project> GetOtherProjectsForUser(Guid userId, Guid projectId)
+        {
+            List<ProjectParticipator> projectList = GetAllProjectsForUser(userId).ToList();
+
+
+            if (GuidHelper.IsValid(projectId))
+            {
+                ProjectParticipator pp = projectList.Find(p => p.ProjectId == projectId);
+                if (pp != null)
+                {
+                    projectList.Remove(pp);
+                }
+            }
+            return projectList.Select(p=>p.Project);
         }
 
         public static bool UpdateProject(Project project)

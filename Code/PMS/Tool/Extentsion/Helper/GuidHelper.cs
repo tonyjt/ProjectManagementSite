@@ -12,5 +12,10 @@ namespace PMS.Tool.Helper
         {
             return guid != null && guid != Guid.Empty;
         }
+
+        public static Guid GetInvalidGuid()
+        {
+            return Guid.Empty;
+        }
     }
 }

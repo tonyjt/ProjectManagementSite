@@ -5,6 +5,11 @@ namespace PMS.Model
 {
     public partial class Project
     {
+        public Project()
+        {
+            this.ProjectParticipators = new List<ProjectParticipator>();
+        }
+
         public System.Guid ProjectId { get; set; }
         public string Name { get; set; }
         public System.Guid Creator { get; set; }
@@ -13,5 +18,6 @@ namespace PMS.Model
         public string Description { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public virtual User User { get; set; }
+        public virtual ICollection<ProjectParticipator> ProjectParticipators { get; set; }
     }
 }

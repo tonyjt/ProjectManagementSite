@@ -44,6 +44,9 @@
       <HintPath>..\..\Lib\CustomExtension.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcSiteMapProvider">
+      <HintPath>..\..\PMS\packages\MvcSiteMapProvider.3.3.6.0\lib\net40\MvcSiteMapProvider.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
@@ -187,6 +190,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProjectController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -194,6 +198,8 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CustomActionFilter.cs" />
+    <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Models\ViewMessageModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -291,6 +297,10 @@
     <Content Include="Content\font\fontawesome-webfont.eot" />
     <Content Include="Content\font\fontawesome-webfont.ttf" />
     <Content Include="Configs\connectionStrings.config" />
+    <Content Include="Mvc.sitemap" />
+    <None Include="MvcSiteMapSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Scripts\ace-elements.min.js" />
@@ -321,6 +331,12 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\project.index.js" />
     <Content Include="Scripts\project.new.js" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -351,6 +367,13 @@
     <Content Include="Views\Project\Index.cshtml" />
     <Content Include="Views\Project\New.cshtml" />
     <Content Include="Views\Shared\_ViewMessagePartial.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\_ContentLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -366,6 +389,10 @@
     <ProjectReference Include="..\..\PMS\Model\Model\Model.csproj">
       <Project>{e51d3db3-56ca-4e43-b2a8-362dab6c9363}</Project>
       <Name>Model %28Model\Model%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tool\Extentsion\Tool.csproj">
+      <Project>{9b7384cf-2b9a-4768-8340-1eb0df104498}</Project>
+      <Name>Tool %28Tool\Tool%29</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

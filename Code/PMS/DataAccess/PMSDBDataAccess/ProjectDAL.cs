@@ -30,7 +30,7 @@ namespace PMS.PMSDBDataAccess
                                .Include(u=>u.User)
                                select p;
 
-                return projects.ToArray();
+                return projects.ToList();
             }
         }
 
@@ -41,6 +41,28 @@ namespace PMS.PMSDBDataAccess
                 return (from p in context.Projects
                         where p.ProjectId == projectId
                         select p).SingleOrDefault();
+            }
+        }
+
+        public Project GetProject(string projectName)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                projectName = projectName.ToLower();
+                return (from p in context.Projects
+                        where p.Name.ToLower().Equals(projectName)
+                        select p).SingleOrDefault();
+            }
+        }
+
+        public IEnumerable<ProjectParticipator> GetAllProjectForUser(Guid userId)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                return (from p in context.ProjectParticipators
+                            .Include(p=>p.Project)
+                        where p.UserId == userId
+                        select p).ToArray();
             }
         }
 

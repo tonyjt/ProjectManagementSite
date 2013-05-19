@@ -1,6 +1,10 @@
 ﻿@{
     ViewBag.Title = "_MainLayout";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    Project project = ViewBag.Project;
+    IEnumerable<Project> projectLists= ViewBag.OtherProjects;
+    bool inPMPage = ViewBag.InPMPage;   
 }
 
 @section styles{
@@ -196,7 +200,7 @@
 						<a class="user-menu dropdown-toggle" href="#" data-toggle="dropdown">
 							<img alt="Jason's Photo" src="assets/avatars/user.jpg" class="nav-user-photo">
 							<span id="user_info">
-								<small>Welcome,</small> Jason
+								<small>Welcome,</small> Tony
 							</span>
 							<i class="icon-caret-down"></i>
 						</a>
@@ -219,7 +223,7 @@
           @Html.Partial("_ViewMessagePartial")
 		</div><!--/.navbar-->
 
-<div class="container-fluid" id="main-container">
+<div class="container-fluid" id="main-container" style="margin-top:45px;">
 			<a href="#" id="menu-toggler"><span></span></a><!-- menu toggler -->
 
 			<div id="sidebar">
@@ -240,89 +244,41 @@
 				</div><!-- #sidebar-shortcuts -->
 
 				<ul class="nav nav-list">
-					
-					<li class="active">
-					  <a href="index.html">
-						<i class="icon-dashboard"></i>
-						<span>Dashboard</span>
-						
-					  </a>
-					</li>
-
-					
-					<li>
-					  <a href="typography.html">
-						<i class="icon-text-width"></i>
-						<span>Typography</span>
-						
-					  </a>
-					</li>
-
-					
-					<li>
+				    @if(project != null){
+					<li class="@(inPMPage?"":"active")">
 					  <a href="#" class="dropdown-toggle">
-						<i class="icon-desktop"></i>
-						<span>UI Elements</span>
+						<i class="icon-dashboard"></i>
+						<span>@project.Name</span>
 						<b class="arrow icon-angle-down"></b>
 					  </a>
-					  <ul class="submenu">
-						<li><a href="elements.html"><i class="icon-double-angle-right"></i> Elements</a></li>
-						<li><a href="buttons.html"><i class="icon-double-angle-right"></i> Buttons &amp; Icons</a></li>
+                       <ul class="submenu">
+						<li><a href="elements.html"><i class="icon-double-angle-right"></i>版本</a></li>
+						<li><a href="buttons.html"><i class="icon-double-angle-right"></i> 需求</a></li>
 					  </ul>
 					</li>
+                    }
 					<li>
+                        <hr />
+					</li>
+					<li>
+					  <a href="#" class="dropdown-toggle">
+						<i class="icon-list-alt"></i>
+						<span>@(project!=null?"其它项目":"所有项目")</span>
+						<b class="arrow icon-angle-down"></b>
+					  </a>
+                      <ul class="submenu">
+                         @foreach (Project p in projectLists)
+                         {
+                             <li><a href="@Url.Action("index", "home", new { project=p.Name})"><i class="icon-double-angle-right"></i>@p.Name</a></li>
+                         }
+                        </ul>
+					</li>
+                    
+					
+					<li class="@(!inPMPage?"":"active")">
 					  <a href="#" class="dropdown-toggle">
 						<i class="icon-edit"></i>
-						<span>Forms</span>
-						<b class="arrow icon-angle-down"></b>
-					  </a>
-					  <ul class="submenu">
-						<li><a href="form-elements.html"><i class="icon-double-angle-right"></i> Form Elements</a></li>
-						<li><a href="form-wizard.html"><i class="icon-double-angle-right"></i> Wizard &amp; Validation</a></li>
-					  </ul>
-					</li>
-
-					
-					<li>
-					  <a href="widgets.html">
-						<i class="icon-list-alt"></i>
-						<span>Widgets</span>
-						
-					  </a>
-					</li>
-
-					
-					<li>
-					  <a href="calendar.html">
-						<i class="icon-calendar"></i>
-						<span>Calendar</span>
-						
-					  </a>
-					</li>
-
-					
-					<li>
-					  <a href="gallery.html">
-						<i class="icon-picture"></i>
-						<span>Gallery</span>
-						
-					  </a>
-					</li>
-
-					
-					<li>
-					  <a href="grid.html">
-						<i class="icon-th"></i>
-						<span>Grid</span>
-						
-					  </a>
-					</li>
-
-					
-					<li>
-					  <a href="#" class="dropdown-toggle">
-						<i class="icon-th"></i>
-						<span>项目</span>
+						<span>项目管理</span>
                           <b class="arrow icon-angle-down"></b>
 					  </a>
 			            <ul class="submenu">
@@ -340,37 +296,8 @@
 			</div><!--/#sidebar-->
 
 		
-			<div id="main-content" class="clearfix">
-					
-					<div id="breadcrumbs">
-						<ul class="breadcrumb">
-							<li><i class="icon-home"></i> <a href="#">Home</a><span class="divider"><i class="icon-angle-right"></i></span></li>
-							<li class="active">Dashboard</li>
-						</ul><!--.breadcrumb-->
-
-						<div id="nav-search">
-							<form class="form-search">
-									<span class="input-icon">
-										<input autocomplete="off" id="nav-search-input" type="text" class="input-small search-query" placeholder="Search ...">
-										<i id="nav-search-icon" class="icon-search"></i>
-									</span>
-							</form>
-						</div><!--#nav-search-->
-					</div><!--#breadcrumbs-->
-
-
-
-					<div id="page-content" class="clearfix">
-						<div class="page-header position-relative">
-							<h1>@ViewBag.PageTitle</h1>
-						</div>
-
+			
 						@RenderBody()
-	
-					</div><!--/#page-content-->
-					  
-
-			</div><!-- #main-content -->
 
 
 		</div><!--/.fluid-container#main-container-->

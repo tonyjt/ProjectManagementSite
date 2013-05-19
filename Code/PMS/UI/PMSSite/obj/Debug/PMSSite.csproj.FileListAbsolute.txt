@@ -110,3 +110,5 @@ C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\PMS
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\log4net.xml
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\PMS.Tool.pdb
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\CustomExtension.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\MvcSiteMapProvider.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\MvcSiteMapProvider.xml

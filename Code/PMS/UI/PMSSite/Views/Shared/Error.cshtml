@@ -1,10 +1,18 @@
-﻿@model System.Web.Mvc.HandleErrorInfo
-
+﻿@model ErrorMessage
 @{
-    ViewBag.Title = "错误";
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+    
 }
+<div class="errorPanel">
+    <h2>@Model.Title</h2>
+    <hr class=""/>
+    <p>
+        <div class="alert"><h3>@Model.Message</h3>
+        </div>
+    </p>
+    <div style="text-align: left;">
+        <a href="javascript:history.back();" class="btn ">&nbsp;&nbsp;返回上一页&nbsp;&nbsp;</a>
+    </div>
 
-<hgroup class="title">
-    <h1 class="error">错误。</h1>
-    <h2 class="error">处理你的请求时出错。</h2>
-</hgroup>
+</div>

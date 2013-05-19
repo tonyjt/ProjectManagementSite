@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PMS.PMSSite.Models;
+using PMS.PMSBLL;
 namespace PMS.PMSSite.Controllers
 {
     public class BaseController : Controller
@@ -16,26 +17,15 @@ namespace PMS.PMSSite.Controllers
         {
             get
             {
-                return new User
-                {
-                    UserId = new Guid("b6b40c01-5997-42fe-b669-447fc1cea267"),
-                    Account = "liujiangtao@idfsoft.com",
-                    UserName = "tonyjt"
-                };
+                return UserManager.GetCurrentUser();
             }
         }
 
+        #region  
+        #endregion
 
         #region View Message
-        //public ViewMessageModel GetSuccessMessage(string message)
-        //{
-        //    return new ViewMessageModel
-        //    {
-        //        Display = true,
-        //        Type = ViewMessageDispayType.Success,
-        //        Message = message
-        //    };
-        //}
+
         /// <summary>
         /// 显示错误信息
         /// </summary>

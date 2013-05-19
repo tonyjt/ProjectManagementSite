@@ -9,10 +9,11 @@ using System.Web.Mvc;
 
 namespace PMS.PMSSite.Controllers
 {
+    [ProjectActionFilter]
+    
     public class ProjectController : BaseController
     {
-        //
-        // GET: /Project/
+        
         public ActionResult Index()
         {
             ProjectIndexModel model = new ProjectIndexModel

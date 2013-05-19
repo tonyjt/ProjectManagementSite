@@ -8,7 +8,7 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
         public ProjectParticipatorMap()
         {
             // Primary Key
-            this.HasKey(t => t.ProjectId);
+            this.HasKey(t => new { t.ProjectId, t.UserId });
 
             // Properties
             // Table & Column Mappings
@@ -17,6 +17,15 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
             this.Property(t => t.UserId).HasColumnName("UserId");
             this.Property(t => t.Roles).HasColumnName("Roles");
             this.Property(t => t.JoinTime).HasColumnName("JoinTime");
+
+            // Relationships
+            this.HasRequired(t => t.Project)
+                .WithMany(t => t.ProjectParticipators)
+                .HasForeignKey(d => d.ProjectId);
+            this.HasRequired(t => t.User)
+                .WithMany(t => t.ProjectParticipators)
+                .HasForeignKey(d => d.UserId);
+
         }
     }
 }

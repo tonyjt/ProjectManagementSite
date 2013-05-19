@@ -9,5 +9,7 @@ namespace PMS.Model
         public System.Guid UserId { get; set; }
         public short Roles { get; set; }
         public System.DateTime JoinTime { get; set; }
+        public virtual Project Project { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -1,0 +1,25 @@
+﻿@using MvcSiteMapProvider
+@{
+    ViewBag.Title = "_ContentLayout";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@section styles{
+    @RenderSection("styles", false)
+}
+<div id="main-content" class="clearfix">
+
+    <div id="breadcrumbs">
+        <ul class="breadcrumb">
+            <i class="icon-home"></i>
+            <li class="active">@Html.MvcSiteMap().SiteMapPath()</li>
+        </ul>
+        <!--.breadcrumb-->
+
+    </div>
+    <div id="page-content" class="clearfix">
+        @RenderBody()
+    </div>
+</div>
+@section  scripts{
+    @RenderSection("scripts", false)
+}
