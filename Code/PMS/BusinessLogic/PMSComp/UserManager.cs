@@ -28,5 +28,7 @@ namespace PMS.PMSBLL
             User user = GetCurrentUser();
             return user != null ? user.UserId : Guid.Empty;
         }
+
+
     }
 }

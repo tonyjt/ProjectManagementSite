@@ -21,6 +21,35 @@ namespace PMS.PMSSite.Controllers
             }
         }
 
+        protected Guid CurrentUserId
+        {
+            get
+            {
+                return UserManager.GetCurrentUserId();
+            }
+        }
+
+        private Project project;
+
+        protected Project Project
+        {
+            get
+            {
+                if (project == null)
+                {
+                    project = (Project)HttpContext.Items["project"];
+                }
+                return project;
+            }
+        }
+
+        protected Guid ProjectId
+        {
+            get
+            {
+                return Project != null ? Project.ProjectId : Guid.Empty;
+            }
+        }
         #region  
         #endregion
 

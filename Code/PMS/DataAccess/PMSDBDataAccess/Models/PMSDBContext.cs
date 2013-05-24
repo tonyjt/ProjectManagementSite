@@ -20,18 +20,18 @@ namespace PMS.PMSDBDataAccess.Models
         public DbSet<C__RefactorLog> C__RefactorLog { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectParticipator> ProjectParticipators { get; set; }
+        public DbSet<ProjectVersion> ProjectVersions { get; set; }
         public DbSet<Requirement> Requirements { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Version> Versions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new C__RefactorLogMap());
             modelBuilder.Configurations.Add(new ProjectMap());
             modelBuilder.Configurations.Add(new ProjectParticipatorMap());
+            modelBuilder.Configurations.Add(new ProjectVersionMap());
             modelBuilder.Configurations.Add(new RequirementMap());
             modelBuilder.Configurations.Add(new UserMap());
-            modelBuilder.Configurations.Add(new VersionMap());
         }
     }
 }

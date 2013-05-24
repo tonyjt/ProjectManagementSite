@@ -2,3 +2,4 @@ C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\bi
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\PMS.Model.pdb
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\obj\Debug\PMS.Model.dll
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\obj\Debug\PMS.Model.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache

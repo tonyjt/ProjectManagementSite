@@ -1,9 +1,0 @@
-﻿CREATE TABLE [dbo].[Version]
-(
-	[VersionId] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [ProjectId] UNIQUEIDENTIFIER NOT NULL, 
-    [VersionName] NVARCHAR(256) NOT NULL, 
-    [CreateTime] DATETIME NOT NULL, 
-    [StartTime] DATETIME NULL, 
-    [EndTime] DATETIME NULL
-)

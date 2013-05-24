@@ -22,7 +22,7 @@ namespace PMSDBDataAccess.Models
         public DbSet<ProjectParticipator> ProjectParticipators { get; set; }
         public DbSet<Requirement> Requirements { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Version> Versions { get; set; }
+        public DbSet<ProjectVersion> ProjectVersions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -31,7 +31,7 @@ namespace PMSDBDataAccess.Models
             modelBuilder.Configurations.Add(new ProjectParticipatorMap());
             modelBuilder.Configurations.Add(new RequirementMap());
             modelBuilder.Configurations.Add(new UserMap());
-            modelBuilder.Configurations.Add(new VersionMap());
+            modelBuilder.Configurations.Add(new ProjectVersionMap());
         }
     }
 }

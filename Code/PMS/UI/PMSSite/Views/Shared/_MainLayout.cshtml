@@ -1,327 +1,344 @@
 ﻿@{
     ViewBag.Title = "_MainLayout";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
     Project project = ViewBag.Project;
-    IEnumerable<Project> projectLists= ViewBag.OtherProjects;
-    bool inPMPage = ViewBag.InPMPage;   
+    IEnumerable<Project> projectLists = ViewBag.OtherProjects;
+    bool inPMPage = ViewBag.InPMPage!=null?ViewBag.InPMPage:false;   
 }
 
 @section styles{
-     @RenderSection("styles",false)
+    @RenderSection("styles", false)
 }
-		<div class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="navbar-inner">
-		   <div class="container-fluid">
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container-fluid">
 
 
-			  <a class="brand" href="#"><small><i class="icon-leaf"></i> 项目管理Online</small> </a>
-			  <ul class="nav ace-nav pull-right">
-					<li class="grey">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-tasks"></i>
-							<span class="badge">4</span>
-						</a>
-						<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
-							<li class="nav-header">
-								<i class="icon-ok"></i> 4 Tasks to complete
-							</li>
-							
-							<li>
-								<a href="#">
-									<div class="clearfix">
-										<span class="pull-left">Software Update</span>
-										<span class="pull-right">65%</span>
-									</div>
-									<div class="progress progress-mini"><div class="bar" style="width:65%"></div></div>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									<div class="clearfix">
-										<span class="pull-left">Hardware Upgrade</span>
-										<span class="pull-right">35%</span>
-									</div>
-									<div class="progress progress-mini progress-danger"><div class="bar" style="width:35%"></div></div>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									<div class="clearfix">
-										<span class="pull-left">Unit Testing</span>
-										<span class="pull-right">15%</span>
-									</div>
-									<div class="progress progress-mini progress-warning"><div class="bar" style="width:15%"></div></div>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									<div class="clearfix">
-										<span class="pull-left">Bug Fixes</span>
-										<span class="pull-right">90%</span>
-									</div>
-									<div class="progress progress-mini progress-success progress-striped active"><div class="bar" style="width:90%"></div></div>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									See tasks with details
+            <a class="brand" href="#"><small><i class="icon-leaf"></i>项目管理Online</small> </a>
+            <ul class="nav ace-nav pull-right">
+                <li class="grey">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-tasks"></i>
+                        <span class="badge">4</span>
+                    </a>
+                    <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
+                        <li class="nav-header">
+                            <i class="icon-ok"></i>4 Tasks to complete
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="clearfix">
+                                    <span class="pull-left">Software Update</span>
+                                    <span class="pull-right">65%</span>
+                                </div>
+                                <div class="progress progress-mini">
+                                    <div class="bar" style="width: 65%"></div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="clearfix">
+                                    <span class="pull-left">Hardware Upgrade</span>
+                                    <span class="pull-right">35%</span>
+                                </div>
+                                <div class="progress progress-mini progress-danger">
+                                    <div class="bar" style="width: 35%"></div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="clearfix">
+                                    <span class="pull-left">Unit Testing</span>
+                                    <span class="pull-right">15%</span>
+                                </div>
+                                <div class="progress progress-mini progress-warning">
+                                    <div class="bar" style="width: 15%"></div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="clearfix">
+                                    <span class="pull-left">Bug Fixes</span>
+                                    <span class="pull-right">90%</span>
+                                </div>
+                                <div class="progress progress-mini progress-success progress-striped active">
+                                    <div class="bar" style="width: 90%"></div>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">See tasks with details
 									<i class="icon-arrow-right"></i>
-								</a>
-							</li>
-						</ul>
-					</li>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
-					<li class="purple">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-bell-alt icon-animated-bell icon-only"></i>
-							<span class="badge badge-important">8</span>
-						</a>
-						<ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-closer">
-							<li class="nav-header">
-								<i class="icon-warning-sign"></i> 8 Notifications
-							</li>
-							
-							<li>
-								<a href="#">
-									<div class="clearfix">
-										<span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i> New comments</span>
-										<span class="pull-right badge badge-info">+12</span>
-									</div>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									<i class="icon-user btn btn-mini btn-primary"></i> Bob just signed up as an editor ...
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									<div class="clearfix">
-										<span class="pull-left"><i class="icon-shopping-cart btn btn-mini btn-success"></i> New orders</span>
-										<span class="pull-right badge badge-success">+8</span>
-									</div>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									<div class="clearfix">
-										<span class="pull-left"><i class="icon-twitter btn btn-mini btn-info"></i> Followers</span>
-										<span class="pull-right badge badge-info">+4</span>
-									</div>
-								</a>
-							</li>
-																
-							<li>
-								<a href="#">
-									See all notifications
+                <li class="purple">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-bell-alt icon-animated-bell icon-only"></i>
+                        <span class="badge badge-important">8</span>
+                    </a>
+                    <ul class="pull-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-closer">
+                        <li class="nav-header">
+                            <i class="icon-warning-sign"></i>8 Notifications
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="clearfix">
+                                    <span class="pull-left"><i class="icon-comment btn btn-mini btn-pink"></i>New comments</span>
+                                    <span class="pull-right badge badge-info">+12</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="icon-user btn btn-mini btn-primary"></i>Bob just signed up as an editor ...
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="clearfix">
+                                    <span class="pull-left"><i class="icon-shopping-cart btn btn-mini btn-success"></i>New orders</span>
+                                    <span class="pull-right badge badge-success">+8</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <div class="clearfix">
+                                    <span class="pull-left"><i class="icon-twitter btn btn-mini btn-info"></i>Followers</span>
+                                    <span class="pull-right badge badge-info">+4</span>
+                                </div>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">See all notifications
 									<i class="icon-arrow-right"></i>
-								</a>
-							</li>
-						</ul>
-					</li>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
 
-					<li class="green">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							<i class="icon-envelope-alt icon-animated-vertical icon-only"></i>
-							<span class="badge badge-success">5</span>
-						</a>
-						<ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
-							<li class="nav-header">
-								<i class="icon-envelope"></i> 5 Messages
-							</li>
-							
-							<li>
-								<a href="#">
-									<img alt="Alex's Avatar" class="msg-photo" src="assets/avatars/avatar.png">
-									<span class="msg-body">
-										<span class="msg-title">
-											<span class="blue">Alex:</span>
-											Ciao sociis natoque penatibus et auctor ...
-										</span>
-										<span class="msg-time">
-											<i class="icon-time"></i> <span>a moment ago</span>
-										</span>
-									</span>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									<img alt="Susan's Avatar" class="msg-photo" src="assets/avatars/avatar3.png">
-									<span class="msg-body">
-										<span class="msg-title">
-											<span class="blue">Susan:</span>
-											Vestibulum id ligula porta felis euismod ...
-										</span>
-										<span class="msg-time">
-											<i class="icon-time"></i> <span>20 minutes ago</span>
-										</span>
-									</span>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									<img alt="Bob's Avatar" class="msg-photo" src="assets/avatars/avatar4.png">
-									<span class="msg-body">
-										<span class="msg-title">
-											<span class="blue">Bob:</span>
-											Nullam quis risus eget urna mollis ornare ...
-										</span>
-										<span class="msg-time">
-											<i class="icon-time"></i> <span>3:15 pm</span>
-										</span>
-									</span>
-								</a>
-							</li>
-							
-							<li>
-								<a href="#">
-									See all messages
+                <li class="green">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-envelope-alt icon-animated-vertical icon-only"></i>
+                        <span class="badge badge-success">5</span>
+                    </a>
+                    <ul class="pull-right dropdown-navbar dropdown-menu dropdown-caret dropdown-closer">
+                        <li class="nav-header">
+                            <i class="icon-envelope"></i>5 Messages
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <img alt="Alex's Avatar" class="msg-photo" src="assets/avatars/avatar.png">
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span class="blue">Alex:</span>
+                                        Ciao sociis natoque penatibus et auctor ...
+                                    </span>
+                                    <span class="msg-time">
+                                        <i class="icon-time"></i><span>a moment ago</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <img alt="Susan's Avatar" class="msg-photo" src="assets/avatars/avatar3.png">
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span class="blue">Susan:</span>
+                                        Vestibulum id ligula porta felis euismod ...
+                                    </span>
+                                    <span class="msg-time">
+                                        <i class="icon-time"></i><span>20 minutes ago</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <img alt="Bob's Avatar" class="msg-photo" src="assets/avatars/avatar4.png">
+                                <span class="msg-body">
+                                    <span class="msg-title">
+                                        <span class="blue">Bob:</span>
+                                        Nullam quis risus eget urna mollis ornare ...
+                                    </span>
+                                    <span class="msg-time">
+                                        <i class="icon-time"></i><span>3:15 pm</span>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">See all messages
 									<i class="icon-arrow-right"></i>
-								</a>
-							</li>									
-	
-						</ul>
-					</li>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
 
 
-					<li class="light-blue user-profile">
-						<a class="user-menu dropdown-toggle" href="#" data-toggle="dropdown">
-							<img alt="Jason's Photo" src="assets/avatars/user.jpg" class="nav-user-photo">
-							<span id="user_info">
-								<small>Welcome,</small> Tony
-							</span>
-							<i class="icon-caret-down"></i>
-						</a>
-						<ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
-							<li><a href="#"><i class="icon-cog"></i> Settings</a></li>
-							<li><a href="#"><i class="icon-user"></i> Profile</a></li>
-							<li class="divider"></li>
-							<li><a href="#"><i class="icon-off"></i> Logout</a></li>
-						</ul>
-					</li>
+                <li class="light-blue user-profile">
+                    <a class="user-menu dropdown-toggle" href="#" data-toggle="dropdown">
+                        <img alt="Jason's Photo" src="assets/avatars/user.jpg" class="nav-user-photo">
+                        <span id="user_info">
+                            <small>Welcome,</small> Tony
+                        </span>
+                        <i class="icon-caret-down"></i>
+                    </a>
+                    <ul id="user_menu" class="pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-closer">
+                        <li><a href="#"><i class="icon-cog"></i>Settings</a></li>
+                        <li><a href="#"><i class="icon-user"></i>Profile</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="icon-off"></i>Logout</a></li>
+                    </ul>
+                </li>
 
 
 
 
-			  </ul><!--/.ace-nav-->
+            </ul>
+            <!--/.ace-nav-->
 
-		   </div><!--/.container-fluid-->
-		  </div><!--/.navbar-inner-->
+        </div>
+        <!--/.container-fluid-->
+    </div>
+    <!--/.navbar-inner-->
 
-          @Html.Partial("_ViewMessagePartial")
-		</div><!--/.navbar-->
+    @Html.Partial("_ViewMessagePartial")
+</div>
+<!--/.navbar-->
 
-<div class="container-fluid" id="main-container" style="margin-top:45px;">
-			<a href="#" id="menu-toggler"><span></span></a><!-- menu toggler -->
+<div class="container-fluid" id="main-container" style="margin-top: 45px;">
+    <a href="#" id="menu-toggler"><span></span></a>
+    <!-- menu toggler -->
 
-			<div id="sidebar">
-				
-				<div id="sidebar-shortcuts">
-					<div id="sidebar-shortcuts-large">
-						<button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
-						<button class="btn btn-small btn-info"><i class="icon-pencil"></i></button>
-						<button class="btn btn-small btn-warning"><i class="icon-group"></i></button>
-						<button class="btn btn-small btn-danger"><i class="icon-cogs"></i></button>
-					</div>
-					<div id="sidebar-shortcuts-mini">
-						<span class="btn btn-success"></span>
-						<span class="btn btn-info"></span>
-						<span class="btn btn-warning"></span>
-						<span class="btn btn-danger"></span>
-					</div>
-				</div><!-- #sidebar-shortcuts -->
+    <div id="sidebar">
 
-				<ul class="nav nav-list">
-				    @if(project != null){
-					<li class="@(inPMPage?"":"active")">
-					  <a href="#" class="dropdown-toggle">
-						<i class="icon-dashboard"></i>
-						<span>@project.Name</span>
-						<b class="arrow icon-angle-down"></b>
-					  </a>
-                       <ul class="submenu">
-						<li><a href="elements.html"><i class="icon-double-angle-right"></i>版本</a></li>
-						<li><a href="buttons.html"><i class="icon-double-angle-right"></i> 需求</a></li>
-					  </ul>
-					</li>
+        <div id="sidebar-shortcuts">
+            <div id="sidebar-shortcuts-large">
+                <button class="btn btn-small btn-success"><i class="icon-signal"></i></button>
+                <button class="btn btn-small btn-info"><i class="icon-pencil"></i></button>
+                <button class="btn btn-small btn-warning"><i class="icon-group"></i></button>
+                <button class="btn btn-small btn-danger"><i class="icon-cogs"></i></button>
+            </div>
+            <div id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+                <span class="btn btn-info"></span>
+                <span class="btn btn-warning"></span>
+                <span class="btn btn-danger"></span>
+            </div>
+        </div>
+        <!-- #sidebar-shortcuts -->
+
+        <ul class="nav nav-list">
+            @if (project != null)
+            {
+                <li class="@(inPMPage ? "" : "active")">
+                    <a href="#" class="dropdown-toggle">
+                        <i class="icon-dashboard"></i>
+                        <span>@project.Name</span>
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+                    <ul class="submenu">
+                        <li><a href="@Url.Action("index", "version", new {project=project.Name})"><i class="icon-double-angle-right"></i>版本</a></li>
+                        <li><a href="buttons1.html"><i class="icon-double-angle-right"></i>需求</a></li>
+                    </ul>
+                </li>
+            }
+            <li>
+                <hr />
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <i class="icon-list-alt"></i>
+                    <span>@(project != null ? "其它项目" : "所有项目")</span>
+                    <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="submenu">
+                    @foreach (Project p in projectLists)
+                    {
+                        <li><a href="@Url.Action("index", "home", new { project = p.Name })"><i class="icon-double-angle-right"></i>@p.Name</a></li>
                     }
-					<li>
-                        <hr />
-					</li>
-					<li>
-					  <a href="#" class="dropdown-toggle">
-						<i class="icon-list-alt"></i>
-						<span>@(project!=null?"其它项目":"所有项目")</span>
-						<b class="arrow icon-angle-down"></b>
-					  </a>
-                      <ul class="submenu">
-                         @foreach (Project p in projectLists)
-                         {
-                             <li><a href="@Url.Action("index", "home", new { project=p.Name})"><i class="icon-double-angle-right"></i>@p.Name</a></li>
-                         }
-                        </ul>
-					</li>
-                    
-					
-					<li class="@(!inPMPage?"":"active")">
-					  <a href="#" class="dropdown-toggle">
-						<i class="icon-edit"></i>
-						<span>项目管理</span>
-                          <b class="arrow icon-angle-down"></b>
-					  </a>
-			            <ul class="submenu">
-						<li><a href="@Url.Action("index","project")"><i class="icon-double-angle-right"></i>项目列表</a></li>
-						<li><a href="@Url.Action("new","project")"><i class="icon-double-angle-right"></i> 添加项目</a></li>
-					  </ul>
-					</li>
-
-					
-				</ul><!--/.nav-list-->
-
-				<div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>
+                </ul>
+            </li>
 
 
-			</div><!--/#sidebar-->
+            <li class="@(!inPMPage ? "" : "active")">
+                <a href="#" class="dropdown-toggle">
+                    <i class="icon-edit"></i>
+                    <span>项目管理</span>
+                    <b class="arrow icon-angle-down"></b>
+                </a>
+                <ul class="submenu">
+                    <li><a href="@Url.Action("index", "project")"><i class="icon-double-angle-right"></i>项目列表</a></li>
+                    <li><a href="@Url.Action("new", "project")"><i class="icon-double-angle-right"></i>添加项目</a></li>
+                </ul>
+            </li>
 
-		
-			
-						@RenderBody()
+
+        </ul>
+        <!--/.nav-list-->
+
+        <div id="sidebar-collapse"><i class="icon-double-angle-left"></i></div>
 
 
-		</div><!--/.fluid-container#main-container-->
-
-		<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
-			<i class="icon-double-angle-up icon-only"></i>
-		</a>
+    </div>
+    <!--/#sidebar-->
 
 
-		<!-- basic scripts -->
-	
 
-		<!-- page specific plugin scripts -->
-		
-		<!--[if lt IE 9]>
+    @RenderBody()
+
+
+</div>
+<!--/.fluid-container#main-container-->
+
+<a href="#" id="btn-scroll-up" class="btn btn-small btn-inverse">
+    <i class="icon-double-angle-up icon-only"></i>
+</a>
+
+
+<!-- basic scripts -->
+
+
+<!-- page specific plugin scripts -->
+
+<!--[if lt IE 9]>
 		<script type="text/javascript" src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
 
 
-	
 
-<div class="tooltip top in" style="display: none;"><div class="tooltip-inner"></div></div>
+
+<div class="tooltip top in" style="display: none;">
+    <div class="tooltip-inner"></div>
+</div>
 
 
 @section  scripts{
-    @RenderSection("scripts",false)
+    @RenderSection("scripts", false)
 }

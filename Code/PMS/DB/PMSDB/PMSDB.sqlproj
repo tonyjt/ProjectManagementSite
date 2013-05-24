@@ -63,7 +63,7 @@
   <ItemGroup>
     <Build Include="Table\Project.sql" />
     <Build Include="Table\User.sql" />
-    <Build Include="Table\Version.sql" />
+    <Build Include="Table\ProjectVersion.sql" />
     <Build Include="Table\Requirement.sql" />
     <Build Include="Table\ProjectParticipator.sql" />
   </ItemGroup>
