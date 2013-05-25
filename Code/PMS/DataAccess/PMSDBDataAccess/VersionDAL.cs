@@ -32,5 +32,41 @@ namespace PMS.PMSDBDataAccess
                 return versionList.ToList();
             }
         }
+
+        public ProjectVersion GetVersion(Guid versionId)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                    return (from p in context.ProjectVersions
+                            where p.VersionId == versionId
+                            select p).SingleOrDefault();
+                
+            }
+        }
+
+        public bool UpdateVersion(ProjectVersion version)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var model = (from p in context.ProjectVersions
+                             where p.VersionId == version.VersionId
+                             select p).SingleOrDefault();
+
+                if (model != null)
+                {
+                    model.VersionName = version.VersionName;
+                    model.StartTime = version.StartTime;
+                    model.EndTime = version.EndTime;
+                    model.Status = version.Status;
+                    context.SaveChanges();
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

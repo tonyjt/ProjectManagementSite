@@ -13,6 +13,8 @@ namespace PMS.Model.Enum
 
         Start = 2,
 
-        Stop = 3
+        Stop = 3,
+
+        Delete = 4
     }
 }

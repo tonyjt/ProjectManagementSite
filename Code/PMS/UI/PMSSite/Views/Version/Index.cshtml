@@ -47,11 +47,12 @@
                 <td>@item.CreateTime.ToStandardDateString()</td>
                 <td><a href="#">需求</a></td>
                 <td class="td-op">
-                    <a href="#" class="btn btn-mini btn-success" title="开始"><i class="icon-play"></i></a>
-                    <a href="#"id="btnStop" title="结束" class="btn btn-mini btn-danger">
-                        <i class="icon-stop"></i></a>
-                      <a href="#" id="btnDelete" class="btn btn-mini" onclick='return confirm("删除后无法恢复，请确认是否删除！")'><i class="icon-remove"></i></a>
-					
+                        <a title="开始" href="@(item.AllowStart?Url.Action("list","version",new {versionId=item.VersionId,op="start"}):"javascript:void(0);")" id="btnStart" class="btn btn-mini btn-success @(item.AllowStart?"":"disabled")"><i class="icon-play"></i></a>
+
+
+							<a t href="@(item.AllowStop?Url.Action("list","version",new {versionId=item.VersionId,op="stop"}):"javascript:void(0);")"id="btnStop" class="btn btn-mini btn-danger @(item.AllowStop?"":"disabled")"><i class="icon-stop"></i></a>
+                
+                            <a href="@Url.Action("list","version",new {versionId=item.VersionId,op="delete"})" id="btnDelete" class="btn btn-mini" onclick='return confirm("删除后无法恢复，请确认是否删除！")'><i class="icon-remove"></i></a>
                 </td>
                     
             </tr>
@@ -75,36 +76,30 @@
                 <th>版本</th>
                 <th>开始时间</th>
                 <th>结束时间</th>
-                <th>创建时间</th>
                 <th>创建人</th>
+                <th>创建时间</th>
                 <th>需求</th>
             </tr>
 
         </thead>
         <tbody>
-            <tr>
-                <td>1.0</td>
-                <td>2013-05-24</td>
-                <td>2013-05-21</td>
-                <td>--</td>
-                <td>Tony</td>
+            @foreach(ProjectVersion item in Model.VersionHistory){
+                <tr>
+            <td>@item.VersionName</td>
+                <td>@item.StartTime.ToStandardDateString()</td>
+                <td>@item.EndTime.ToStandardDateString()</td>
+                <td>@item.User.UserName</td>
+                <td>@item.CreateTime.ToStandardDateString()</td>
                 <td><a href="#">需求</a></td>
-            </tr>
-            <tr>
-                <td>1.0</td>
-                <td>2013-05-24</td>
-                <td>2013-05-21</td>
-                <td>--</td>
-                <td>Tony</td>
-                <td><a href="#">需求</a></td>
-            </tr>
+                    </tr>
+            }
         </tbody>
     </table>
 			 </div>
 			</div>
 		</div>
 
-<div class="pagination">
+@*<div class="pagination">
               <ul>
                 <li class="disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li>
                 <li class="active"><a href="#">1</a></li>
@@ -114,4 +109,4 @@
                 <li><a href="#">5</a></li>
                 <li><a href="#"><i class="icon-double-angle-right"></i></a></li>
               </ul>
-            </div>
+            </div>*@

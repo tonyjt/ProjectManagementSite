@@ -22,6 +22,23 @@ namespace PMS.Model
                 Status = (byte)value;
             }
         }
+        [NotMapped]
+        public bool AllowStart
+        {
+            get
+            {
+                return VersionStatus != VersionStatus.Start;
+            }
+        }
+
+        [NotMapped]
+        public bool AllowStop
+        {
+            get
+            {
+                return VersionStatus == VersionStatus.Start;
+            }
+        }
 
     }
 }

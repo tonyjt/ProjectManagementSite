@@ -21,13 +21,83 @@ namespace PMS.PMSSite.Controllers
 
             VersionIndexModel model = new VersionIndexModel
             {
-                VersionList = versionList.Where(p=>p.VersionStatus != Model.Enum.VersionStatus.Stop),
-                VersionHistory = versionList.Where(p=>p.VersionStatus == Model.Enum.VersionStatus.Stop)
+                VersionList = versionList.Where(p=>p.VersionStatus != Model.Enum.VersionStatus.Stop).OrderByDescending(p=>p.CreateTime),
+                VersionHistory = versionList.Where(p => p.VersionStatus == Model.Enum.VersionStatus.Stop).OrderByDescending(p => p.CreateTime)
             };
 
             return View("Index",model);
         }
+        public ActionResult List(Guid versionId, string op)
+        {
+            ActionResult result;
+            switch (op.ToLower())
+            {
+                case "start":
+                    result = Start(versionId);
+                    break;
+ 
+                case "stop":
+                    result = Stop(versionId);
+                    break;
+                case "delete":
+                    result = Delete(versionId);
+                    break;
+                default:
+                    result = Index();
+                    break;
+            }
+            op = "";
+            return result;
+        }
 
+        private ActionResult Start(Guid versionId)
+        {
+            bool result = VersionManager.StartVersion(versionId);
+
+            if (result)
+            {
+                ShowSuccessMessage("版本启动成功");
+
+            }
+            else
+            {
+                ShowErrorMessage("版本启动失败，出现异常");
+
+            }
+            return Index(); 
+        }
+        private ActionResult Stop(Guid versionId)
+        {
+            bool result = VersionManager.StopVersion(versionId);
+
+            if (result)
+            {
+                ShowSuccessMessage("版本结束成功");
+
+            }
+            else
+            {
+                ShowErrorMessage("版本结束失败，出现异常");
+
+            }
+            return Index();
+        }
+        private ActionResult Delete(Guid versionId)
+        {
+            bool result = VersionManager.DeleteVersion(versionId);
+
+            if (result)
+            {
+                ShowSuccessMessage("版本删除成功");
+
+            }
+            else
+            {
+                ShowErrorMessage("版本删除失败，出现异常");
+
+            }
+            return Index();
+        }
         public ActionResult Create(VersionCreateModel model)
         {
             string message;
@@ -46,18 +116,18 @@ namespace PMS.PMSSite.Controllers
 
                 if (VersionManager.CreateVersion(version))
                 {
-                    ShowSuccessMessage("创建版本成功");
+                    ShowSuccessMessage("创建版本成功",true);
 
-                    return Index();
+                    return RedirectToAction("index");
                 }
                 else
                 {
                     message = "信息有误";
                 }
             }
-            ShowErrorMessage(string.Format("创建版本失败:{0}",message));
+            ShowErrorMessage(string.Format("创建版本失败:{0}",message),true);
 
-            return Index();
+             return RedirectToAction("index");
         }
     }
 }
