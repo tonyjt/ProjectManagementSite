@@ -8,3 +8,7 @@
 .pagination {
     text-align:center;  
 }
+
+.select-small {
+    width:120px;
+}

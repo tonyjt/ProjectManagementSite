@@ -50,12 +50,14 @@ namespace PMS.PMSBLL
         {
             IEnumerable<ProjectVersion> versionList = ManagerHelper.GetModel<IEnumerable<ProjectVersion>>(projectId, dataAccess.GetVersionForProject, log);
 
-            return versionList;
+
+            return versionList.Where(v=>v.VersionStatus != VersionStatus.Delete).OrderByDescending(v=>v.CreateTime);
         }
         public static bool StartVersion(Guid versionId)
         {
             IEnumerable<VersionStatus> referStatus = new List<VersionStatus>{
-               VersionStatus.Ready
+               VersionStatus.Ready,
+               VersionStatus.Stop
            };
 
             return UpdateVersionStatus(versionId, VersionStatus.Start, referStatus);
@@ -96,6 +98,7 @@ namespace PMS.PMSBLL
                         {
                             case VersionStatus.Start:
                                 version.StartTime = DateTime.Now;
+                                version.EndTime = null;
                                 break;
                             case VersionStatus.Stop:
                                 version.EndTime = DateTime.Now;

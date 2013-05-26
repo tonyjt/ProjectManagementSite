@@ -42,6 +42,9 @@ namespace PMS.PMSSite.Controllers
                 case "delete":
                     result = Delete(versionId);
                     break;
+                case "restart":
+                    result = Restart(versionId);
+                    break;
                 default:
                     result = Index();
                     break;
@@ -94,6 +97,22 @@ namespace PMS.PMSSite.Controllers
             else
             {
                 ShowErrorMessage("版本删除失败，出现异常");
+
+            }
+            return Index();
+        }
+        private ActionResult Restart(Guid versionId)
+        {
+            bool result = VersionManager.StartVersion(versionId);
+
+            if (result)
+            {
+                ShowSuccessMessage("版本重新开始成功");
+
+            }
+            else
+            {
+                ShowErrorMessage("版本重新开始失败，出现异常");
 
             }
             return Index();
