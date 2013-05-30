@@ -1,4 +1,7 @@
-﻿td {
+﻿ html, body { padding: 0px; margin: 0px; width: 100%; height: 100%; }
+    #div { min-height: 100%; }
+
+td {
     vertical-align:middle !important;
 }
 .text-center {
@@ -11,4 +14,36 @@
 
 .select-small {
     width:120px;
+}
+.sidebar-right-content {
+    margin-right:300px;
+}
+.sidebar-right::before{
+      content: "";
+    border-left:1px solid #CCC;
+    background-color:#f2f2f2;
+    width:300px;
+    position: fixed;
+    display: block;
+    right: 0;
+    bottom: 0;
+    top:0;
+    z-index:-1;
+}
+
+
+.sidebar-right{
+  
+    border-left:1px solid #CCC;
+    background-color:#f2f2f2;
+    width:300px;
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    top:40px;
+}
+
+.sidebar-right .actions {
+    padding-left:15px;
+    padding-top:10px;
 }

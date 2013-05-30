@@ -216,8 +216,10 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\jquery-ui-1.10.3.custom.css" />
     <Content Include="Content\css\jquery-ui-1.10.3.custom.min.css" />
+    <Content Include="Content\css\treeview.css" />
     <Content Include="Content\img\animated-overlay.gif" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\treeview.png" />
     <Content Include="Content\img\ui-bg_flat_55_999999_40x100.png" />
     <Content Include="Content\img\ui-bg_flat_75_aaaaaa_40x100.png" />
     <Content Include="Content\img\ui-bg_glass_45_0078ae_1x400.png" />

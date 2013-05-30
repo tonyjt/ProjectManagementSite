@@ -15,13 +15,12 @@
 
         @RenderSection("styles",false)
 
-        
-    @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jquery")
     </head>
-    <body>
-
+    <body style="height: 100%; overflow: hidden">
+        <div id="div">
         @RenderBody()
-
+        </div>
 
     @Scripts.Render("~/bundles/template")
     @RenderSection("scripts",false)

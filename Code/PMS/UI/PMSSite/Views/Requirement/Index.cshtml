@@ -2,35 +2,162 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_ContentLayout.cshtml";
 }
-
-<form class="form-inline">
-    版本:&nbsp;
+@section styles{
+    @Styles.Render("~/Content/css/treeview.css")
+}
+<div class="sidebar-right-content">
+        <form class="form-inline">
+            版本:&nbsp;
     <select id="selectVersion" class="select-small">
         <option>1.0 </option>
     </select>
-    状态:
+            状态:
     <select class="select-small">
         <option>未分配</option>
         <option></option>
     </select>
 
+
+
+        </form>
+        <div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>版本
+                        </th>
+                        <th>标题
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     
+    </div>
     
-</form>
-<div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    版本
-                </th>
-                <th>
-                    标题
-                </th>
-                <th>
-                    
-                </th>
-            </tr>
-        </thead>
-    </table>
+
+
+@section rightsidebar{
+    <div class="sidebar-right">
+        <div class="actions">
+          
+           <div class="input-append">
+            <input class="span2" type="text"/>
+                <button class="btn btn-info">搜索</button>
+        
+            </div>
+            
+              <a href="#" class="btn">添加子目录</a><br /><br />
+
+            <a href="#" class="btn">添加需求</a><br /><br />
+            
+        </div>
+
+        <div class="css-treeview">
+    <ul>
+        <li><input type="checkbox" id="item-0" /><label for="item-0">This Folder is Closed By Default</label>
+            <ul>
+                <li><input type="checkbox" id="item-0-0" /><label for="item-0-0">Ooops! A Nested FolderFolderFolderFolderFolderFolderFolder</label>
+                    <ul>
+                        <li><input type="checkbox" id="item-0-0-0" /><label for="item-0-0-0">Look Ma - No Hands!</label>
+                            <ul>
+                                <li><a href="./">First Nested Item</a></li>
+                                <li><a href="./">Second Nested Item</a></li>
+                                <li><a href="./">Third Nested Item</a></li>
+                                <li><a href="./">Fourth Nested Item</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./">Item 1</a></li>
+                        <li><a href="./">Item 2</a></li>
+                        <li><a href="./">Item 3</a></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="item-0-1" /><label for="item-0-1">Yet Another One</label>
+                    <ul>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="item-0-2" disabled="disabled" /><label for="item-0-2">Disabled Nested Items</label>
+                    <ul>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                    </ul>
+                </li>
+                <li><a href="./">item</a></li>
+                <li><a href="./">item</a></li>
+                <li><a href="./">item</a></li>
+                <li><a href="./">item</a></li>
+        </ul>
+</li>
+<li><input type="checkbox" id="item-1" checked="checked" /><label for="item-1">This One is Open by Default...</label>
+        <ul>
+            <li><input type="checkbox" id="item-1-0" /><label for="item-1-0">And Contains More Nested Items...</label>
+                <ul>
+                    <li><a href="./">Look Ma - No Hands</a></li>
+                    <li><a href="./">Another Item</a></li>
+                    <li><a href="./">And Yet Another</a></li>
+                </ul>
+            </li>
+            <li><a href="./">Lorem</a></li>
+            <li><a href="./">Ipsum</a></li>
+            <li><a href="./">Dolor</a></li>
+            <li><a href="./">Sit Amet</a></li>
+        </ul>
+</li>
+<li><input type="checkbox" id="item-2" /><label for="item-2">Can You Believe...</label>
+        <ul>
+                <li><input type="checkbox" id="item-2-0" /><label for="item-2-0">That This Treeview...</label>
+                    <ul>
+                        <li><input type="checkbox" id="item-2-2-0" /><label for="item-2-2-0">Does Not Use Any JavaScript...</label>
+                            <ul>
+                                <li><a href="./">But Relies Only</a></li>
+                                <li><a href="./">On the Power</a></li>
+                                <li><a href="./">Of CSS3</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./">Item 1</a></li>
+                        <li><a href="./">Item 2</a></li>
+                        <li><a href="./">Item 3</a></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="item-2-1" /><label for="item-2-1">This is a Folder With...</label>
+                    <ul>
+                        <li><a href="./">Some Nested Items...</a></li>
+                        <li><a href="./">Some Nested Items...</a></li>
+                        <li><a href="./">Some Nested Items...</a></li>
+                        <li><a href="./">Some Nested Items...</a></li>
+                        <li><a href="./">Some Nested Items...</a></li>
+                    </ul>
+                </li>
+                <li><input type="checkbox" id="item-2-2" disabled="disabled" /><label for="item-2-2">Disabled Nested Items</label>
+                    <ul>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                        <li><a href="./">item</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
+    </div>
+}

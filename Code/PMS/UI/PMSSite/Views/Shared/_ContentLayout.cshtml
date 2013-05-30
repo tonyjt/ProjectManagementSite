@@ -19,7 +19,12 @@
     <div id="page-content" class="clearfix">
         @RenderBody()
     </div>
+
+
 </div>
+
+    @RenderSection("rightsidebar",false)
+
 @section  scripts{
     @RenderSection("scripts", false)
 }
