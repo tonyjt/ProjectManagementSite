@@ -208,6 +208,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\ace-button.css" />
     <Content Include="Content\css\ace-responsive.min.css" />
     <Content Include="Content\css\ace-skins.min.css" />
     <Content Include="Content\css\ace.min.css" />

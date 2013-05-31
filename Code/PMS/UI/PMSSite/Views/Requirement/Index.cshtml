@@ -4,8 +4,16 @@
 }
 @section styles{
     @Styles.Render("~/Content/css/treeview.css")
+    @Styles.Render("~/Content/css/ace-button.css")
+    @Styles.Render("~/Content/css/font-awesome.css")
+    <style type="text/css">
+        .tab-content {
+            min-height: 600px;
+            border: 0px;
+        }
+    </style>
 }
-<div class="sidebar-right-content">
+@*<div class="sidebar-right-content">
         <form class="form-inline">
             版本:&nbsp;
     <select id="selectVersion" class="select-small">
@@ -34,130 +42,349 @@
             </table>
         </div>
     
-    </div>
-    
+    </div>*@
 
+<div class="sidebar-right-content">
+    <div class="alert alert-info">
+        B2G
+        
+    <a href="#" class="pull-right"><i class="icon-plus"></i>添加子需求</a>
+    </div>
+    <hr />
+
+
+    <div class="tabbable">
+        <ul class="nav nav-tabs" id="myTab">
+            <li class="active">
+                <a data-toggle="tab" href="#content">
+                    <i class="green icon-barcode bigger-110"></i>
+                    需求详情
+                </a>
+            </li>
+
+            <li class="">
+                <a data-toggle="tab" href="#attachment">
+                    <i class="green icon-file bigger-110"></i>附件
+                </a>
+            </li>
+            <li class="">
+                <a data-toggle="tab" href="#history">
+                    <i class="green  icon-calendar bigger-110"></i>修改记录
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="content" class="tab-pane active ace-button">
+               <div id="editor-toolbar-1" class="wysiwyg-toolbar  btn-toolbar center  wysiwyg-style1" data-target="#editor">
+							<div class="btn-group">
+								<a class="btn btn-small  dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font">
+									<i class=" icon-font"></i>
+
+									<i class="icon-angle-down icon-on-right"></i>
+								</a>
+								<ul class="dropdown-menu dropdown-light">  <li><a data-edit="fontName Arial" style="font-family:'Arial'">Arial</a></li><li><a data-edit="fontName Courier" style="font-family:'Courier'">Courier</a></li><li><a data-edit="fontName Comic Sans MS" style="font-family:'Comic Sans MS'">Comic Sans MS</a></li><li><a data-edit="fontName Helvetica" style="font-family:'Helvetica'">Helvetica</a></li><li><a data-edit="fontName Open Sans" style="font-family:'Open Sans'">Open Sans</a></li><li><a data-edit="fontName Tahoma" style="font-family:'Tahoma'">Tahoma</a></li><li><a data-edit="fontName Verdana" style="font-family:'Verdana'">Verdana</a></li></ul>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn btn-small  dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size">
+									<i class=" icon-text-height"></i>
+
+									&nbsp;
+									<i class="icon-angle-down icon-on-right"></i>
+								</a>
+
+								<ul class="dropdown-menu dropdown-light">
+									<li>
+										<a data-edit="fontSize 5">
+											<font size="5">Huge</font>
+										</a>
+									</li>
+
+									<li>
+										<a data-edit="fontSize 3">
+											<font size="3">Normal</font>
+										</a>
+									</li>
+
+									<li>
+										<a data-edit="fontSize 1">
+											<font size="1">Small</font>
+										</a>
+									</li>
+								</ul>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn btn-small btn-info" data-edit="bold" title="" data-original-title="Bold (Ctrl/Cmd+B)">
+									<i class=" icon-bold"></i>
+								</a>
+
+								<a class="btn btn-small btn-info" data-edit="italic" title="" data-original-title="Italic (Ctrl/Cmd+I)">
+									<i class=" icon-italic"></i>
+								</a>
+
+								<a class="btn btn-small btn-info" data-edit="strikethrough" title="" data-original-title="Strikethrough">
+									<i class=" icon-strikethrough"></i>
+								</a>
+
+								<a class="btn btn-small btn-info" data-edit="underline" title="" data-original-title="Underline (Ctrl/Cmd+U)">
+									<i class=" icon-underline"></i>
+								</a>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn btn-small btn-success" data-edit="insertunorderedlist" title="" data-original-title="Bullet list">
+									<i class=" icon-list-ul"></i>
+								</a>
+
+								<a class="btn btn-small btn-success active" data-edit="insertorderedlist" title="" data-original-title="Number list">
+									<i class=" icon-list-ol"></i>
+								</a>
+
+								<a class="btn btn-small btn-purple" data-edit="outdent" title="" data-original-title="Reduce indent (Shift+Tab)">
+									<i class=" icon-indent-left"></i>
+								</a>
+
+								<a class="btn btn-small btn-purple" data-edit="indent" title="" data-original-title="Indent (Tab)">
+									<i class=" icon-indent-right"></i>
+								</a>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn btn-small btn-primary active" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)">
+									<i class=" icon-align-left"></i>
+								</a>
+
+								<a class="btn btn-small btn-primary" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)">
+									<i class=" icon-align-center"></i>
+								</a>
+
+								<a class="btn btn-small btn-primary" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)">
+									<i class=" icon-align-right"></i>
+								</a>
+
+								<a class="btn btn-small btn-inverse" data-edit="justifyfull" title="" data-original-title="Justify (Ctrl/Cmd+J)">
+									<i class=" icon-align-justify"></i>
+								</a>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn btn-small btn-pink dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink">
+									<i class=" icon-link"></i>
+								</a>
+
+								<div class="dropdown-menu dropdown-caret input-append pull-right">
+									<input placeholder="URL" type="text" data-edit="createLink">
+									<button class="btn btn-small btn-primary" type="button">Add</button>
+								</div>
+
+								<a class="btn btn-small btn-pink" data-edit="unlink" title="" data-original-title="Remove Hyperlink">
+									<i class=" icon-unlink"></i>
+								</a>
+							</div>
+
+							<div class="btn-group">
+								<a class="btn btn-small btn-success" title="" id="pictureBtn" data-original-title="Insert picture (or just drag &amp; drop)">
+									<i class=" icon-picture"></i>
+								</a>
+
+								<input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
+							</div>
+
+							<div class="btn-group">
+								<select id="colorpicker" class="hidden" title="Change Color" style="display: none;">
+									<option value="#ac725e">#ac725e</option>
+									<option value="#d06b64">#d06b64</option>
+									<option value="#f83a22">#f83a22</option>
+									<option value="#fa573c">#fa573c</option>
+									<option value="#ff7537">#ff7537</option>
+									<option value="#ffad46">#ffad46</option>
+									<option value="#42d692">#42d692</option>
+									<option value="#16a765">#16a765</option>
+									<option value="#7bd148">#7bd148</option>
+									<option value="#b3dc6c">#b3dc6c</option>
+									<option value="#fbe983">#fbe983</option>
+									<option value="#fad165">#fad165</option>
+									<option value="#92e1c0">#92e1c0</option>
+									<option value="#9fe1e7">#9fe1e7</option>
+									<option value="#9fc6e7">#9fc6e7</option>
+									<option value="#4986e7">#4986e7</option>
+									<option value="#9a9cff">#9a9cff</option>
+									<option value="#b99aff">#b99aff</option>
+									<option value="#c2c2c2">#c2c2c2</option>
+									<option value="#cabdbf">#cabdbf</option>
+									<option value="#cca6ac">#cca6ac</option>
+									<option value="#f691b2">#f691b2</option>
+									<option value="#cd74e6">#cd74e6</option>
+									<option value="#a47ae2">#a47ae2</option>
+									<option value="#444" selected="">#444</option>
+								</select><div class="dropdown dropdown-colorpicker" data-original-title="" title=""><a data-toggle="dropdown" class="dropdown-toggle" href="#"><span class="btn-colorpicker" style="background-color:#444"></span></a><ul class="dropdown-menu pull-right"><li><a class="colorpick-btn" href="#" style="background-color:#ac725e;" data-color="#ac725e"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#d06b64;" data-color="#d06b64"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#f83a22;" data-color="#f83a22"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#fa573c;" data-color="#fa573c"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#ff7537;" data-color="#ff7537"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#ffad46;" data-color="#ffad46"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#42d692;" data-color="#42d692"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#16a765;" data-color="#16a765"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#7bd148;" data-color="#7bd148"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#b3dc6c;" data-color="#b3dc6c"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#fbe983;" data-color="#fbe983"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#fad165;" data-color="#fad165"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#92e1c0;" data-color="#92e1c0"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#9fe1e7;" data-color="#9fe1e7"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#9fc6e7;" data-color="#9fc6e7"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#4986e7;" data-color="#4986e7"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#9a9cff;" data-color="#9a9cff"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#b99aff;" data-color="#b99aff"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#c2c2c2;" data-color="#c2c2c2"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#cabdbf;" data-color="#cabdbf"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#cca6ac;" data-color="#cca6ac"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#f691b2;" data-color="#f691b2"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#cd74e6;" data-color="#cd74e6"></a></li><li><a class="colorpick-btn" href="#" style="background-color:#a47ae2;" data-color="#a47ae2"></a></li><li><a class="colorpick-btn selected" href="#" style="background-color:#444;" data-color="#444"></a></li></ul></div>
+
+								<input style="display: none;" disabled="" class="hidden" type="text" data-edit="foreColor">
+							</div>
+
+							<div class="btn-group">
+								<a class="btn btn-small btn-grey" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)">
+									<i class=" icon-undo"></i>
+								</a>
+
+								<a class="btn btn-small btn-grey" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)">
+									<i class=" icon-repeat"></i>
+								</a>
+							</div>
+
+							<input type="text" data-edit="inserttext" class="wysiwyg-speech-input" id="voiceBtn" x-webkit-speech="" style="position: absolute; top: 218px; left: 1844px;">
+						</div>
+                <div class="wysiwyg-editor" id="editor1" contenteditable="true"><ol><li>sdfsdfhahahaha<br></li></ol></div>
+            </div>
+
+            <div id="attachment" class="tab-pane">
+                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
+            </div>
+            <div id="history" class="tab-pane">
+                <p>历史记录</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 @section rightsidebar{
     <div class="sidebar-right">
         <div class="actions">
-          
-           <div class="input-append">
-            <input class="span2" type="text"/>
+
+            <div class="input-append">
+                <input class="span2" type="text" />
                 <button class="btn btn-info">搜索</button>
-        
+
             </div>
-            
-              <a href="#" class="btn">添加子目录</a><br /><br />
+            <br />
 
-            <a href="#" class="btn">添加需求</a><br /><br />
-            
         </div>
+        <div>
+            <div class="tool">
+                <a href="#"><i class="icon-plus"></i>展开所有</a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="#"><i class="icon-minus"></i>收起所有</a>
+            </div>
 
-        <div class="css-treeview">
-    <ul>
-        <li><input type="checkbox" id="item-0" /><label for="item-0">This Folder is Closed By Default</label>
-            <ul>
-                <li><input type="checkbox" id="item-0-0" /><label for="item-0-0">Ooops! A Nested FolderFolderFolderFolderFolderFolderFolder</label>
-                    <ul>
-                        <li><input type="checkbox" id="item-0-0-0" /><label for="item-0-0-0">Look Ma - No Hands!</label>
-                            <ul>
-                                <li><a href="./">First Nested Item</a></li>
-                                <li><a href="./">Second Nested Item</a></li>
-                                <li><a href="./">Third Nested Item</a></li>
-                                <li><a href="./">Fourth Nested Item</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./">Item 1</a></li>
-                        <li><a href="./">Item 2</a></li>
-                        <li><a href="./">Item 3</a></li>
-                    </ul>
-                </li>
-                <li><input type="checkbox" id="item-0-1" /><label for="item-0-1">Yet Another One</label>
-                    <ul>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                    </ul>
-                </li>
-                <li><input type="checkbox" id="item-0-2" disabled="disabled" /><label for="item-0-2">Disabled Nested Items</label>
-                    <ul>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                    </ul>
-                </li>
-                <li><a href="./">item</a></li>
-                <li><a href="./">item</a></li>
-                <li><a href="./">item</a></li>
-                <li><a href="./">item</a></li>
-        </ul>
-</li>
-<li><input type="checkbox" id="item-1" checked="checked" /><label for="item-1">This One is Open by Default...</label>
-        <ul>
-            <li><input type="checkbox" id="item-1-0" /><label for="item-1-0">And Contains More Nested Items...</label>
+            <div class="css-treeview">
                 <ul>
-                    <li><a href="./">Look Ma - No Hands</a></li>
-                    <li><a href="./">Another Item</a></li>
-                    <li><a href="./">And Yet Another</a></li>
+                    <li>
+                        <input type="checkbox" id="item-0" /><label for="item-0">This Folder is Closed By Default</label>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="item-0-0" /><label for="item-0-0">Ooops! A Nested FolderFolderFolderFolderFolderFolderFolder</label>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="item-0-0-0" /><label for="item-0-0-0">Look Ma - No Hands!</label>
+                                        <ul>
+                                            <li><a href="./">First Nested Item</a></li>
+                                            <li><a href="./">Second Nested Item</a></li>
+                                            <li><a href="./">Third Nested Item</a></li>
+                                            <li><a href="./">Fourth Nested Item</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./">Item 1</a></li>
+                                    <li><a href="./">Item 2</a></li>
+                                    <li><a href="./">Item 3</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-0-1" /><label for="item-0-1">Yet Another One</label>
+                                <ul>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-0-2" disabled="disabled" /><label for="item-0-2">Disabled Nested Items</label>
+                                <ul>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="./">item</a></li>
+                            <li><a href="./">item</a></li>
+                            <li><a href="./">item</a></li>
+                            <li><a href="./">item</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="item-1" checked="checked" /><label for="item-1">This One is Open by Default...</label>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="item-1-0" /><label for="item-1-0">And Contains More Nested Items...</label>
+                                <ul>
+                                    <li><a href="./">Look Ma - No Hands</a></li>
+                                    <li><a href="./">Another Item</a></li>
+                                    <li><a href="./">And Yet Another</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="./">Lorem</a></li>
+                            <li><a href="./">Ipsum</a></li>
+                            <li><a href="./">Dolor</a></li>
+                            <li><a href="./">Sit Amet</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <input type="checkbox" id="item-2" /><label for="item-2">Can You Believe...</label>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="item-2-0" /><label for="item-2-0">That This Treeview...</label>
+                                <ul>
+                                    <li>
+                                        <input type="checkbox" id="item-2-2-0" /><label for="item-2-2-0">Does Not Use Any JavaScript...</label>
+                                        <ul>
+                                            <li><a href="./">But Relies Only</a></li>
+                                            <li><a href="./">On the Power</a></li>
+                                            <li><a href="./">Of CSS3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="./">Item 1</a></li>
+                                    <li><a href="./">Item 2</a></li>
+                                    <li><a href="./">Item 3</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-2-1" /><label for="item-2-1">This is a Folder With...</label>
+                                <ul>
+                                    <li><a href="./">Some Nested Items...</a></li>
+                                    <li><a href="./">Some Nested Items...</a></li>
+                                    <li><a href="./">Some Nested Items...</a></li>
+                                    <li><a href="./">Some Nested Items...</a></li>
+                                    <li><a href="./">Some Nested Items...</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="item-2-2" disabled="disabled" /><label for="item-2-2">Disabled Nested Items</label>
+                                <ul>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                    <li><a href="./">item</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
-            </li>
-            <li><a href="./">Lorem</a></li>
-            <li><a href="./">Ipsum</a></li>
-            <li><a href="./">Dolor</a></li>
-            <li><a href="./">Sit Amet</a></li>
-        </ul>
-</li>
-<li><input type="checkbox" id="item-2" /><label for="item-2">Can You Believe...</label>
-        <ul>
-                <li><input type="checkbox" id="item-2-0" /><label for="item-2-0">That This Treeview...</label>
-                    <ul>
-                        <li><input type="checkbox" id="item-2-2-0" /><label for="item-2-2-0">Does Not Use Any JavaScript...</label>
-                            <ul>
-                                <li><a href="./">But Relies Only</a></li>
-                                <li><a href="./">On the Power</a></li>
-                                <li><a href="./">Of CSS3</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="./">Item 1</a></li>
-                        <li><a href="./">Item 2</a></li>
-                        <li><a href="./">Item 3</a></li>
-                    </ul>
-                </li>
-                <li><input type="checkbox" id="item-2-1" /><label for="item-2-1">This is a Folder With...</label>
-                    <ul>
-                        <li><a href="./">Some Nested Items...</a></li>
-                        <li><a href="./">Some Nested Items...</a></li>
-                        <li><a href="./">Some Nested Items...</a></li>
-                        <li><a href="./">Some Nested Items...</a></li>
-                        <li><a href="./">Some Nested Items...</a></li>
-                    </ul>
-                </li>
-                <li><input type="checkbox" id="item-2-2" disabled="disabled" /><label for="item-2-2">Disabled Nested Items</label>
-                    <ul>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                        <li><a href="./">item</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</div>
+            </div>
+        </div>
     </div>
 }

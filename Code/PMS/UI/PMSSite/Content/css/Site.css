@@ -7,7 +7,9 @@ td {
 .text-center {
     text-align:center;
 }
-
+html {
+overflow: scroll;
+}
 .pagination {
     text-align:center;  
 }
@@ -46,4 +48,8 @@ td {
 .sidebar-right .actions {
     padding-left:15px;
     padding-top:10px;
+}
+
+.sidebar-right .tool {
+    margin-left:22px;
 }
