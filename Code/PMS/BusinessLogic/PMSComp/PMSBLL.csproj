@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="ProjectManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequirementManager.cs" />
     <Compile Include="UserManager.cs" />
     <Compile Include="VersionManager.cs" />
   </ItemGroup>

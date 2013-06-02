@@ -72,5 +72,19 @@ namespace PMS.Tool.Helper
         {
             return GetModel<P, bool>(parameter, fun, log);
         }
+
+        public static bool  CreateModel<P>(P key,Action<P> fun,log4net.ILog log)
+        {
+            try
+            {
+                fun(key);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                log.ErrorInFunction(ex);
+                return false;
+            }
+        }
     }
 }

@@ -203,6 +203,7 @@
     <Compile Include="Models\CustomActionFilter.cs" />
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\ProjectModels.cs" />
+    <Compile Include="Models\RequirementModel.cs" />
     <Compile Include="Models\VersionModel.cs" />
     <Compile Include="Models\ViewMessageModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -211,7 +212,6 @@
     <Content Include="Content\css\ace-button.css" />
     <Content Include="Content\css\ace-responsive.min.css" />
     <Content Include="Content\css\ace-skins.min.css" />
-    <Content Include="Content\css\ace.min.css" />
     <Content Include="Content\css\bootstrap-responsive.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\font-awesome.min.css" />
@@ -311,6 +311,8 @@
     <Content Include="Content\img\glyphicons-halflings.png" />
     <Content Include="Scripts\ace-elements.min.js" />
     <Content Include="Scripts\ace.min.js" />
+    <Content Include="Scripts\bootstrap-wysiwyg.js" />
+    <Content Include="Scripts\bootstrap-wysiwyg.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.0.0.js" />
     <Content Include="Scripts\jquery-2.0.0.min.js" />
@@ -320,6 +322,7 @@
     <Content Include="Scripts\jquery.flot.min.js" />
     <Content Include="Scripts\jquery.flot.pie.min.js" />
     <Content Include="Scripts\jquery.flot.resize.min.js" />
+    <Content Include="Scripts\jquery.hotkeys.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jquery.sparkline.min.js" />
     <Content Include="Scripts\jquery.ui.touch-punch.min.js" />
@@ -337,6 +340,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\project.index.js" />
     <Content Include="Scripts\project.new.js" />
+    <Content Include="Scripts\requirement.index.js" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.ascx" />

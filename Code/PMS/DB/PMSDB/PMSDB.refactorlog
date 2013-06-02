@@ -77,4 +77,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="EndTime" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="8a566a70-8ce7-429c-a0b6-7c482fea2f09" ChangeDateTime="06/01/2013 10:29:19">
+    <Property Name="ElementName" Value="[dbo].[Requirement].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Requirement]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RequirementId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="13c24948-4754-47be-ad3e-79b97d99a971" ChangeDateTime="06/01/2013 11:16:04">
+    <Property Name="ElementName" Value="[dbo].[RequirementHistory].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RequirementHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="historyId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6dc20fe7-c984-4e60-9430-338f2af6a066" ChangeDateTime="06/01/2013 11:16:09">
+    <Property Name="ElementName" Value="[dbo].[RequirementHistory].[historyId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RequirementHistory]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="HistoryId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="519054b9-56d0-492c-a5ef-28410ff42378" ChangeDateTime="06/01/2013 11:21:24">
+    <Property Name="ElementName" Value="[dbo].[Requirement].[CreateDate]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Requirement]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="CreateTime" />
+  </Operation>
 </Operations>

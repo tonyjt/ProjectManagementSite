@@ -53,6 +53,21 @@ namespace PMS.PMSBLL
 
             return versionList.Where(v=>v.VersionStatus != VersionStatus.Delete).OrderByDescending(v=>v.CreateTime);
         }
+
+        public static IEnumerable<ProjectVersion> GetStartVersion(Guid projectId)
+        {
+            IEnumerable<ProjectVersion> versionList =  GetVersion(projectId, VersionStatus.Start);
+
+            return versionList;
+        }
+
+        public static IEnumerable<ProjectVersion> GetVersion(Guid projectId, VersionStatus status)
+        {
+            IEnumerable<ProjectVersion> versionList = GetVersionForProject(projectId);
+
+            return versionList.Where(v => v.VersionStatus == status);
+        }
+
         public static bool StartVersion(Guid versionId)
         {
             IEnumerable<VersionStatus> referStatus = new List<VersionStatus>{

@@ -42,7 +42,12 @@
   <ItemGroup>
     <Compile Include="Custom\Project.cs" />
     <Compile Include="Custom\ProjectVersion.cs" />
+    <Compile Include="Custom\RequirementHistory.cs" />
     <Compile Include="DB\ProjectVersion.cs">
+      <SubType>
+      </SubType>
+    </Compile>
+    <Compile Include="DB\RequirementHistory.cs">
       <SubType>
       </SubType>
     </Compile>

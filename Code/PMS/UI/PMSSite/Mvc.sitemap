@@ -10,7 +10,9 @@
        <mvcSiteMapNode title="创建项目" controller="Project" action="New"/>
     </mvcSiteMapNode>
     <mvcSiteMapNode title="版本管理" controller="Version" action="Index"/>
-    <mvcSiteMapNode title="需求管理" controller="Requirement" action="Index"/>
+    <mvcSiteMapNode title="需求管理" controller="Requirement" action="Index">
+      <mvcSiteMapNode title="添加需求" controller="Requirement" action="New"/>
+    </mvcSiteMapNode>
   </mvcSiteMapNode>
  
 </mvcSiteMap>
