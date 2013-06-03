@@ -34,6 +34,12 @@
 
             <div class="css-treeview">
                 <ul>
+                    @if(Model.RequirementChildren.Count()==0)
+                    {
+                        <br />
+                        @:&nbsp; &nbsp; &nbsp; &nbsp;
+                        <a href="@Url.Action("new","requirement")"><i class="icon-plus"></i>添加需求</a>
+                    }
                     @Html.Partial("_SidebarPartial",Model.RequirementChildren)
                   @*  <li>
                         <input type="checkbox" id="item-0" /><label for="item-0">This Folder is Closed By Default</label>

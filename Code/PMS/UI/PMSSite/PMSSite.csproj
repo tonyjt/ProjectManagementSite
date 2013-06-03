@@ -341,7 +341,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\project.index.js" />
     <Content Include="Scripts\project.new.js" />
-    <Content Include="Scripts\requirement.index.js" />
+    <Content Include="Scripts\requirement.detail.js" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.ascx" />

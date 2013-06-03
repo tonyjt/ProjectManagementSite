@@ -44,6 +44,22 @@ namespace PMS.PMSSite.Controllers
                 return RedirectToAction("new");
             }
         }
+        [HttpPost]
+        public ActionResult Detail(Requirement model)
+        {
+            bool result = RequirementManager.Save(model);
+
+            if (result)
+            {
+                ShowSuccessMessage("保存成功");
+            }
+            else
+            {
+                ShowErrorMessage("保存失败，出现异常：请检查输入项");
+
+            }
+            return Detail(model.RequirementId);
+        }
 
         public ActionResult New(Guid? parentId)
         {
@@ -70,7 +86,7 @@ namespace PMS.PMSSite.Controllers
             {
                 ShowSuccessMessage("新需求添加成功", true);
 
-                return RedirectToAction("index", "requirement", new { requirementId = model.RequirementId });
+                return RedirectToAction("detail", "requirement", new { requirementId = model.RequirementId });
 
             }
             else

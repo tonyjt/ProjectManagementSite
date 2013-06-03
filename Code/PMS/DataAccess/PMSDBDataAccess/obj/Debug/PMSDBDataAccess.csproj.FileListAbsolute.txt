@@ -30,3 +30,9 @@ G:\Code\github\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Deb
 G:\Code\github\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\PMS.Tool.pdb
 G:\Code\github\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\log4net.xml
 G:\Code\github\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\CustomExtension.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\PMS.Tool.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\log4net.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\CustomExtension.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\PMS.Tool.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\log4net.xml
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DataAccess\PMSDBDataAccess\bin\Debug\CustomExtension.pdb

@@ -115,9 +115,28 @@ namespace PMS.PMSBLL
                requirement.CreateTime = DateTime.Now;
                requirement.UpdateTime = DateTime.Now;
                requirement.IsValid = true;
-               
+
                result = ManagerHelper.CreateModel(requirement, dataAccess.CreateRequirement, log);
 
+            }
+            return result;
+        }
+
+        public static bool Save(Requirement requirement)
+        {
+            bool result;
+
+            if (requirement == null
+             || !GuidHelper.IsValid(requirement.RequirementId)
+             || string.IsNullOrWhiteSpace(requirement.Title))
+            {
+                result = false;
+            }
+
+            else
+            {
+                requirement.UpdateTime = DateTime.Now;
+                result = ManagerHelper.UpdateModel(requirement,dataAccess.Save,log);
             }
             return result;
         }

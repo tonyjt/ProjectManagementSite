@@ -8,7 +8,7 @@ namespace PMS.Model
         public System.Guid HistoryId { get; set; }
         public System.Guid RequirementId { get; set; }
         public System.Guid VersionId { get; set; }
-        public Nullable<System.Guid> ParentId { get; set; }
+        public System.Guid ParentId { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public System.DateTime CreateDate { get; set; }

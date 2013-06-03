@@ -36,6 +36,37 @@ namespace PMS.PMSDBDataAccess
             }
         }
 
+        public bool Save(Requirement requirement)
+        {
+            
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var model = (from m in context.Requirements
+                            where m.RequirementId == requirement.RequirementId
+                            select m).FirstOrDefault();
+
+                if (model == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    RequirementHistory history = new RequirementHistory(model);
+
+                    model.Title = requirement.Title;
+                    model.Content = requirement.Content;
+                    model.ParentId = requirement.ParentId;
+                    model.VersionId = requirement.VersionId;
+                    model.UpdateTime = requirement.UpdateTime;
+
+                    context.RequirementHistories.Add(history);
+                    context.SaveChanges();
+
+                    return true;    
+                }
+            }
+        }
+
         public Requirement GetRequirement(Guid requirementId)
         {
             using (PMSDBContext context = new PMSDBContext())
