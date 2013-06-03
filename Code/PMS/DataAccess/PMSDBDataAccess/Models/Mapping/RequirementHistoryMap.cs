@@ -32,9 +32,6 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
             this.HasRequired(t => t.ProjectVersion)
                 .WithMany(t => t.RequirementHistories)
                 .HasForeignKey(d => d.VersionId);
-            this.HasOptional(t => t.Requirement)
-                .WithMany(t => t.RequirementHistories)
-                .HasForeignKey(d => d.ParentId);
 
         }
     }

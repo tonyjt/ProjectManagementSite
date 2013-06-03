@@ -29,6 +29,40 @@ namespace PMS.PMSBLL
             return res;
         }
 
+        public static IEnumerable<RequirementWithChildren> GetRequirementWithChildren(Guid projectId)
+        {
+            IEnumerable<Requirement> requirementList = GetAllRequirement(projectId);
+
+            return GetRequirementWithChildren(requirementList);
+        }
+        public static IEnumerable<RequirementWithChildren> GetRequirementWithChildren(IEnumerable<Requirement> requirementList)
+        {
+            return GetRequirementWithChildren(requirementList, GuidHelper.GetInvalidGuid());
+        }
+        public static IEnumerable<RequirementWithChildren> GetRequirementWithChildren(IEnumerable<Requirement> requirementList,Guid rootId )
+        {
+            if (requirementList == null) return null;
+
+            var rootNodes = from d in requirementList
+                            where d.ParentId == rootId
+                            select d;
+
+            List<RequirementWithChildren> deps = new List<RequirementWithChildren>();
+
+            foreach (Requirement requirement in rootNodes)
+            {
+                RequirementWithChildren dwc = new RequirementWithChildren();
+
+                dwc.Requirement = requirement;
+
+                dwc.Children = GetRequirementWithChildren(requirementList, requirement.RequirementId);
+
+                deps.Add(dwc);
+            }
+
+            return deps;
+        }
+
         public static IEnumerable<Requirement> GetParentableRequirement(Guid projectId, Guid requirementId)
         {
             IEnumerable<Requirement> allRequirment = GetAllRequirement(projectId);

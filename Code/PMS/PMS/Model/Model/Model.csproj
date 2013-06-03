@@ -43,6 +43,7 @@
     <Compile Include="Custom\Project.cs" />
     <Compile Include="Custom\ProjectVersion.cs" />
     <Compile Include="Custom\RequirementHistory.cs" />
+    <Compile Include="Custom\RequirementWithChildren.cs" />
     <Compile Include="DB\ProjectVersion.cs">
       <SubType>
       </SubType>
@@ -70,6 +71,12 @@
       <SubType>
       </SubType>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Tool\Extentsion\Tool.csproj">
+      <Project>{9b7384cf-2b9a-4768-8340-1eb0df104498}</Project>
+      <Name>Tool %28Tool\Tool%29</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

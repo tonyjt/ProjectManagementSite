@@ -218,6 +218,7 @@
     <Content Include="Content\css\jquery-ui-1.10.3.custom.css" />
     <Content Include="Content\css\jquery-ui-1.10.3.custom.min.css" />
     <Content Include="Content\css\treeview.css" />
+    <Content Include="Content\img\ad\xiaozhang.jpg" />
     <Content Include="Content\img\animated-overlay.gif" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\treeview.png" />
@@ -385,7 +386,10 @@
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\_ContentLayout.cshtml" />
     <Content Include="Views\Version\Index.cshtml" />
+    <Content Include="Views\Requirement\Detail.cshtml" />
+    <Content Include="Views\Requirement\Master.cshtml" />
     <Content Include="Views\Requirement\Index.cshtml" />
+    <Content Include="Views\Requirement\_SidebarPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -2,3 +2,14 @@ C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\bi
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\PMS.Model.pdb
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\obj\Debug\PMS.Model.dll
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\Model\Model\obj\Debug\PMS.Model.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\PMS.Model.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\PMS.Model.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\obj\Debug\PMS.Model.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\obj\Debug\PMS.Model.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\PMS.Tool.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\log4net.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\CustomExtension.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\PMS.Tool.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\log4net.xml
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\Model\Model\bin\Debug\CustomExtension.pdb

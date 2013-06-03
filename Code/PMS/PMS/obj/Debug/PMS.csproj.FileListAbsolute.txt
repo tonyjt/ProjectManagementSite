@@ -3,3 +3,8 @@ C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\bin\Debug\PMS.
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.csprojResolveAssemblyReference.cache
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.dll
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\bin\Debug\PMS.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\bin\Debug\PMS.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.csprojResolveAssemblyReference.cache
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\PMS\obj\Debug\PMS.pdb

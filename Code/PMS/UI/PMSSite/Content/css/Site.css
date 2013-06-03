@@ -1,5 +1,7 @@
-﻿ html, body { padding: 0px; margin: 0px; width: 100%; height: 100%; }
-    #div { min-height: 100%; }
+﻿ body { padding: 0px; margin: 0px;height: 100%; }
+ 
+#div { min-height: 100%; }
+
 
 td {
     vertical-align:middle !important;

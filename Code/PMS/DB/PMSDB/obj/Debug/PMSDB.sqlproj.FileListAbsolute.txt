@@ -3,3 +3,12 @@ C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.pdb
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\PMSDB.dll
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\PMSDB.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.dacpac
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\PMSDB.dll
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\PMSDB.pdb
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\Model.xml
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\refactor.xml
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\postdeploy.sql
+G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\predeploy.sql

@@ -73,5 +73,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Compare\dev.scmp" />
+    <None Include="Compare\dev-office.scmp" />
   </ItemGroup>
 </Project>

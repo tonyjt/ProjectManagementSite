@@ -1,0 +1,19 @@
+﻿@model IEnumerable<RequirementWithChildren>
+
+@foreach (RequirementWithChildren child in Model)
+{
+    <li>
+        @if (!child.IsLeafNode)
+        {
+            <input type="checkbox" id="item-@child.Requirement.RequirementId" />
+            <label for="item-@child.Requirement.RequirementId">@child.Requirement.Title</label>
+            <ul>
+                @Html.Partial("_SidebarPartial",child.Children)
+            </ul>
+        }
+        else
+        {
+            <a href="javascript:">@child.Requirement.Title</a>
+        }
+    </li>
+}

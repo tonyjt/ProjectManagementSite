@@ -7,6 +7,5 @@
     [Title] NVARCHAR(256) NOT NULL, 
     [Content] NVARCHAR(MAX) NOT NULL, 
     [CreateDate] DATETIME NOT NULL ,
-    CONSTRAINT [FK_RequirementHistory_ToProjectVersion] FOREIGN KEY ([VersionId]) REFERENCES [ProjectVersion]([VersionId]), 
-    CONSTRAINT [FK_RequirementHistory_ToRequirement] FOREIGN KEY ([ParentId]) REFERENCES [Requirement]([RequirementId]),
+    CONSTRAINT [FK_RequirementHistory_ToProjectVersion] FOREIGN KEY ([VersionId]) REFERENCES [ProjectVersion]([VersionId])
 )
