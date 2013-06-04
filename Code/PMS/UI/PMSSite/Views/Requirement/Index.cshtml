@@ -1,11 +1,32 @@
 ﻿@{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Requirement/Master.cshtml";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<div class="alert alert-info">
+@*<div class="alert alert-info">
     请在右边选择您需要查看/编辑的需求
 </div>
 
 <br />
-<img src="@Url.Content("~/Content/img/ad/xiaozhang.jpg")" />
+<img src="@Url.Content("~/Content/img/ad/xiaozhang.jpg")" />*@
+
+
+<div id="main-content" class="clearfix">
+    <div id="breadcrumbs" style="margin-bottom:10px;">
+        <ul class="breadcrumb">
+            <i class="icon-home"></i>
+            <li class="active">@Html.MvcSiteMap().SiteMapPath()</li>
+        </ul>
+        <!--.breadcrumb-->
+
+    </div>
+    <div id="page-content" class="clearfix">
+        @RenderBody()
+    </div>
+</div>
+
+    @RenderSection("rightsidebar",false)
+
+@section  scripts{
+    @RenderSection("scripts", false)
+}

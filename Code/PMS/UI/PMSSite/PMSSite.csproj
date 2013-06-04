@@ -390,6 +390,7 @@
     <Content Include="Views\Requirement\Master.cshtml" />
     <Content Include="Views\Requirement\Index.cshtml" />
     <Content Include="Views\Requirement\_SidebarPartial.cshtml" />
+    <Content Include="Views\Shared\_IframeLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
