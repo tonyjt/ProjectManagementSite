@@ -217,10 +217,14 @@
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\jquery-ui-1.10.3.custom.css" />
     <Content Include="Content\css\jquery-ui-1.10.3.custom.min.css" />
-    <Content Include="Content\css\treeview.css" />
+    <Content Include="Content\css\jquery.treeview.css" />
     <Content Include="Content\img\ad\xiaozhang.jpg" />
     <Content Include="Content\img\animated-overlay.gif" />
+    <Content Include="Content\img\file.gif" />
+    <Content Include="Content\img\folder.gif" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\img\treeview-default-line.gif" />
+    <Content Include="Content\img\treeview-default.gif" />
     <Content Include="Content\img\treeview.png" />
     <Content Include="Content\img\ui-bg_flat_55_999999_40x100.png" />
     <Content Include="Content\img\ui-bg_flat_75_aaaaaa_40x100.png" />
@@ -319,6 +323,7 @@
     <Content Include="Scripts\jquery-2.0.0.min.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.custom.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.custom.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.easy-pie-chart.min.js" />
     <Content Include="Scripts\jquery.flot.min.js" />
     <Content Include="Scripts\jquery.flot.pie.min.js" />
@@ -326,6 +331,7 @@
     <Content Include="Scripts\jquery.hotkeys.js" />
     <Content Include="Scripts\jquery.slimscroll.min.js" />
     <Content Include="Scripts\jquery.sparkline.min.js" />
+    <Content Include="Scripts\jquery.treeview.js" />
     <Content Include="Scripts\jquery.ui.touch-punch.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
@@ -342,6 +348,7 @@
     <Content Include="Scripts\project.index.js" />
     <Content Include="Scripts\project.new.js" />
     <Content Include="Scripts\requirement.detail.js" />
+    <Content Include="Scripts\requirement.sidebar.js" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.ascx" />
@@ -390,7 +397,6 @@
     <Content Include="Views\Requirement\Master.cshtml" />
     <Content Include="Views\Requirement\Index.cshtml" />
     <Content Include="Views\Requirement\_SidebarPartial.cshtml" />
-    <Content Include="Views\Shared\_IframeLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

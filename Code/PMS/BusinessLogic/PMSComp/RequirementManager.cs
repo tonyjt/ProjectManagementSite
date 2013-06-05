@@ -45,6 +45,7 @@ namespace PMS.PMSBLL
 
             var rootNodes = from d in requirementList
                             where d.ParentId == rootId
+                            orderby d.CreateTime
                             select d;
 
             List<RequirementWithChildren> deps = new List<RequirementWithChildren>();

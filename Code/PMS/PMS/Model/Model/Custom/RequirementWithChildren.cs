@@ -16,7 +16,7 @@ namespace PMS.Model
         public bool IsLeafNode
         {
             get {
-                return GuidHelper.IsValid(Requirement.ParentId) &&( Children == null || Children.Count() == 0);
+                return  Children == null || Children.Count() == 0;
             }
         }
     }
