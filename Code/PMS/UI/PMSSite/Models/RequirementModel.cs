@@ -14,7 +14,7 @@ namespace PMS.PMSSite.Models
         public IEnumerable<RequirementWithChildren> RequirementChildren { get; set; }
     }
 
-    public class RequirementIndexModel : RequirementModel
+    public class RequirementDetailModel : RequirementModel
     {
         public bool IsNew { get; set; }
 
@@ -25,5 +25,7 @@ namespace PMS.PMSSite.Models
         public IEnumerable<Requirement> ParentableRequirement { get; set; }
 
         public IEnumerable<ProjectVersion> StartVersion { get; set; }
+
+        public IEnumerable<RequirementHistory> HistoryArray { get; set; }
     }
 }

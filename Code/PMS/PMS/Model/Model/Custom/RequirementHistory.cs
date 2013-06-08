@@ -7,7 +7,9 @@ namespace PMS.Model
     [MetadataType(typeof(RequirementHistory_Validation))]
     public partial class RequirementHistory
     {
-
+        public RequirementHistory()
+        {
+        }
         public RequirementHistory(Requirement requirement)
         {
             RequirementId = requirement.RequirementId;

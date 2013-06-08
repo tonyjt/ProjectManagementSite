@@ -18,24 +18,24 @@ namespace PMS.PMSSite.Controllers
         // GET: /Requirement/
         public ActionResult Index()
         {
-            RequirementModel model = new RequirementModel
-            {
-                RequirementChildren = RequirementManager.GetRequirementWithChildren(this.ProjectId)
-            };
-            return View("Index",model);
+            Requirement requirement = RequirementManager.GetFirstRequirement(this.ProjectId);
+
+            return Detail(requirement!= null?requirement.RequirementId:Guid.Empty);
         }
 
         public ActionResult Detail(Guid? requirementId)
         {
-            RequirementIndexModel model ;
-            if (requirementId.HasValue)
+            RequirementDetailModel model ;
+            if (requirementId.HasValue&& GuidHelper.IsValid(requirementId.Value))
             {
                 Requirement re = RequirementManager.GetRequirement(requirementId.Value);
+                IEnumerable<RequirementHistory> histories = RequirementManager.GetHistories(requirementId.Value);
 
                 model = GetIndexModel(requirementId.Value);
 
                 model.IsNew = false;
                 model.Item = re;
+                model.HistoryArray = histories;
 
                 return View("Detail", model);
             }
@@ -44,10 +44,11 @@ namespace PMS.PMSSite.Controllers
                 return RedirectToAction("new");
             }
         }
+
         [HttpPost]
         public ActionResult Detail(Requirement model)
         {
-            bool result = RequirementManager.Save(model);
+            bool result = RequirementManager.Save(model,this.CurrentUserId);
 
             if (result)
             {
@@ -67,7 +68,7 @@ namespace PMS.PMSSite.Controllers
             {
                 parentId = GuidHelper.GetInvalidGuid();
             }
-            RequirementIndexModel model = GetIndexModel(GuidHelper.GetInvalidGuid());
+            RequirementDetailModel model = GetIndexModel(GuidHelper.GetInvalidGuid());
 
             model.IsNew = true;
             model.Item = new Requirement
@@ -93,7 +94,7 @@ namespace PMS.PMSSite.Controllers
             {
                 ShowErrorMessage("需求添加失败，出现异常：请检查输入项");
 
-                RequirementIndexModel updateModel = GetIndexModel(GuidHelper.GetInvalidGuid());
+                RequirementDetailModel updateModel = GetIndexModel(GuidHelper.GetInvalidGuid());
 
                 updateModel.IsNew = true;
                 updateModel.Item = model;
@@ -103,9 +104,38 @@ namespace PMS.PMSSite.Controllers
             
         }
 
-        private RequirementIndexModel GetIndexModel(Guid requirementId)
+        public ActionResult Delete(Guid requirementId)
         {
-            RequirementIndexModel model = new RequirementIndexModel
+            if (GuidHelper.IsValid(requirementId))
+            {
+                Requirement re = RequirementManager.GetRequirement(requirementId);
+
+                bool result = RequirementManager.DeleteRequirement(re);
+
+                if (result)
+                {
+                    ShowSuccessMessage("需求已删除", true);
+
+                    return RedirectToAction("detail", "requirement", new { requirementId = re.ParentId });
+                }
+                else
+                {
+                    ShowErrorMessage("需求删除失败，请重新尝试", true);
+
+                    return RedirectToAction("detail", "requirement", new { requirementId = re.RequirementId });
+                }
+            }
+            else
+            {
+                ShowErrorMessage("参数有误，请重新尝试",true);
+
+                return RedirectToAction("detail", "requirement", new { requirementId = requirementId });
+            }
+        }
+
+        private RequirementDetailModel GetIndexModel(Guid requirementId)
+        {
+            RequirementDetailModel model = new RequirementDetailModel
             {
                 AllRequirement = RequirementManager.GetAllRequirement(this.ProjectId)
             };

@@ -21,7 +21,18 @@ namespace PMS.Tool.Helper
                 return default(T);
             }
         }
-
+        public static T Call<P1,P2,T>(P1 para1, P2 para2, Func<P1,P2,T> fun, log4net.ILog log)
+        {
+            try
+            {
+                return fun(para1,para2);
+            }
+            catch (Exception ex)
+            {
+                log.ErrorInFunction(ex);
+                return default(T);
+            }
+        }
         public static T GetModel<P, P2, T>(P key, P2 key2, Func<P, P2, T> fun, log4net.ILog log)
         {
             try

@@ -1,4 +1,4 @@
-﻿@model RequirementIndexModel
+﻿@model RequirementDetailModel
 @{
     Layout = "~/Views/Requirement/Master.cshtml";
     Project project = ViewBag.Project;
@@ -11,57 +11,56 @@
 
         .wysiwyg-editor {
             height: 430px !important;
-
         }
     </style>
 }
 
-<form action="@Url.Action(Model.IsNew?"new":"detail","requirement")" method="post">
-    <input type="hidden" name="RequirementId"  value="@Model.Item.RequirementId"/>
+<form action="@Url.Action(Model.IsNew ? "new" : "detail", "requirement")" method="post">
+    <input type="hidden" name="RequirementId" id="hidId"  value="@Model.Item.RequirementId"/>
     <input type="hidden" id="hidContent" name="content" />
     <div class="">
-    <div class="alert alert-info ">
-        <div class="row-fluid">
-            <div class="span6">
-                <input type="text" name="Title" value="@Model.Item.Title" class="margion-empty text-long" id="txtTitle" placeholder="标题" />
-            </div>
-            <div class="span6">
-                <div class="pull-right">
+        <div class="alert alert-info ">
+            <div class="row-fluid">
+                <div class="span6">
+                    <input type="text" name="Title" value="@Model.Item.Title" class="margion-empty text-long" id="txtTitle" placeholder="标题" />
                 </div>
-                @if (!Model.IsNew)
-                {
-                    <a href="@Url.Action("new", "requirement", new { parentId = @Model.Item.RequirementId })" class="pull-right"><i class="icon-plus"></i>添加需求</a>
-                }
+                <div class="span6">
+                    <div class="pull-right">
+                    </div>
+                    @if (!Model.IsNew)
+                    {
+                        <a href="@Url.Action("new", "requirement", new { parentId = @Model.Item.RequirementId })" class="pull-right"><i class="icon-plus"></i>添加需求</a>
+                    }
+                </div>
             </div>
         </div>
-    </div>
-    <hr />
+        <hr />
 
 
-    <div class="tabbable">
-        <ul class="nav nav-tabs" id="myTab">
-            <li class="active">
-                <a data-toggle="tab" href="#content">
-                    <i class="green icon-barcode bigger-110"></i>
-                    需求详情
-                </a>
-            </li>
+        <div class="tabbable">
+            <ul class="nav nav-tabs" id="myTab">
+                <li class="active">
+                    <a data-toggle="tab" href="#content">
+                        <i class="green icon-barcode bigger-110"></i>
+                        需求详情
+                    </a>
+                </li>
 
 
-            <li class="">
-                <a data-toggle="tab" href="#history">
-                    <i class="green  icon-calendar bigger-110"></i>历史记录
-                </a>
-            </li>
-            <li class="pull-right margin-right-small ">当前版本: 
+                <li class="">
+                    <a data-toggle="tab" href="#history">
+                        <i class="green  icon-calendar bigger-110"></i>历史记录
+                    </a>
+                </li>
+                <li class="pull-right margin-right-small ">当前版本: 
                 <select class="margion-empty" id="selectVersion" name="VersionId">
                     @foreach (ProjectVersion version in Model.StartVersion)
                     {
                         <option value="@version.VersionId">@version.VersionName</option>
                     }
                 </select>
-            </li>
-            <li class="pull-right margin-right-small ">上一级需求:
+                </li>
+                <li class="pull-right margin-right-small ">上一级需求:
             <select class="margion-empty" id="selectParent" name="ParentId">
                 <option value="@Guid.Empty">@project.Name</option>
                 @foreach (Requirement re in Model.ParentableRequirement)
@@ -69,110 +68,144 @@
                     <option value="@re.RequirementId" @(Model.Item.ParentId == re.RequirementId ? "selected=selected" : "")>@re.Title</option>
                 }
             </select>
-            </li>
+                </li>
 
-        </ul>
+            </ul>
 
-        <div class="tab-content">
-            <div id="content" class="tab-pane active ace-button" style="height: 100%;">
-                <div id="editor-toolbar" class="wysiwyg-toolbar  btn-toolbar center  wysiwyg-style1" data-role="editor-toolbar" data-target="#editor">
-                    <div class="btn-group">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font"><i class="icon-font"></i><b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a data-edit="fontName Serif" style="font-family: 'Serif'">Serif</a></li>
-                            <li><a data-edit="fontName Sans" style="font-family: 'Sans'">Sans</a></li>
-                            <li><a data-edit="fontName Arial" style="font-family: 'Arial'">Arial</a></li>
-                            <li><a data-edit="fontName Arial Black" style="font-family: 'Arial Black'">Arial Black</a></li>
-                            <li><a data-edit="fontName Courier" style="font-family: 'Courier'">Courier</a></li>
-                            <li><a data-edit="fontName Courier New" style="font-family: 'Courier New'">Courier New</a></li>
-                            <li><a data-edit="fontName Comic Sans MS" style="font-family: 'Comic Sans MS'">Comic Sans MS</a></li>
-                            <li><a data-edit="fontName Helvetica" style="font-family: 'Helvetica'">Helvetica</a></li>
-                            <li><a data-edit="fontName Impact" style="font-family: 'Impact'">Impact</a></li>
-                            <li><a data-edit="fontName Lucida Grande" style="font-family: 'Lucida Grande'">Lucida Grande</a></li>
-                            <li><a data-edit="fontName Lucida Sans" style="font-family: 'Lucida Sans'">Lucida Sans</a></li>
-                            <li><a data-edit="fontName Tahoma" style="font-family: 'Tahoma'">Tahoma</a></li>
-                            <li><a data-edit="fontName Times" style="font-family: 'Times'">Times</a></li>
-                            <li><a data-edit="fontName Times New Roman" style="font-family: 'Times New Roman'">Times New Roman</a></li>
-                            <li><a data-edit="fontName Verdana" style="font-family: 'Verdana'">Verdana</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
-                            <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
-                            <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn" data-edit="bold" title="" data-original-title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
-                        <a class="btn" data-edit="italic" title="" data-original-title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
-                        <a class="btn" data-edit="strikethrough" title="" data-original-title="Strikethrough"><i class="icon-strikethrough"></i></a>
-                        <a class="btn" data-edit="underline" title="" data-original-title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn" data-edit="insertunorderedlist" title="" data-original-title="Bullet list"><i class="icon-list-ul"></i></a>
-                        <a class="btn" data-edit="insertorderedlist" title="" data-original-title="Number list"><i class="icon-list-ol"></i></a>
-                        <a class="btn" data-edit="outdent" title="" data-original-title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
-                        <a class="btn" data-edit="indent" title="" data-original-title="Indent (Tab)"><i class="icon-indent-right"></i></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn btn-info" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
-                        <a class="btn" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
-                        <a class="btn" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
-                        <a class="btn" data-edit="justifyfull" title="" data-original-title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
-                    </div>
-                    <div class="btn-group">
-                        <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink"><i class="icon-link"></i></a>
-                        <div class="dropdown-menu input-append">
-                            <input class="span2" placeholder="URL" type="text" data-edit="createLink">
-                            <button class="btn" type="button">Add</button>
+            <div class="tab-content">
+                <div id="content" class="tab-pane active ace-button" style="height: 100%;">
+                    <div id="editor-toolbar" class="wysiwyg-toolbar  btn-toolbar center  wysiwyg-style1" data-role="editor-toolbar" data-target="#editor">
+                        <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font"><i class="icon-font"></i><b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-edit="fontName Serif" style="font-family: 'Serif'">Serif</a></li>
+                                <li><a data-edit="fontName Sans" style="font-family: 'Sans'">Sans</a></li>
+                                <li><a data-edit="fontName Arial" style="font-family: 'Arial'">Arial</a></li>
+                                <li><a data-edit="fontName Arial Black" style="font-family: 'Arial Black'">Arial Black</a></li>
+                                <li><a data-edit="fontName Courier" style="font-family: 'Courier'">Courier</a></li>
+                                <li><a data-edit="fontName Courier New" style="font-family: 'Courier New'">Courier New</a></li>
+                                <li><a data-edit="fontName Comic Sans MS" style="font-family: 'Comic Sans MS'">Comic Sans MS</a></li>
+                                <li><a data-edit="fontName Helvetica" style="font-family: 'Helvetica'">Helvetica</a></li>
+                                <li><a data-edit="fontName Impact" style="font-family: 'Impact'">Impact</a></li>
+                                <li><a data-edit="fontName Lucida Grande" style="font-family: 'Lucida Grande'">Lucida Grande</a></li>
+                                <li><a data-edit="fontName Lucida Sans" style="font-family: 'Lucida Sans'">Lucida Sans</a></li>
+                                <li><a data-edit="fontName Tahoma" style="font-family: 'Tahoma'">Tahoma</a></li>
+                                <li><a data-edit="fontName Times" style="font-family: 'Times'">Times</a></li>
+                                <li><a data-edit="fontName Times New Roman" style="font-family: 'Times New Roman'">Times New Roman</a></li>
+                                <li><a data-edit="fontName Verdana" style="font-family: 'Verdana'">Verdana</a></li>
+                            </ul>
                         </div>
-                        <a class="btn" data-edit="unlink" title="" data-original-title="Remove Hyperlink"><i class="icon-cut"></i></a>
+                        <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font Size"><i class="icon-text-height"></i>&nbsp;<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a data-edit="fontSize 5"><font size="5">Huge</font></a></li>
+                                <li><a data-edit="fontSize 3"><font size="3">Normal</font></a></li>
+                                <li><a data-edit="fontSize 1"><font size="1">Small</font></a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn" data-edit="bold" title="" data-original-title="Bold (Ctrl/Cmd+B)"><i class="icon-bold"></i></a>
+                            <a class="btn" data-edit="italic" title="" data-original-title="Italic (Ctrl/Cmd+I)"><i class="icon-italic"></i></a>
+                            <a class="btn" data-edit="strikethrough" title="" data-original-title="Strikethrough"><i class="icon-strikethrough"></i></a>
+                            <a class="btn" data-edit="underline" title="" data-original-title="Underline (Ctrl/Cmd+U)"><i class="icon-underline"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn" data-edit="insertunorderedlist" title="" data-original-title="Bullet list"><i class="icon-list-ul"></i></a>
+                            <a class="btn" data-edit="insertorderedlist" title="" data-original-title="Number list"><i class="icon-list-ol"></i></a>
+                            <a class="btn" data-edit="outdent" title="" data-original-title="Reduce indent (Shift+Tab)"><i class="icon-indent-left"></i></a>
+                            <a class="btn" data-edit="indent" title="" data-original-title="Indent (Tab)"><i class="icon-indent-right"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn btn-info" data-edit="justifyleft" title="" data-original-title="Align Left (Ctrl/Cmd+L)"><i class="icon-align-left"></i></a>
+                            <a class="btn" data-edit="justifycenter" title="" data-original-title="Center (Ctrl/Cmd+E)"><i class="icon-align-center"></i></a>
+                            <a class="btn" data-edit="justifyright" title="" data-original-title="Align Right (Ctrl/Cmd+R)"><i class="icon-align-right"></i></a>
+                            <a class="btn" data-edit="justifyfull" title="" data-original-title="Justify (Ctrl/Cmd+J)"><i class="icon-align-justify"></i></a>
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Hyperlink"><i class="icon-link"></i></a>
+                            <div class="dropdown-menu input-append">
+                                <input class="span2" placeholder="URL" type="text" data-edit="createLink">
+                                <button class="btn" type="button">Add</button>
+                            </div>
+                            <a class="btn" data-edit="unlink" title="" data-original-title="Remove Hyperlink"><i class="icon-cut"></i></a>
 
+                        </div>
+
+                        <div class="btn-group">
+                            <a class="btn" title="" id="pictureBtn" data-original-title="Insert picture (or just drag &amp; drop)"><i class="icon-picture"></i></a>
+                            <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage">
+                        </div>
+                        <div class="btn-group">
+                            <a class="btn" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
+                            <a class="btn" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+                        </div>
+                        <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="" style="display: none;">
                     </div>
 
-                    <div class="btn-group">
-                        <a class="btn" title="" id="pictureBtn" data-original-title="Insert picture (or just drag &amp; drop)"><i class="icon-picture"></i></a>
-                        <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" >
+                    <div class="wysiwyg-editor" id="editor" name="content">
+                        @Html.Raw(Model.Item.Content)
                     </div>
-                    <div class="btn-group">
-                        <a class="btn" data-edit="undo" title="" data-original-title="Undo (Ctrl/Cmd+Z)"><i class="icon-undo"></i></a>
-                        <a class="btn" data-edit="redo" title="" data-original-title="Redo (Ctrl/Cmd+Y)"><i class="icon-repeat"></i></a>
+
+
+                    <div class="align-center margin-top-mini">
+                        <a href="javascript:void(0);" class="btn btn-small btn-success" id="btnSave">保存</a>
+
+                        <a href="javascript:void(0);" id="btnCancel" class="btn btn-small">取消</a>
+                        @if (!Model.IsNew)
+                        {
+                            <a href="@Url.Action("delete", "requirement", new { requirementId = Model.Item.RequirementId })" class="btn btn-small btn-danger" id="btnDelete" onclick="return confirm('所有子需求会同时删除，并且删除后无法恢复，确认删除?');">删除</a>
+                        }
                     </div>
-                    <input type="text" data-edit="inserttext" id="voiceBtn" x-webkit-speech="" style="display: none;">
                 </div>
-            
-                <div class="wysiwyg-editor" id="editor" name="content">
-                    @Html.Raw(Model.Item.Content)
+
+                <div id="history" class="tab-pane">
+              
+
+                    @if (Model.HistoryArray == null || Model.HistoryArray.Count() == 0)
+                    {
+                        <div class="alert alert-info">
+                            暂无修改的历史记录
+                        </div>
+                    }
+                    else{
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                
+                                <th>修改时间</th>
+                                <th>修改人</th><th>
+                                </th>
+                            </tr>
+                        </thead>
+                     @foreach (RequirementHistory history in Model.HistoryArray)
+                     {
+                         <tr>
+                            
+                             <td>
+                                  @history.CreateDate.ToStandardString()
+                             </td>
+                             <td>
+                                 @history.User.Account
+                             </td>
+                              <td>
+                                 <a href="#">查看详情</a>
+                             </td>
+                         </tr>
+                     }   
+                    </table>
+                    }
                 </div>
-
-                
-        <div class="align-center margin-top-mini">
-            <a href="javascript:void(0);" class="btn btn-small btn-success" id="btnSave">保存</a>
-
-            <a href="javascript:void(0);" id="btnCancel" class="btn btn-small">取消</a>
-             @if (!Model.IsNew)
-             {
-                    <a href="#" class="btn btn-small btn-danger ">删除</a>
-             }
-        </div>
-        </div>
-
-            <div id="history" class="tab-pane">
-                历史记录
             </div>
+
+
+        </div>
     </div>
-
-
-</div>
-</div>
 </form>
 
 @section scripts{
-      @Scripts.Render("~/Scripts/jquery.hotkeys.js"
-                   ,"~/Scripts/bootstrap-wysiwyg.js"
-                   ,"~/Scripts/requirement.detail.js")
+    @Scripts.Render("~/Scripts/jquery.hotkeys.js"
+                   , "~/Scripts/bootstrap-wysiwyg.js"
+                   , "~/Scripts/requirement.detail.js")
     <script type="text/javascript">
         $(function () {
             function initToolbarBootstrapBindings() {
@@ -229,5 +262,5 @@
             //    }
             //});
         });
-		</script>
+    </script>
 }

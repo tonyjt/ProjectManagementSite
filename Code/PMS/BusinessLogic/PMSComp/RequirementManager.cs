@@ -29,16 +29,25 @@ namespace PMS.PMSBLL
             return res;
         }
 
+        public static Requirement GetFirstRequirement(Guid projectId)
+        {
+            IEnumerable<Requirement> requirements = GetAllRequirement(projectId);
+
+            return requirements.OrderBy(r => r.CreateTime).FirstOrDefault();
+        }
+
         public static IEnumerable<RequirementWithChildren> GetRequirementWithChildren(Guid projectId)
         {
             IEnumerable<Requirement> requirementList = GetAllRequirement(projectId);
 
             return GetRequirementWithChildren(requirementList);
         }
+
         public static IEnumerable<RequirementWithChildren> GetRequirementWithChildren(IEnumerable<Requirement> requirementList)
         {
             return GetRequirementWithChildren(requirementList, GuidHelper.GetInvalidGuid());
         }
+
         public static IEnumerable<RequirementWithChildren> GetRequirementWithChildren(IEnumerable<Requirement> requirementList,Guid rootId )
         {
             if (requirementList == null) return null;
@@ -123,7 +132,7 @@ namespace PMS.PMSBLL
             return result;
         }
 
-        public static bool Save(Requirement requirement)
+        public static bool Save(Requirement requirement,Guid userId)
         {
             bool result;
 
@@ -137,17 +146,65 @@ namespace PMS.PMSBLL
             else
             {
                 requirement.UpdateTime = DateTime.Now;
-                result = ManagerHelper.UpdateModel(requirement,dataAccess.Save,log);
+                result = ManagerHelper.Call(requirement,userId,dataAccess.Save,log);
             }
             return result;
         }
 
-        public static Requirement GetRequirement(Guid requirementId)
+        public static Requirement GetRequirement(Guid requirementId,bool isValid = true)
         {
             Requirement re = ManagerHelper.GetModel(requirementId, dataAccess.GetRequirement, log);
 
-            return re;
+
+            return re!= null &&(re.IsValid||!isValid) ? re : null ;
             
+        }
+
+        public static IEnumerable<RequirementHistory> GetHistories(Guid requirementId)
+        {
+            if (GuidHelper.IsValid(requirementId))
+            {
+                IEnumerable<RequirementHistory> histories =  ManagerHelper.GetModel(requirementId, dataAccess.GetHistories, log);
+
+                return histories != null ? histories.OrderByDescending(h => h.CreateDate) : null;
+            }
+            else
+                return null;
+        }
+
+        public static bool DeleteRequirement(Guid requirementId)
+        {
+            if (GuidHelper.IsValid(requirementId))
+            {
+                Requirement re = RequirementManager.GetRequirement(requirementId);
+
+                return DeleteRequirement(re);
+            }
+            return false;
+        }
+
+        public static bool DeleteRequirement(Requirement requirment)
+        {
+            if (requirment != null)
+            {
+                ProjectVersion version = VersionManager.GetVersion(requirment.VersionId, true);
+                if (version != null)
+                {
+                    IEnumerable<Requirement> allRequirement = GetAllRequirement(version.ProjectId);
+
+                    IEnumerable<Requirement> children = GetChildren(allRequirement, requirment.RequirementId);
+
+                    if (children != null)
+                    {
+                        List<Requirement> requires = children.ToList();
+                        requires.Add(requirment);
+
+                        return ManagerHelper.UpdateModel(requires.Select(r => r.RequirementId), dataAccess.DeleteRequirements, log);
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }

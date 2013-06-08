@@ -226,3 +226,4 @@ G:\Code\github\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\zh-Hant\System.Spat
 G:\Code\github\ProjectManagementSite\Code\PMS\UI\PMSSite\obj\Debug\PMSSite.csprojResolveAssemblyReference.cache
 G:\Code\github\ProjectManagementSite\Code\PMS\UI\PMSSite\obj\Debug\PMS.PMSSite.dll
 G:\Code\github\ProjectManagementSite\Code\PMS\UI\PMSSite\obj\Debug\PMS.PMSSite.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\EFUtil.Core.dll

@@ -36,7 +36,7 @@ namespace PMS.PMSDBDataAccess
             }
         }
 
-        public bool Save(Requirement requirement)
+        public bool Save(Requirement requirement,Guid userId)
         {
             
             using (PMSDBContext context = new PMSDBContext())
@@ -52,12 +52,14 @@ namespace PMS.PMSDBDataAccess
                 else
                 {
                     RequirementHistory history = new RequirementHistory(model);
+                    history.UserId = userId;
 
                     model.Title = requirement.Title;
                     model.Content = requirement.Content;
                     model.ParentId = requirement.ParentId;
                     model.VersionId = requirement.VersionId;
                     model.UpdateTime = requirement.UpdateTime;
+                    
 
                     context.RequirementHistories.Add(history);
                     context.SaveChanges();
@@ -76,6 +78,33 @@ namespace PMS.PMSDBDataAccess
                           select r).FirstOrDefault();
 
                 return re;
+            }
+        }
+
+        public IEnumerable<RequirementHistory> GetHistories(Guid requirementId)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var re = (from r in context.RequirementHistories
+                          .Include(v => v.User)
+                         where r.RequirementId == requirementId
+                         select r).ToArray();
+
+                return re;
+            }
+        }
+
+        public bool DeleteRequirements(IEnumerable<Guid> requirement)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var res = context.Requirements.Where(r => requirement.Contains(r.RequirementId));
+
+                res.ForEach(r => r.IsValid = false);
+
+                context.SaveChanges();
+
+                return true;
             }
         }
     }

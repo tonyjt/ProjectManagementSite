@@ -10,6 +10,7 @@ namespace PMS.Model
             this.Projects = new List<Project>();
             this.ProjectParticipators = new List<ProjectParticipator>();
             this.ProjectVersions = new List<ProjectVersion>();
+            this.RequirementHistories = new List<RequirementHistory>();
         }
 
         public System.Guid UserId { get; set; }
@@ -18,5 +19,6 @@ namespace PMS.Model
         public virtual ICollection<Project> Projects { get; set; }
         public virtual ICollection<ProjectParticipator> ProjectParticipators { get; set; }
         public virtual ICollection<ProjectVersion> ProjectVersions { get; set; }
+        public virtual ICollection<RequirementHistory> RequirementHistories { get; set; }
     }
 }
