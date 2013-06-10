@@ -36,7 +36,7 @@ namespace PMS.PMSDBDataAccess
             }
         }
 
-        public bool Save(Requirement requirement,Guid userId)
+        public bool Save(Requirement requirement)
         {
             
             using (PMSDBContext context = new PMSDBContext())
@@ -52,8 +52,8 @@ namespace PMS.PMSDBDataAccess
                 else
                 {
                     RequirementHistory history = new RequirementHistory(model);
-                    history.UserId = userId;
 
+                    model.UserId =requirement.UserId;
                     model.Title = requirement.Title;
                     model.Content = requirement.Content;
                     model.ParentId = requirement.ParentId;
@@ -74,6 +74,7 @@ namespace PMS.PMSDBDataAccess
             using (PMSDBContext context = new PMSDBContext())
             {
                 var re = (from r in context.Requirements
+                            .Include(r=>r.User)
                           where r.RequirementId == requirementId
                           select r).FirstOrDefault();
 

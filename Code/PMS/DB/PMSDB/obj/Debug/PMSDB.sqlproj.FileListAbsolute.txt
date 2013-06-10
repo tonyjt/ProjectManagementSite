@@ -8,7 +8,3 @@ G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.dll
 G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\bin\Debug\PMSDB.pdb
 G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\PMSDB.dll
 G:\Code\github\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\PMSDB.pdb
-C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\Model.xml
-C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\refactor.xml
-C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\postdeploy.sql
-C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\DB\PMSDB\obj\Debug\predeploy.sql

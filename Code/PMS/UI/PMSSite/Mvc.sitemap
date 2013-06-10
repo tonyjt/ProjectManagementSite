@@ -12,6 +12,10 @@
     <mvcSiteMapNode title="版本管理" controller="Version" action="Index"/>
     <mvcSiteMapNode title="需求管理" controller="Requirement" action="Index">
       <mvcSiteMapNode title="添加需求" controller="Requirement" action="New"/>
+      <mvcSiteMapNode title="需求详情" controller="Requirement" action="Detail"/>
+    </mvcSiteMapNode>
+    <mvcSiteMapNode title="任务管理" controller="Task" action="Index">
+      <mvcSiteMapNode title="添加新任务" controller="Task" action="New"/>
     </mvcSiteMapNode>
   </mvcSiteMapNode>
  

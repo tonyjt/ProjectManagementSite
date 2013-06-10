@@ -22,7 +22,7 @@ namespace PMS.PMSBLL
         {
             IEnumerable<Requirement> res = ManagerHelper.GetModel<IEnumerable<Requirement>>(projectId,dataAccess.GetAllRequirement,log);
 
-            if (needValid)
+            if (res!=null&&needValid)
             {
                 res = res.Where(r => r.IsValid);
             }
@@ -132,7 +132,7 @@ namespace PMS.PMSBLL
             return result;
         }
 
-        public static bool Save(Requirement requirement,Guid userId)
+        public static bool Save(Requirement requirement)
         {
             bool result;
 
@@ -146,7 +146,7 @@ namespace PMS.PMSBLL
             else
             {
                 requirement.UpdateTime = DateTime.Now;
-                result = ManagerHelper.Call(requirement,userId,dataAccess.Save,log);
+                result = ManagerHelper.UpdateModel(requirement,dataAccess.Save,log);
             }
             return result;
         }

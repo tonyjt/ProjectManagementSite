@@ -44,28 +44,21 @@ namespace PMS.PMSDBDataAccess
             }
         }
 
-        public Project GetProject(string projectName)
+        public IEnumerable<Project> GetProject(string projectName)
         {
             using (PMSDBContext context = new PMSDBContext())
             {
                 projectName = projectName.ToLower();
-                return (from p in context.Projects
+
+                var ps = from p in context.Projects
                         where p.Name.ToLower().Equals(projectName)
-                        select p).SingleOrDefault();
+                        select p;
+
+                return ps.ToArray();
             }
         }
 
-        public IEnumerable<ProjectParticipator> GetAllProjectForUser(Guid userId)
-        {
-            using (PMSDBContext context = new PMSDBContext())
-            {
-                return (from p in context.ProjectParticipators
-                            .Include(p=>p.Project)
-                        where p.UserId == userId
-                        select p).ToArray();
-            }
-        }
-
+       
         public bool UpdateProject(Project project)
         {
             using (PMSDBContext context = new PMSDBContext())

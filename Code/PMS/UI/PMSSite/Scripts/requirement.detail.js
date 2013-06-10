@@ -3,7 +3,7 @@
     $("#btnSave").click(save);
     $("#btnCancel").click(
     function () {
-        window.location.href = window.location.href;
+        reset();
     });
 
 

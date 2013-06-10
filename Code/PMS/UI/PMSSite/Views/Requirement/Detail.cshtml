@@ -49,7 +49,7 @@
 
                 <li class="">
                     <a data-toggle="tab" href="#history">
-                        <i class="green  icon-calendar bigger-110"></i>历史记录
+                        <i class="green  icon-calendar bigger-110"></i>历史版本
                     </a>
                 </li>
                 <li class="pull-right margin-right-small ">当前版本: 
@@ -74,6 +74,14 @@
 
             <div class="tab-content">
                 <div id="content" class="tab-pane active ace-button" style="height: 100%;">
+                    @if(!Model.IsNew)
+                    {
+                    <div class="alert alert-warning">
+                        最后更新时间: @Model.Item.UpdateTime.ToStandardString()
+                        &nbsp;&nbsp;&nbsp;
+                        更新的用户:@Model.Item.User.Account
+                    </div>
+                    }
                     <div id="editor-toolbar" class="wysiwyg-toolbar  btn-toolbar center  wysiwyg-style1" data-role="editor-toolbar" data-target="#editor">
                         <div class="btn-group">
                             <a class="btn dropdown-toggle" data-toggle="dropdown" title="" data-original-title="Font"><i class="icon-font"></i><b class="caret"></b></a>
@@ -164,7 +172,7 @@
                     @if (Model.HistoryArray == null || Model.HistoryArray.Count() == 0)
                     {
                         <div class="alert alert-info">
-                            暂无修改的历史记录
+                            暂无历史版本
                         </div>
                     }
                     else{
@@ -172,8 +180,8 @@
                         <thead>
                             <tr>
                                 
-                                <th>修改时间</th>
-                                <th>修改人</th><th>
+                                <th>时间</th>
+                                <th>编辑人</th><th>
                                 </th>
                             </tr>
                         </thead>

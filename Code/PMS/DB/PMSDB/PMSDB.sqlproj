@@ -67,6 +67,8 @@
     <Build Include="Table\Requirement.sql" />
     <Build Include="Table\ProjectParticipator.sql" />
     <Build Include="Table\RequirementHistory.sql" />
+    <Build Include="Table\ProjectTask.sql" />
+    <Build Include="Table\TaskParticipator.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="PMSDB.refactorlog" />

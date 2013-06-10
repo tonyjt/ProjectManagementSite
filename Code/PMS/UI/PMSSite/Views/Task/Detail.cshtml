@@ -1,0 +1,114 @@
+﻿@model TaskDetailModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_ContentLayout.cshtml";
+}
+@section styles{
+
+}
+<div>
+    <form class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="sltRequirement">需求</label>
+            <div class="controls">
+                <select id="sltRequirement" name="RequirementId">
+                    <option value="@PMS.Tool.Helper.GuidHelper.GetInvalidGuid()">无</option>
+                    @foreach (Requirement re in Model.Requirements)
+                    {
+                        <option value="@re.RequirementId" @(re.RequirementId.Equals(Model.Item.RequirementId) ? "selected=selected" : "")>@re.Title</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="txtContent">任务内容</label>
+            <div class="controls">
+                <textarea id="txtContent" style="width: 70%;" name="Content" placeholder="任务内容"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">参与者</label>
+            <div class="controls">
+
+                <div class="row-fluid">
+                    <div class="span2">
+                        <label>
+                            <input name="form-field-checkbox" type="checkbox" class="ace-checkbox-2" checked for="sltDesigner">
+                            <span class="lbl">设计(设计界面及美工)</span>
+                        </label>
+                    </div>
+                    <div class="span2">
+                        <label>
+                            <input name="form-field-checkbox" type="checkbox" class="ace-checkbox-2" checked for="sltDeveloper">
+                            <span class="lbl">开发(功能开发)</span>
+                        </label>
+                    </div>
+                    <div class="span2">
+                        <label>
+                            <input name="form-field-checkbox" type="checkbox" class="ace-checkbox-2" checked for="sltTester">
+                            <span class="lbl">测试(功能测试)</span>
+                        </label>
+                    </div>
+                    <div class="span2">
+                        <label>
+                            <input name="form-field-checkbox" type="checkbox" class="ace-checkbox-2" checked for="sltOperator">
+                            <span class="lbl">运维(部署更新)</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span2">
+                        <select id="sltDesigner">
+                            <option>待定</option>
+                            @foreach (ProjectParticipator pp in Model.Paticipators.Where(p => p.RoleEnum.HasFlag(RoleEnum.Designer)))
+                            {
+                                <option value="@pp.UserId">@pp.User.Account</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="span2">
+                        <select id="sltDeveloper">
+                             <option>待定</option>
+                            @foreach (ProjectParticipator pp in Model.Paticipators.Where(p => p.RoleEnum.HasFlag(RoleEnum.Developer)))
+                            {
+                                <option value="@pp.UserId">@pp.User.Account</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="span2">
+                        <select id="sltTester">
+                             <option>待定</option>
+                            @foreach (ProjectParticipator pp in Model.Paticipators.Where(p => p.RoleEnum.HasFlag(RoleEnum.Tester)))
+                            {
+                                <option value="@pp.UserId">@pp.User.Account</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="span2">
+                        <select id="sltOperator">
+                              <option>待定</option>
+                            @foreach (ProjectParticipator pp in Model.Paticipators.Where(p => p.RoleEnum.HasFlag(RoleEnum.Operator)))
+                            {
+                                <option value="@pp.UserId">@pp.User.Account</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button class="btn btn-info" type="submit">
+                <i class="icon-ok bigger-110"></i>
+                提交
+            </button>  &nbsp; &nbsp; &nbsp;
+								<button class="btn" type="reset" id="btnReset">
+                                    <i class="icon-undo bigger-110"></i>
+                                    重置
+                                </button>
+        </div>
+    </form>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/task.new.js")
+}

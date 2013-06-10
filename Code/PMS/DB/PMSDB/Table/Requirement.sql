@@ -8,6 +8,8 @@
     [CreateTime] DATETIME NOT NULL, 
 	[UpdateTime] DATETIME NOT NULL,
     [IsValid] BIT NOT NULL, 
-    CONSTRAINT [FK_Requirement_ToProjectVersion] FOREIGN KEY ([VersionId]) REFERENCES [ProjectVersion]([VersionId])
+    [UserId] UNIQUEIDENTIFIER NOT NULL, 
+    CONSTRAINT [FK_Requirement_ToProjectVersion] FOREIGN KEY ([VersionId]) REFERENCES [ProjectVersion]([VersionId]), 
+    CONSTRAINT [FK_Requirement_ToUser] FOREIGN KEY ([UserId]) REFERENCES [User]([UserId])
     
 )

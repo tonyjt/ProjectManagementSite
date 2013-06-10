@@ -1,5 +1,7 @@
 ﻿using log4net;
 using PMS.Model;
+using PMS.PMSDBDataAccess;
+using PMS.Tool.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ namespace PMS.PMSBLL
     {
         private static readonly ILog log = LogManager.GetLogger(typeof(UserManager).Name);
 
+        private static ProjectParticipatorDAL ppDataAccess = new ProjectParticipatorDAL();
 
         public static User GetCurrentUser()
         {
@@ -29,6 +32,9 @@ namespace PMS.PMSBLL
             return user != null ? user.UserId : Guid.Empty;
         }
 
-
+        public static IEnumerable<ProjectParticipator> GetProjectParticipators(Guid projectId)
+        {
+            return ManagerHelper.GetModel(projectId, ppDataAccess.GetProjectParticipators, log);
+        }
     }
 }

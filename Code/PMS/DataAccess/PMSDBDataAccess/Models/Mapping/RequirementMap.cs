@@ -28,11 +28,15 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
             this.Property(t => t.CreateTime).HasColumnName("CreateTime");
             this.Property(t => t.UpdateTime).HasColumnName("UpdateTime");
             this.Property(t => t.IsValid).HasColumnName("IsValid");
+            this.Property(t => t.UserId).HasColumnName("UserId");
 
             // Relationships
             this.HasRequired(t => t.ProjectVersion)
                 .WithMany(t => t.Requirements)
                 .HasForeignKey(d => d.VersionId);
+            this.HasRequired(t => t.User)
+                .WithMany(t => t.Requirements)
+                .HasForeignKey(d => d.UserId);
 
         }
     }

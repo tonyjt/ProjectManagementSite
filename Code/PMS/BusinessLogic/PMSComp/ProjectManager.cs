@@ -15,6 +15,8 @@ namespace PMS.PMSBLL
     {
         private static ProjectDAL dataAccess = new ProjectDAL();
 
+        private static ProjectParticipatorDAL ppDataAccess = new ProjectParticipatorDAL();
+
         private static readonly ILog log = LogManager.GetLogger(typeof(ProjectManager).Name);
 
         public ProjectManager()
@@ -37,6 +39,8 @@ namespace PMS.PMSBLL
                 newProject.Description = "";
 
                 dataAccess.AddNewProject(newProject);
+
+                JoinProject(newProject.Creator, newProject.ProjectId);
 
                 return true;
             }
@@ -74,6 +78,7 @@ namespace PMS.PMSBLL
 
            return UpdateProjectStatus(projectId,ProjectStatus.Start,referStatus);
         }
+
         public static bool PauseProject(Guid projectId)
         {
             IEnumerable<ProjectStatus> referStatus = new List<ProjectStatus>{
@@ -133,9 +138,26 @@ namespace PMS.PMSBLL
 
         public static Project GetProject(string projectName, bool nullable = false)
         {
-            Project project = ManagerHelper.GetModel<Project>(projectName,dataAccess.GetProject, log);
+            Project result = null;
 
-            return GetProjectNullable(project, nullable);
+            IEnumerable<Project> projects = ManagerHelper.GetModel<IEnumerable<Project>>(projectName, dataAccess.GetProject, log);
+
+            if (projects != null && projects.Count() > 1)
+            {
+
+                foreach (Project project in projects.OrderByDescending(p => p.CreateTime))
+                {
+                    result = GetProjectNullable(project, nullable);
+
+                    if (result != null) break;
+
+                }
+            }
+            else if(projects != null)
+                result = projects.FirstOrDefault();
+
+            
+            return result;
         }
 
         private static Project GetProjectNullable(Project project, bool nullable)
@@ -158,9 +180,31 @@ namespace PMS.PMSBLL
                 return null;
         }
 
+        public static bool JoinProject(Guid userid, Guid projectId)
+        {
+
+            ProjectParticipator pp = new ProjectParticipator
+            {
+                UserId = userid,
+                ProjectId = projectId,
+                Roles = 1
+            };
+
+            return JoinProject(pp);
+        }
+
+        public static bool JoinProject(ProjectParticipator pp)
+        {
+            if (pp == null) return false;
+
+            pp.JoinTime = DateTime.Now;
+
+            return ManagerHelper.CreateModel(pp, ppDataAccess.CreateProjectParticipator, log);
+        }
+
         public static IEnumerable<ProjectParticipator> GetAllProjectsForUser(Guid userId)
         {
-            IEnumerable<ProjectParticipator> projectList = ManagerHelper.GetModel<IEnumerable<ProjectParticipator>>(userId, dataAccess.GetAllProjectForUser, log);
+            IEnumerable<ProjectParticipator> projectList = ManagerHelper.GetModel<IEnumerable<ProjectParticipator>>(userId,ppDataAccess.GetAllProjectForUser, log);
 
             foreach (ProjectParticipator pp in projectList)
             {

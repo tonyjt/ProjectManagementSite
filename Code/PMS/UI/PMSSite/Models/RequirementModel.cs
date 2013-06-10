@@ -8,9 +8,6 @@ namespace PMS.PMSSite.Models
 {
     public class RequirementModel
     {
-
-        
-
         public IEnumerable<RequirementWithChildren> RequirementChildren { get; set; }
     }
 

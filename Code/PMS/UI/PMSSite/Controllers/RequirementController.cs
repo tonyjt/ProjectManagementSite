@@ -48,7 +48,9 @@ namespace PMS.PMSSite.Controllers
         [HttpPost]
         public ActionResult Detail(Requirement model)
         {
-            bool result = RequirementManager.Save(model,this.CurrentUserId);
+            if (model != null) model.UserId = this.CurrentUserId;
+
+            bool result = RequirementManager.Save(model);
 
             if (result)
             {
@@ -81,6 +83,8 @@ namespace PMS.PMSSite.Controllers
         [HttpPost]
         public ActionResult New(Requirement model)
         {
+            if (model != null) model.UserId = this.CurrentUserId;
+
             bool result = RequirementManager.CreateNewRequirement(model);
 
             if (result)

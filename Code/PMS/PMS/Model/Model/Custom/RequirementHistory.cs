@@ -19,13 +19,14 @@ namespace PMS.Model
             Content = requirement.Content;
             CreateDate = requirement.UpdateTime;
             HistoryId = Guid.NewGuid();
+            UserId = requirement.UserId;
         }
     }
 
     public class RequirementHistory_Validation{
 
-        [Key]
-        public System.Guid HistoryId { get; set; }
+        //[Key]
+        //public System.Guid HistoryId { get; set; }
 
     }
 }

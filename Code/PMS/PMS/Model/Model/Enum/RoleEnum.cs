@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PMS.Model.Enum
+{
+    [Flags]
+    public enum RoleEnum
+    {
+        Designer = 1,
+
+        Developer = 2,
+
+        Tester = 4,
+
+        Operator = 8
+    }
+}
