@@ -19,7 +19,7 @@ namespace PMS.PMSSite.Controllers
         {
             return View();
         }
-
+        [HttpGet]
         public ActionResult New(Guid? requirementId)
         {
 
@@ -37,7 +37,52 @@ namespace PMS.PMSSite.Controllers
 
             return View("Detail", model);
         }
+        [HttpPost]
+        public ActionResult New(TaskDetailPostModel model)
+        {
+            if(model !=null)
+            {
+                ICollection<TaskParticipator> tpc = new List<TaskParticipator>();
 
+                if (model.NeedDesigner)
+                {
+                    tpc.Add(new TaskParticipator(RoleEnum.Designer,model.DesignerId));
+                }
+
+                if (model.NeedDeveloper)
+                {
+                    tpc.Add(new TaskParticipator(RoleEnum.Developer,model.DeveloperId));
+                }
+
+                if(model.NeedTester)
+                {
+                    tpc.Add(new TaskParticipator(RoleEnum.Tester,model.TesterId));
+                }
+
+                if(model.NeedOperator)
+                {
+                    tpc.Add(new TaskParticipator(RoleEnum.Operator,model.OperatorId));
+                }
+
+                ProjectTask task = new ProjectTask
+                {
+                    RequirementId = model.RequirementId,
+                    Content = model.Content,
+                    Creator = this.CurrentUserId,
+                    TaskParticipators = tpc
+                };
+
+                bool result = TaskManager.CreateTask(task);
+
+                if (result)
+                {
+                    string redirectUrl = Url.Action("new","task",new {requirementId = model.RequirementId});
+                    return AjaxShowSuccessMessage("创建任务成功", true, redirectUrl);
+                }
+            }
+
+            return AjaxShowErrorMessage("创建任务失败,参数有误");
+        }
 
     }
 }

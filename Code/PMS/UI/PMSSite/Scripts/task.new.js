@@ -3,16 +3,20 @@
     $(':checkbox').click(function () {
         var varFor = $(this).attr("for");
 
-        if ($(this).is(':checked')) {
+        if (varFor != "") {
+            if ($(this).is(':checked')) {
+                $("#" + varFor).show();
+            } else {
 
-            $("#" + varFor).show();
-        } else {
-
-            $("#" + varFor).hide();
+                $("#" + varFor).hide();
+            }
         }
     });
 
     $("#btnReset").click(reset);
 
+    $("#btnSubmit").click(function () {
+        callback("form1");
+    });
 });
 

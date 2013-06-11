@@ -29,8 +29,13 @@
                     </div>
                     @if (!Model.IsNew)
                     {
-                        <a href="@Url.Action("new", "requirement", new { parentId = @Model.Item.RequirementId })" class="pull-right"><i class="icon-plus"></i>添加需求</a>
+                        <a href="@Url.Action("new", "task", new { requirementId = @Model.Item.RequirementId })" class="pull-right"><i class="icon-plus"></i>添加任务</a>
+                        <span class="pull-right">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                        </span>
+                        <a href="@Url.Action("new", "requirement", new { parentId = @Model.Item.RequirementId })" class="pull-right"><i class="icon-plus"></i>添加子需求</a>
                     }
+                    
                 </div>
             </div>
         </div>

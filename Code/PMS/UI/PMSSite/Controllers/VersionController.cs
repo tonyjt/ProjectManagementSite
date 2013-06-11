@@ -21,8 +21,8 @@ namespace PMS.PMSSite.Controllers
 
             VersionIndexModel model = new VersionIndexModel
             {
-                VersionList = versionList.Where(p=>p.VersionStatus != Model.Enum.VersionStatus.Stop).OrderByDescending(p=>p.CreateTime),
-                VersionHistory = versionList.Where(p => p.VersionStatus == Model.Enum.VersionStatus.Stop).OrderByDescending(p => p.CreateTime)
+                VersionList = versionList.Where(p=>p.VersionStatus != Model.VersionStatus.Stop).OrderByDescending(p=>p.CreateTime),
+                VersionHistory = versionList.Where(p => p.VersionStatus == Model.VersionStatus.Stop).OrderByDescending(p => p.CreateTime)
             };
 
             return View("Index",model);

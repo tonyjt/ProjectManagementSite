@@ -9,4 +9,15 @@ namespace PMS.PMSSite.Models
     {
         public bool IsNew { get; set; }
     }
+
+    public class AjaxResult
+    {
+        public bool Success { get; set; }
+
+        public bool Redirect { get; set; }
+
+        public string RedirectUrl { get; set; }
+
+        public string Message { get; set; }
+    }
 }

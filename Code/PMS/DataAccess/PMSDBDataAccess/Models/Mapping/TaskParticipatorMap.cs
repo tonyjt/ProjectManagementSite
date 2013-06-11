@@ -11,17 +11,13 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
             this.HasKey(t => t.TaskParticipatorId);
 
             // Properties
-            this.Property(t => t.Role)
-                .IsRequired()
-                .IsFixedLength()
-                .HasMaxLength(10);
-
             // Table & Column Mappings
             this.ToTable("TaskParticipator");
             this.Property(t => t.TaskParticipatorId).HasColumnName("TaskParticipatorId");
             this.Property(t => t.TaskId).HasColumnName("TaskId");
             this.Property(t => t.UserId).HasColumnName("UserId");
-            this.Property(t => t.Role).HasColumnName("Role");
+            this.Property(t => t.Roles).HasColumnName("Roles");
+            this.Property(t => t.Status).HasColumnName("Status");
 
             // Relationships
             this.HasRequired(t => t.ProjectTask)

@@ -8,8 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CustomExtension;
-using PMS.Model.Enum;
- 
+
 namespace PMS.PMSBLL
 {
     public class VersionManager
@@ -33,7 +32,7 @@ namespace PMS.PMSBLL
                     version.VersionId = Guid.NewGuid();
                 }
                 version.CreateTime = DateTime.Now;
-                version.VersionStatus = Model.Enum.VersionStatus.Ready;
+                version.VersionStatus = Model.VersionStatus.Ready;
                 dataAccess.AddVersion(version);
 
                 return true;

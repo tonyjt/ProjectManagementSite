@@ -16,11 +16,15 @@
         @RenderSection("styles",false)
 
         @Scripts.Render("~/bundles/jquery")
+        
     </head>
     <body style="height: 100%;">
         <div id="div">
         @RenderBody()
         </div>
+    <div id="overlay">
+        <img src="../../Content/img/ajax-loader2.gif" class="loading_circle" />
+    </div>
 
     @Scripts.Render("~/bundles/template"
                    ,"~/Scripts/site.js")

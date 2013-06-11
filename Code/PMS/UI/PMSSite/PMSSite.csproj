@@ -221,7 +221,9 @@
     <Content Include="Content\css\jquery-ui-1.10.3.custom.css" />
     <Content Include="Content\css\jquery.treeview.css" />
     <Content Include="Content\img\ad\xiaozhang.jpg" />
+    <Content Include="Content\img\ajax-loader.gif" />
     <Content Include="Content\img\animated-overlay.gif" />
+    <Content Include="Content\img\ajax-loader2.gif" />
     <Content Include="Content\img\file.gif" />
     <Content Include="Content\img\folder.gif" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />

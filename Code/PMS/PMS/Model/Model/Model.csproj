@@ -42,10 +42,15 @@
   <ItemGroup>
     <Compile Include="Custom\Project.cs" />
     <Compile Include="Custom\ProjectParticipator.cs" />
+    <Compile Include="Custom\ProjectTask.cs" />
     <Compile Include="Custom\ProjectVersion.cs" />
     <Compile Include="Custom\RequirementHistory.cs" />
     <Compile Include="Custom\RequirementWithChildren.cs" />
-    <Compile Include="DB\ProjectTask.cs" />
+    <Compile Include="Custom\TaskParticipator.cs" />
+    <Compile Include="DB\ProjectTask.cs">
+      <SubType>
+      </SubType>
+    </Compile>
     <Compile Include="DB\ProjectVersion.cs">
       <SubType>
       </SubType>
@@ -54,7 +59,10 @@
       <SubType>
       </SubType>
     </Compile>
-    <Compile Include="DB\TaskParticipator.cs" />
+    <Compile Include="DB\TaskParticipator.cs">
+      <SubType>
+      </SubType>
+    </Compile>
     <Compile Include="Enum\ProjectStatus.cs" />
     <Compile Include="DB\Project.cs">
       <SubType>
@@ -65,6 +73,7 @@
       </SubType>
     </Compile>
     <Compile Include="Enum\RoleEnum.cs" />
+    <Compile Include="Enum\ProjectTaskStatus.cs" />
     <Compile Include="Enum\VersionStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DB\Requirement.cs">

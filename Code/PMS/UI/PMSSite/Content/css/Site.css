@@ -79,3 +79,22 @@ overflow: scroll;
 .sidebar-right .tool {
     margin-left:22px;
 }
+
+
+#overlay { 
+  background:#fff  no-repeat center center;
+   height: 100%;
+   width: 100%;
+   opacity:0.8;
+   position: fixed;
+   z-index: 2000;
+   left: 0;
+   top: 0;
+   display:none;
+}
+
+#overlay img.loading_circle {
+    position: absolute;
+    top: 50%;  
+    left: 50%;
+}

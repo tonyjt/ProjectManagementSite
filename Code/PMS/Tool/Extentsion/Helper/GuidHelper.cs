@@ -17,5 +17,14 @@ namespace PMS.Tool.Helper
         {
             return Guid.Empty;
         }
+
+        public static Guid? SetNullable(Guid? guid)
+        {
+            if (guid.HasValue && !IsValid(guid.Value))
+            {
+                guid = null;
+            }
+            return guid;
+        }
     }
 }

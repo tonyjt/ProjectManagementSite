@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PMS.Model.Enum
+namespace PMS.Model
 {
     public enum ProjectStatus:byte
     {

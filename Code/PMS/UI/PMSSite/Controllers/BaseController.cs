@@ -93,5 +93,42 @@ namespace PMS.PMSSite.Controllers
         }
 
         #endregion
+
+        #region Ajax View Message
+
+        public ActionResult AjaxShowSuccessMessage(string message, bool isRedirect = false, string redirectUrl = "")
+        {
+            AjaxResult result = new AjaxResult
+            {
+                Message = message,
+                Success = true,
+                Redirect = isRedirect,
+                RedirectUrl = redirectUrl
+            };
+
+            return AjaxShowMessage(result);
+        }
+        public ActionResult AjaxShowErrorMessage(string message)
+        {
+            AjaxResult result = new AjaxResult
+            {
+                Message = message,
+                Success = false
+            };
+
+            return AjaxShowMessage(result);
+        }
+
+        public ActionResult AjaxShowMessage(AjaxResult result)
+        {
+            if (result.Success && result.Redirect)
+            {
+                ShowMessage(ViewMessageDispayType.Top, result.Message, MessageType.Success, true);
+            }
+
+            return Json(result);
+        }
+
+        #endregion
     }
 }

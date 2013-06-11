@@ -8,7 +8,8 @@ namespace PMS.Model
         public System.Guid TaskParticipatorId { get; set; }
         public System.Guid TaskId { get; set; }
         public Nullable<System.Guid> UserId { get; set; }
-        public string Role { get; set; }
+        public short Roles { get; set; }
+        public byte Status { get; set; }
         public virtual ProjectTask ProjectTask { get; set; }
         public virtual User User { get; set; }
     }
