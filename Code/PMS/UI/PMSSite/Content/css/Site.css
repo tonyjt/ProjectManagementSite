@@ -2,10 +2,25 @@
  
 #div { min-height: 100%; }
 
-
+/*table
+    */
 td {
     vertical-align:middle !important;
 }
+.td-seprow {
+    border-left:none !important;
+    border-right:none !important;
+}
+
+.table-norightborder {
+    border-right:none !important;
+}
+
+.table-norightborder .td-right {
+    border-right:1px solid #dddddd !important;
+}
+
+
 .text-center {
     text-align:center;
 }
@@ -97,4 +112,15 @@ overflow: scroll;
     position: absolute;
     top: 50%;  
     left: 50%;
+}
+
+
+/*
+    select
+    */
+select {
+    margin-bottom:0px !important;
+}
+.select-small {
+    width:160px;
 }

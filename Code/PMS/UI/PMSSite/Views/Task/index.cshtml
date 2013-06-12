@@ -1,0 +1,203 @@
+﻿@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_ContentLayout.cshtml";
+}
+@section styles{
+    <style type="text/css">
+        .td-worker {
+            width: 18%;
+        }
+
+        .td-content {
+            width: 72%;
+        }
+    </style>
+}
+<form class="form-search">
+    版本:<select class="select-small">
+        <option>1.0</option>
+    </select>
+
+    需求: 
+        <select class="select-small">
+            <option>新建任务</option>
+        </select>
+    状态:<select class="select-small">
+        <option>未分配完成</option>
+    </select>
+    用户:<select class="select-small">
+        <option>Tony Liu</option>
+    </select>
+    <button onclick="return false;" class="btn btn-purple btn-small">
+        查询
+		<i class="icon-search icon-on-right bigger-110"></i>
+    </button>
+</form>
+
+<div>
+    <table class="table table-bordered table-norightborder">
+        <thead>
+            <tr>
+                <th>创建时间
+                </th>
+                <th>完成时间
+                </th>
+                <th>版本 
+                </th>
+                <th>需求
+                </th>
+
+                <th colspan="4" class="td-content td-right " class="td-right"></th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td class="td-seprow" colspan="8"></td>
+            </tr>
+            <tr class="info">
+                <td class="td-right td-content " colspan="8">asdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffff ffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffff ffffffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdf
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">2013-06-12 14:44<br />
+                    liuhasiy@hotmail.com<br />
+                    <a href="">查看历史记录</a>
+                </td>
+                <td rowspan="2">2013-06-16 18:00<br />
+                    状态:分配中
+                </td>
+
+                <td rowspan="2">0.1
+                </td>
+                <td rowspan="2">
+                    <a href="#">显示任务</a>
+                </td>
+                <td class="td-worker">设计:<select class="select-small">
+                    <option>liujiangtao@hotmai.com</option>
+                    <option>----</option>
+                    <option>待定</option>
+                </select>
+                    <a href="#">设计图</a>
+                </td>
+                <td class="td-worker">开发:<select class="select-small">
+                    <option>待定</option>
+                    <option>liujiangtao@hotmai.com</option>
+                </select>
+                    <a href="">接受</a>
+
+                </td>
+                <td class="td-worker">测试:<select class="select-small">
+                    <option>liujiangtao@hotmai.com</option>
+                    <option>待定</option>
+                </select>
+                    <a href="#">测试用例</a>
+                </td>
+                <td class="td-worker td-right">运维:<select class="select-small">
+                    <option>待定</option>
+                </select>
+                    <a href="#">统一运维</a>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>状态:未分配 <a href="">修改计划</a><br />
+                    计划:暂无
+                </td>
+                <td>状态:未分配 <a href="">修改计划</a><br />
+                    计划:06-12 16:00 至  06-13 18:00
+                </td>
+                <td class="td-right">状态:未分配 <a href="">修改计划</a><br />
+                    计划:暂无
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+
+            <tr>
+                <td class="td-seprow" colspan="8"></td>
+            </tr>
+            <tr class="info">
+                <td class="td-right td-content " colspan="8">asdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffff ffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffff ffffffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdf
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">2013-06-12 14:44<br />
+                    liuhasiy@hotmail.com<br />
+                    <a href="">查看历史记录</a>
+                </td>
+                <td rowspan="2">2013-06-16 18:00<br />
+                    状态:分配中
+                </td>
+
+                <td rowspan="2">0.1
+                </td>
+                <td rowspan="2">
+                    <a href="#">显示任务</a>
+                </td>
+                <td class="td-worker">设计:<select class="select-small">
+                    <option>liujiangtao@hotmai.com</option>
+                    <option>----</option>
+                    <option>待定</option>
+                </select>
+                    <a href="#">设计图</a>
+                </td>
+                <td class="td-worker">开发:<select class="select-small">
+                    <option>待定</option>
+                    <option>liujiangtao@hotmai.com</option>
+                </select>
+                    <a href="">接受</a>
+
+                </td>
+                <td class="td-worker">测试:<select class="select-small">
+                    <option>liujiangtao@hotmai.com</option>
+                    <option>待定</option>
+                </select>
+                    <a href="#">测试用例</a>
+                </td>
+                <td class="td-worker td-right">运维:<select class="select-small">
+                    <option>待定</option>
+                </select>
+                    <a href="#">统一运维</a>
+
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>状态:未分配 <a href="">修改计划</a><br />
+                    计划:暂无
+                </td>
+                <td>状态:未分配 <a href="">修改计划</a><br />
+                    计划:06-12 16:00 至  06-13 18:00
+                </td>
+                <td class="td-right">状态:未分配 <a href="">修改计划</a><br />
+                    计划:暂无
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+    <div class="row-fluid">
+        <div class="span6">
+            <div class="dataTables_info" id="table_report_info">
+                显示1-10 共23页
+            </div>
+        </div>
+        <div class="span6">
+            <div class="dataTables_paginate paging_bootstrap pagination">
+                <ul>
+                    <li class="prev disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li class="next"><a href="#"><i class="icon-double-angle-right"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

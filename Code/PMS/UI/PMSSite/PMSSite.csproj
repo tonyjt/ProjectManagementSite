@@ -404,6 +404,7 @@
     <Content Include="Views\Requirement\Index.cshtml" />
     <Content Include="Views\Requirement\_SidebarPartial.cshtml" />
     <Content Include="Views\Task\Detail.cshtml" />
+    <Content Include="Views\Task\index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
