@@ -36,5 +36,12 @@ namespace PMS.PMSBLL
         {
             return ManagerHelper.GetModel(projectId, ppDataAccess.GetProjectParticipators, log);
         }
+
+        public static Guid GetUserId(string userName)
+        {
+            if (string.IsNullOrWhiteSpace(userName)) return GuidHelper.GetInvalidGuid();
+            else
+                return GetCurrentUserId();
+        }
     }
 }

@@ -110,5 +110,29 @@ namespace PMS.PMSBLL
             return tps;
         }
 
+        public static IEnumerable<ProjectTask>  SearchTask(string version,string requirement,IEnumerable<ProjectTaskStatus> statusList, string  user,out int totalCount, int pageSize = 10,int pageIndex =1)
+        {
+            try
+            {
+                Guid versionId; Guid requirementId; Guid userId;
+
+                versionId = VersionManager.GetVersionId(version);
+                requirementId = RequirementManager.GetRequirementId(requirement);
+                userId = UserManager.GetUserId(user);
+                IEnumerable<byte> statusByteList = statusList.Select(s => s.GetByteEnumValue());
+
+                IEnumerable<ProjectTask> tasks = dataAccess.SearchTask(versionId, requirementId, statusByteList, userId, out totalCount, pageSize, pageIndex);
+
+                return tasks;
+            }
+            catch (Exception ex)
+            {
+                log.ErrorInFunction(ex);
+
+                totalCount = 0;
+
+                return new List<ProjectTask>();
+            }
+        }
     }
 }

@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CustomExtension;
+using CustomExtension.Helper;
 
 namespace PMS.PMSSite.Controllers
 {
@@ -15,9 +17,24 @@ namespace PMS.PMSSite.Controllers
         //
         // GET: /Task/
 
-        public ActionResult Index()
+        public ActionResult Index(TaskIndexModel model)
         {
-            return View();
+
+            int totalCount;
+            model.Tasks = TaskManager.SearchTask(model.Version, model.Requirement, GetStatus(model.Status), model.User, out totalCount, model.PageSize, model.PageIndex);
+
+
+            model.TotalRecordCount = totalCount;
+
+            model.Users = UserManager.GetProjectParticipators(this.ProjectId);
+
+            model.Requirements = RequirementManager.GetAllRequirement(this.ProjectId);
+
+            model.Versions = VersionManager.GetVersionForProject(this.ProjectId);
+
+            model.Statuses = EnumHelper.GetList<TaskStatusModel>();
+
+            return View("index",model);
         }
         [HttpGet]
         public ActionResult New(Guid? requirementId)
@@ -82,6 +99,34 @@ namespace PMS.PMSSite.Controllers
             }
 
             return AjaxShowErrorMessage("创建任务失败,参数有误");
+        }
+
+        public IEnumerable<ProjectTaskStatus> GetStatus(TaskStatusModel? model)
+        {
+            List<ProjectTaskStatus> statusList = new List<ProjectTaskStatus>();
+
+            if (model.HasValue)
+            {
+                switch (model)
+                {
+                    case TaskStatusModel.NeedAssign:
+                        statusList.Add(ProjectTaskStatus.Unassigned);
+                        statusList.Add(ProjectTaskStatus.Assigning);
+                        break;
+                    case TaskStatusModel.Finishing:
+                        statusList.Add(ProjectTaskStatus.Assigned);
+                        statusList.Add(ProjectTaskStatus.Finishing);
+                        break;
+                    case TaskStatusModel.Finished:
+                        statusList.Add(ProjectTaskStatus.Finished);
+                        break;
+                    case TaskStatusModel.Cacneled:
+                        statusList.Add(ProjectTaskStatus.Canceled);
+                        break;
+                }
+            }
+
+            return statusList;
         }
 
     }

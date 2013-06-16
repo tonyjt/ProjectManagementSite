@@ -67,6 +67,7 @@ namespace PMS.PMSBLL
             return versionList.Where(v => v.VersionStatus == status);
         }
 
+
         public static bool StartVersion(Guid versionId)
         {
             IEnumerable<VersionStatus> referStatus = new List<VersionStatus>{
@@ -132,6 +133,28 @@ namespace PMS.PMSBLL
 
             return GetVersionNullable(version, nullable);
         
+        }
+
+        public static ProjectVersion GetVersion(string versionName, bool nullable = false)
+        {
+            if (string.IsNullOrWhiteSpace(versionName))
+            {
+                return null;
+            }
+            else
+            {
+                 ProjectVersion version  = ManagerHelper.GetModel<ProjectVersion>(versionName, dataAccess.GetVersion, log);
+
+            return GetVersionNullable(version, nullable);
+
+            }
+        }
+
+        public static Guid GetVersionId(string versionName)
+        {
+            ProjectVersion version = GetVersion(versionName,true);
+
+            return version != null?version.VersionId: GuidHelper.GetInvalidGuid();
         }
 
         private static ProjectVersion GetVersionNullable(ProjectVersion version, bool nullable)

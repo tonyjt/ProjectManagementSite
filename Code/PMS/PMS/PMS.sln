@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lib", "Lib", "{229BA12C-F42
 	ProjectSection(SolutionItems) = preProject
 		..\Lib\CustomExtension.dll = ..\Lib\CustomExtension.dll
 		..\Lib\CustomExtension.pdb = ..\Lib\CustomExtension.pdb
+		..\Lib\MVCExtension.dll = ..\Lib\MVCExtension.dll
+		..\Lib\MVCExtension.pdb = ..\Lib\MVCExtension.pdb
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tool", "Tool", "{87649369-190C-41AF-8644-89437114667E}"

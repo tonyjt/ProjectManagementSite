@@ -1,0 +1,43 @@
+﻿@model TaskRolePartialModel
+
+
+@if (Model.Task.ContainRole(Model.Role))
+{
+    TaskParticipator role = Model.Task.GetRole(Model.Role);
+
+    Guid roleId = role != null && role.UserId.HasValue ? role.UserId.Value : Guid.Empty;
+    <select class="select-small">
+        <option>待定</option>
+        @foreach (ProjectParticipator pp in Model.Users.Where(p => (p.RoleEnum & RoleEnum.Designer) != 0))
+        {
+            <option value="@pp.UserId" @(pp.UserId == roleId ? "selected:selected" : "") >@pp.User.UserName</option>
+        }
+    </select>
+    
+    switch(Model.Role){
+        case RoleEnum.Designer:
+            <a href="#">设计图</a>
+            break;
+            case RoleEnum.Developer:
+            break;
+       case RoleEnum.Tester:
+            <a href="#">用例</a>
+            break;
+       case RoleEnum.Operator:
+            if(Model.Task.Requirement!= null){
+                <a href="#">统一</a>
+       }
+            break;
+    }                        
+    
+    <a class="pull-right">
+        <i class="icon-remove"></i>
+    </a>
+}
+else
+{
+    @:---- 
+    <a class="pull-right">
+        <i class="icon-plus"></i>
+    </a>
+}                    

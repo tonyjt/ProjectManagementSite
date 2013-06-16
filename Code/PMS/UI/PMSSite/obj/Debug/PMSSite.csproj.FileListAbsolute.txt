@@ -227,3 +227,5 @@ G:\Code\github\ProjectManagementSite\Code\PMS\UI\PMSSite\obj\Debug\PMSSite.cspro
 G:\Code\github\ProjectManagementSite\Code\PMS\UI\PMSSite\obj\Debug\PMS.PMSSite.dll
 G:\Code\github\ProjectManagementSite\Code\PMS\UI\PMSSite\obj\Debug\PMS.PMSSite.pdb
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\EFUtil.Core.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\MVCExtension.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\UI\PMSSite\bin\MVCExtension.pdb

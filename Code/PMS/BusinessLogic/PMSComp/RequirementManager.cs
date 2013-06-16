@@ -36,6 +36,28 @@ namespace PMS.PMSBLL
             return requirements.OrderBy(r => r.CreateTime).FirstOrDefault();
         }
 
+        public static Requirement GetRequirement(string requirementName)
+        {
+            if (string.IsNullOrWhiteSpace(requirementName))
+            {
+                return null;
+            }
+            else
+            {
+                Requirement requirement = ManagerHelper.GetModel<Requirement>(requirementName, dataAccess.GetRequirement, log);
+
+                return requirement;
+
+            }
+        }
+
+        public static Guid GetRequirementId(string requirementName)
+        {
+            Requirement requirement = GetRequirement(requirementName);
+
+            return requirement != null ? requirement.RequirementId : GuidHelper.GetInvalidGuid();
+        }
+
         public static IEnumerable<RequirementWithChildren> GetRequirementWithChildren(Guid projectId)
         {
             IEnumerable<Requirement> requirementList = GetAllRequirement(projectId);

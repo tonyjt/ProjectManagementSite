@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TaskIndexModel
+@{
     ViewBag.Title = "index";
     Layout = "~/Views/Shared/_ContentLayout.cshtml";
 }
@@ -13,25 +14,45 @@
         }
     </style>
 }
-<form class="form-search">
-    版本:<select class="select-small">
-        <option>1.0</option>
+<form class="form-search" action="@Url.Action("index")" method="get" >
+    版本:
+    <select class="select-small" name="version">
+        <option>不限</option>
+        @foreach(ProjectVersion version in Model.Versions){
+            <option value="@version.VersionName" @(version.VersionName == Model.Version?"selected:selected":"")>@version.VersionName</option>
+        }
     </select>
 
     需求: 
-        <select class="select-small">
-            <option>新建任务</option>
+        <select class="select-small" id="requirement">
+            <option>不限</option>
+            @foreach(Requirement re in Model.Requirements){
+            <option value="@re.Title" @(re.Title == Model.Requirement?"selected:selected":"")>@re.Title</option>
+        }
         </select>
-    状态:<select class="select-small">
-        <option>未分配完成</option>
+    状态:<select class="select-small" id="status">
+        <option>不限</option>
+        @foreach(TaskStatusModel status in Model.Statuses)
+        {
+             <option value="@status.GetByteEnumValue()" @(status == Model.Status?"selected:selected":"")>@status.GetEnumDescription()</option>
+        }
     </select>
-    用户:<select class="select-small">
-        <option>Tony Liu</option>
+    用户:<select class="select-small" id="user">
+        <option>不限</option>
+        @foreach(ProjectParticipator user in Model.Users)
+        {
+             <option value="@user.User.UserName" @(user.User.UserName == Model.User?"selected:selected":"")>@user.User.UserName </option>
+        }
     </select>
     <button onclick="return false;" class="btn btn-purple btn-small">
         查询
 		<i class="icon-search icon-on-right bigger-110"></i>
     </button>
+
+    <a href="javascript:void(0);" class="plan">显示所有计划</a>
+
+    <a class="btn pull-right btn-small btn-success" href="@Url.Action("new")">
+        <i class="icon-plus"></i>添加任务</a>
 </form>
 
 <div>
@@ -52,7 +73,78 @@
 
             </tr>
         </thead>
-        <tbody>
+        @foreach (ProjectTask task in Model.Tasks)
+        {
+            <tbody >
+            <tr>
+                <td class="td-seprow" colspan="8"></td>
+            </tr>
+            <tr class="info">
+                <td class="td-right td-content " colspan="8">
+                    @task.Content
+                </td>
+            </tr>
+            <tr>
+                <td class="tr-twoRow">2013-06-12 14:44<br />
+                    @task.User.UserName<br />
+                    <a href="">查看历史记录</a>
+                </td>
+                <td class="tr-twoRow">2013-06-16 18:00<br />
+                    状态:@task.StatusEnum.GetEnumDescription()<br />
+                    <a href="javascript:void(0);" class="hrefPlan">显示计划</a>
+                </td>
+
+                <td class="tr-twoRow">
+                    @(task.Requirement!= null? task.Requirement.ProjectVersion.VersionName:"--")
+                </td>
+                <td class="tr-twoRow">
+                    <a href="#">@(task.Requirement!= null? task.Requirement.Title:"--")</a>
+                </td>
+                <td class="td-worker">
+                   
+                    设计:
+
+                    @{
+
+                        Html.RenderPartial("_RolePartial", new TaskRolePartialModel{
+                                                           Task = task, Role= RoleEnum.Designer,Users = Model.Users});
+                    }
+                </td>
+                <td class="td-worker">
+                    开发:
+                    @{
+                        Html.RenderPartial("_RolePartial", new TaskRolePartialModel{
+                                                           Task = task, Role= RoleEnum.Developer,Users = Model.Users});
+                    }
+                </td>
+                <td class="td-worker">测试:
+                     @{
+                        Html.RenderPartial("_RolePartial", new TaskRolePartialModel{
+                                                           Task = task, Role= RoleEnum.Tester,Users = Model.Users});
+                    }
+                </td>
+                <td class="td-worker td-right">运维: @{
+                        Html.RenderPartial("_RolePartial", new TaskRolePartialModel{
+                                                           Task = task, Role= RoleEnum.Operator,Users = Model.Users});
+                    }
+            </tr>
+
+            <tr class="hide tr-plan" >
+                <td></td>
+                <td>状态:未分配 <a href="">修改计划</a><br />
+                    计划:暂无
+                </td>
+                <td>状态:未分配 <a href="">修改计划</a><br />
+                    计划:06-12 16:00 至  06-13 18:00
+                </td>
+                <td class="td-right">状态:未分配 <a href="">修改计划</a><br />
+                    计划:暂无
+                </td>
+            </tr>
+        </tbody>
+        }
+        
+      @*  <tbody>
 
             <tr>
                 <td class="td-seprow" colspan="8"></td>
@@ -115,89 +207,19 @@
                     计划:暂无
                 </td>
             </tr>
-        </tbody>
-        <tbody>
-
-            <tr>
-                <td class="td-seprow" colspan="8"></td>
-            </tr>
-            <tr class="info">
-                <td class="td-right td-content " colspan="8">asdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffff ffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffff ffffffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdf
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="2">2013-06-12 14:44<br />
-                    liuhasiy@hotmail.com<br />
-                    <a href="">查看历史记录</a>
-                </td>
-                <td rowspan="2">2013-06-16 18:00<br />
-                    状态:分配中
-                </td>
-
-                <td rowspan="2">0.1
-                </td>
-                <td rowspan="2">
-                    <a href="#">显示任务</a>
-                </td>
-                <td class="td-worker">设计:<select class="select-small">
-                    <option>liujiangtao@hotmai.com</option>
-                    <option>----</option>
-                    <option>待定</option>
-                </select>
-                    <a href="#">设计图</a>
-                </td>
-                <td class="td-worker">开发:<select class="select-small">
-                    <option>待定</option>
-                    <option>liujiangtao@hotmai.com</option>
-                </select>
-                    <a href="">接受</a>
-
-                </td>
-                <td class="td-worker">测试:<select class="select-small">
-                    <option>liujiangtao@hotmai.com</option>
-                    <option>待定</option>
-                </select>
-                    <a href="#">测试用例</a>
-                </td>
-                <td class="td-worker td-right">运维:<select class="select-small">
-                    <option>待定</option>
-                </select>
-                    <a href="#">统一运维</a>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td>状态:未分配 <a href="">修改计划</a><br />
-                    计划:暂无
-                </td>
-                <td>状态:未分配 <a href="">修改计划</a><br />
-                    计划:06-12 16:00 至  06-13 18:00
-                </td>
-                <td class="td-right">状态:未分配 <a href="">修改计划</a><br />
-                    计划:暂无
-                </td>
-            </tr>
-        </tbody>
+        </tbody>*@
 
     </table>
-    <div class="row-fluid">
-        <div class="span6">
-            <div class="dataTables_info" id="table_report_info">
-                显示1-10 共23页
-            </div>
-        </div>
-        <div class="span6">
-            <div class="dataTables_paginate paging_bootstrap pagination">
-                <ul>
-                    <li class="prev disabled"><a href="#"><i class="icon-double-angle-left"></i></a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li class="next"><a href="#"><i class="icon-double-angle-right"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    @{
+        Html.RenderPartial("_PagerPartial", new SharedPagerModel
+        {
+            Html = this.Html,
+            Action = Url.Action("index"),
+            PagerModel = Model
+        });
+    }
 </div>
+
+@section scripts{
+    @Scripts.Render("~/Scripts/task.index.js")
+}

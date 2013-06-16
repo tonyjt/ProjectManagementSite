@@ -10,6 +10,7 @@ td {
 .td-seprow {
     border-left:none !important;
     border-right:none !important;
+    height:25px !important;
 }
 
 .table-norightborder {

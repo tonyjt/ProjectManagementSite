@@ -44,6 +44,9 @@
       <HintPath>..\..\Lib\CustomExtension.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MVCExtension">
+      <HintPath>..\..\Lib\MVCExtension.dll</HintPath>
+    </Reference>
     <Reference Include="MvcSiteMapProvider">
       <HintPath>..\..\PMS\packages\MvcSiteMapProvider.3.3.6.0\lib\net40\MvcSiteMapProvider.dll</HintPath>
     </Reference>
@@ -206,6 +209,7 @@
     <Compile Include="Models\ErrorModel.cs" />
     <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Models\RequirementModel.cs" />
+    <Compile Include="Models\SharedModel.cs" />
     <Compile Include="Models\TaskModel.cs" />
     <Compile Include="Models\VersionModel.cs" />
     <Compile Include="Models\ViewMessageModels.cs" />
@@ -354,6 +358,7 @@
     <Content Include="Scripts\project.new.js" />
     <Content Include="Scripts\requirement.detail.js" />
     <Content Include="Scripts\requirement.sidebar.js" />
+    <Content Include="Scripts\task.index.js" />
     <Content Include="Scripts\task.new.js" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.ascx" />
@@ -405,6 +410,8 @@
     <Content Include="Views\Requirement\_SidebarPartial.cshtml" />
     <Content Include="Views\Task\Detail.cshtml" />
     <Content Include="Views\Task\index.cshtml" />
+    <Content Include="Views\Task\_RolePartial.cshtml" />
+    <Content Include="Views\Shared\_PagerPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

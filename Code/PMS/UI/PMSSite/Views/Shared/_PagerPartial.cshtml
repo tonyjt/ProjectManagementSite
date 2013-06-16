@@ -1,0 +1,19 @@
+﻿ 
+@model SharedPagerModel
+
+@using MVCExtension
+
+ <div class="row-fluid">
+        <div class="span6">
+            <div class="dataTables_info" id="table_report_info">
+                @(string.Format("显示{0}-{1} 共{2}条记录",Model.PagerModel.PageStart,Model.PagerModel.PageEnd,Model.PagerModel.TotalRecordCount))
+            </div>
+        </div>
+        <div class="span6">
+            <div class="dataTables_paginate paging_bootstrap pagination">
+                <ul>
+                     @Model.Html.Pager(Model.Action , ((IPagerModel)Model.PagerModel).GetRequestParameters())
+                </ul>
+            </div>
+        </div>
+</div>

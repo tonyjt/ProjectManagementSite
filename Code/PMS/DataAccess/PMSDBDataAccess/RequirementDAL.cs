@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using PMS.Tool.Helper;
 
 namespace PMS.PMSDBDataAccess
 {
@@ -81,6 +82,17 @@ namespace PMS.PMSDBDataAccess
                 return re;
             }
         }
+        public Requirement GetRequirement(string requirementName)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                return (from p in context.Requirements
+                        where p.Title == requirementName
+                        select p).SingleOrDefault();
+
+            }
+        }
+
 
         public IEnumerable<RequirementHistory> GetHistories(Guid requirementId)
         {

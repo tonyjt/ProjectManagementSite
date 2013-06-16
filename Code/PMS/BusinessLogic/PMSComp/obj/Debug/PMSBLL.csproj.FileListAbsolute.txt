@@ -35,3 +35,5 @@ G:\Code\github\ProjectManagementSite\Code\PMS\BusinessLogic\PMSComp\obj\Debug\PM
 G:\Code\github\ProjectManagementSite\Code\PMS\BusinessLogic\PMSComp\obj\Debug\PMS.PMSBLL.dll
 G:\Code\github\ProjectManagementSite\Code\PMS\BusinessLogic\PMSComp\obj\Debug\PMS.PMSBLL.pdb
 C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\BusinessLogic\PMSComp\bin\Debug\EFUtil.Core.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\BusinessLogic\PMSComp\bin\Debug\MVCExtension.dll
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\BusinessLogic\PMSComp\bin\Debug\MVCExtension.pdb

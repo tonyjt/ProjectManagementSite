@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CustomExtension">
+      <HintPath>..\..\Lib\CustomExtension.dll</HintPath>
+    </Reference>
     <Reference Include="EFUtil.Core">
       <HintPath>..\..\PMS\packages\EntityFramework.Extras.0.9.4.0\lib\net40\EFUtil.Core.dll</HintPath>
     </Reference>
@@ -38,6 +41,9 @@
     </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\..\PMS\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MVCExtension">
+      <HintPath>..\..\Lib\MVCExtension.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -82,6 +88,10 @@
     <ProjectReference Include="..\..\PMS\Model\Model\Model.csproj">
       <Project>{e51d3db3-56ca-4e43-b2a8-362dab6c9363}</Project>
       <Name>Model %28Model\Model%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Tool\Extentsion\Tool.csproj">
+      <Project>{9b7384cf-2b9a-4768-8340-1eb0df104498}</Project>
+      <Name>Tool %28Tool\Tool%29</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

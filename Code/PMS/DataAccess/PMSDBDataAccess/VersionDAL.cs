@@ -44,6 +44,19 @@ namespace PMS.PMSDBDataAccess
             }
         }
 
+        public ProjectVersion GetVersion(string version)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                return (from p in context.ProjectVersions
+                        where p.VersionName == version
+                        select p).SingleOrDefault();
+
+            }
+        }
+
+        
+
         public bool UpdateVersion(ProjectVersion version)
         {
             using (PMSDBContext context = new PMSDBContext())

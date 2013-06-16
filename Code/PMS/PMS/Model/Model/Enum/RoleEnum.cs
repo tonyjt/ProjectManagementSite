@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace PMS.Model
 {
+
     [Flags]
-    public enum RoleEnum
+    public enum RoleEnum:byte
     {
         Designer = 1,
 

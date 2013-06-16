@@ -21,5 +21,30 @@ namespace PMS.Model
                 Status = (byte)value;
             }
         }
+
+
+
+        public bool ContainRole(RoleEnum role)
+        {
+            if (TaskParticipators != null)
+            {
+                return TaskParticipators.Where(p => p.RoleEnum == role).Count() > 0;
+            }
+            else
+                return false;
+        }
+
+        public TaskParticipator GetRole(RoleEnum role)
+        {
+            if (TaskParticipators != null)
+            {
+                return TaskParticipators.Where(p => p.RoleEnum == role).FirstOrDefault();
+            }
+            else
+                return null; ;
+        }
+
+
+        //public User 
     }
 }
