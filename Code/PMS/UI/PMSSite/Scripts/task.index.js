@@ -26,4 +26,14 @@
             $(".tr-plan").hide();
         }
     });
+
+    $(".hrefHistory").click(function () {
+        var tbody = $(this).parents("tbody");
+
+        var history = tbody.find(".hidHistory").val();
+
+        $("#modalContent").text(history);
+
+        $("#modalHistory").modal('toggle');
+    });
 });

@@ -18,30 +18,32 @@
     版本:
     <select class="select-small" name="version">
         <option>不限</option>
-        @foreach(ProjectVersion version in Model.Versions){
-            <option value="@version.VersionName" @(version.VersionName == Model.Version?"selected:selected":"")>@version.VersionName</option>
+        @foreach (ProjectVersion version in Model.Versions)
+        {
+            <option value="@version.VersionName" @(version.VersionName == Model.Version ? "selected:selected" : "")>@version.VersionName</option>
         }
     </select>
 
     需求: 
         <select class="select-small" id="requirement">
             <option>不限</option>
-            @foreach(Requirement re in Model.Requirements){
-            <option value="@re.Title" @(re.Title == Model.Requirement?"selected:selected":"")>@re.Title</option>
-        }
+            @foreach (Requirement re in Model.Requirements)
+            {
+                <option value="@re.Title" @(re.Title == Model.Requirement ? "selected:selected" : "")>@re.Title</option>
+            }
         </select>
     状态:<select class="select-small" id="status">
         <option>不限</option>
-        @foreach(TaskStatusModel status in Model.Statuses)
+        @foreach (TaskStatusModel status in Model.Statuses)
         {
-             <option value="@status.GetByteEnumValue()" @(status == Model.Status?"selected:selected":"")>@status.GetEnumDescription()</option>
+            <option value="@status.GetByteEnumValue()" @(status == Model.Status ? "selected:selected" : "")>@status.GetEnumDescription()</option>
         }
     </select>
     用户:<select class="select-small" id="user">
         <option>不限</option>
-        @foreach(ProjectParticipator user in Model.Users)
+        @foreach (ProjectParticipator user in Model.Users)
         {
-             <option value="@user.User.UserName" @(user.User.UserName == Model.User?"selected:selected":"")>@user.User.UserName </option>
+            <option value="@user.User.UserName" @(user.User.UserName == Model.User ? "selected:selected" : "")>@user.User.UserName </option>
         }
     </select>
     <button onclick="return false;" class="btn btn-purple btn-small">
@@ -75,76 +77,93 @@
         </thead>
         @foreach (ProjectTask task in Model.Tasks)
         {
-            <tbody >
-            <tr>
-                <td class="td-seprow" colspan="8"></td>
-            </tr>
-            <tr class="info">
-                <td class="td-right td-content " colspan="8">
-                    @task.Content
-                </td>
-            </tr>
-            <tr>
-                <td class="tr-twoRow">2013-06-12 14:44<br />
-                    @task.User.UserName<br />
-                    <a href="">查看历史记录</a>
-                </td>
-                <td class="tr-twoRow">2013-06-16 18:00<br />
-                    状态:@task.StatusEnum.GetEnumDescription()<br />
-                    <a href="javascript:void(0);" class="hrefPlan">显示计划</a>
-                </td>
+            <tbody>
+              
+                <tr>
+                    <td class="td-seprow" colspan="8">
+                          <input type="hidden" value="@task.History" class="hidHistory" />
+                    </td>
+                </tr>
+                <tr class="info">
+                    <td class="td-right td-content " colspan="8">
+                        @task.Content
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tr-twoRow">@task.CreateTime.ToStandardString()<br />
+                        @task.User.UserName<br />
+                        <a href="javascript:void(0);" class="hrefHistory">查看历史记录</a>
+                    </td>
+                    <td class="tr-twoRow">2013-06-16 18:00<br />
+                        状态:@task.StatusEnum.GetEnumDescription()<br />
+                        <a href="javascript:void(0);" class="hrefPlan">显示计划</a>
+                    </td>
 
-                <td class="tr-twoRow">
-                    @(task.Requirement!= null? task.Requirement.ProjectVersion.VersionName:"--")
-                </td>
-                <td class="tr-twoRow">
-                    <a href="#">@(task.Requirement!= null? task.Requirement.Title:"--")</a>
-                </td>
-                <td class="td-worker">
-                   
-                    设计:
+                    <td class="tr-twoRow">
+                        @(task.Requirement != null ? task.Requirement.ProjectVersion.VersionName : "--")
+                    </td>
+                    <td class="tr-twoRow">
+                        <a href="#">@(task.Requirement != null ? task.Requirement.Title : "--")</a>
+                    </td>
+                    <td class="td-worker">设计:
 
                     @{
 
-                        Html.RenderPartial("_RolePartial", new TaskRolePartialModel{
-                                                           Task = task, Role= RoleEnum.Designer,Users = Model.Users});
+            Html.RenderPartial("_RolePartial", new TaskRolePartialModel
+            {
+                Task = task,
+                Role = RoleEnum.Designer,
+                Users = Model.Users
+            });
                     }
-                </td>
-                <td class="td-worker">
-                    开发:
+                    </td>
+                    <td class="td-worker">开发:
                     @{
-                        Html.RenderPartial("_RolePartial", new TaskRolePartialModel{
-                                                           Task = task, Role= RoleEnum.Developer,Users = Model.Users});
+            Html.RenderPartial("_RolePartial", new TaskRolePartialModel
+            {
+                Task = task,
+                Role = RoleEnum.Developer,
+                Users = Model.Users
+            });
                     }
-                </td>
-                <td class="td-worker">测试:
+                    </td>
+                    <td class="td-worker">测试:
                      @{
-                        Html.RenderPartial("_RolePartial", new TaskRolePartialModel{
-                                                           Task = task, Role= RoleEnum.Tester,Users = Model.Users});
+            Html.RenderPartial("_RolePartial", new TaskRolePartialModel
+            {
+                Task = task,
+                Role = RoleEnum.Tester,
+                Users = Model.Users
+            });
+                     }
+                    </td>
+                    <td class="td-worker td-right">
+                    运维: @{
+            Html.RenderPartial("_RolePartial", new TaskRolePartialModel
+            {
+                Task = task,
+                Role = RoleEnum.Operator,
+                Users = Model.Users
+            });
                     }
-                </td>
-                <td class="td-worker td-right">运维: @{
-                        Html.RenderPartial("_RolePartial", new TaskRolePartialModel{
-                                                           Task = task, Role= RoleEnum.Operator,Users = Model.Users});
-                    }
-            </tr>
+                </tr>
 
-            <tr class="hide tr-plan" >
-                <td></td>
-                <td>状态:未分配 <a href="">修改计划</a><br />
-                    计划:暂无
-                </td>
-                <td>状态:未分配 <a href="">修改计划</a><br />
-                    计划:06-12 16:00 至  06-13 18:00
-                </td>
-                <td class="td-right">状态:未分配 <a href="">修改计划</a><br />
-                    计划:暂无
-                </td>
-            </tr>
-        </tbody>
+                <tr class="hide tr-plan">
+                    <td></td>
+                    <td>状态:未分配 <a href="">修改计划</a><br />
+                        计划:暂无
+                    </td>
+                    <td>状态:未分配 <a href="">修改计划</a><br />
+                        计划:06-12 16:00 至  06-13 18:00
+                    </td>
+                    <td class="td-right">状态:未分配 <a href="">修改计划</a><br />
+                        计划:暂无
+                    </td>
+                </tr>
+            </tbody>
         }
-        
-      @*  <tbody>
+
+        @*  <tbody>
 
             <tr>
                 <td class="td-seprow" colspan="8"></td>
@@ -218,6 +237,19 @@
             PagerModel = Model
         });
     }
+
+    <div class="modal hide fade" id="modalHistory">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4>历史记录</h4>
+        </div>
+        <div class="modal-body">
+            <div class="" id="modalContent">One fine body…</div>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+
 </div>
 
 @section scripts{
