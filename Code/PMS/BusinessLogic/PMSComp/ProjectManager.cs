@@ -200,7 +200,7 @@ namespace PMS.PMSBLL
 
             pp.JoinTime = DateTime.Now;
 
-            return ManagerHelper.CreateModel(pp, ppDataAccess.CreateProjectParticipator, log);
+            return ManagerHelper.ActionVoid(pp, ppDataAccess.CreateProjectParticipator, log);
         }
 
         public static IEnumerable<ProjectParticipator> GetAllProjectsForUser(Guid userId)

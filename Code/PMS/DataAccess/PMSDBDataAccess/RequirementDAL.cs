@@ -82,12 +82,13 @@ namespace PMS.PMSDBDataAccess
                 return re;
             }
         }
-        public Requirement GetRequirement(string requirementName)
+        public Requirement GetRequirement(Guid projectId,string requirementName)
         {
             using (PMSDBContext context = new PMSDBContext())
             {
                 return (from p in context.Requirements
-                        where p.Title == requirementName
+                            .Include(r=>r.ProjectVersion)
+                        where  p.ProjectVersion.ProjectId == projectId && p.Title == requirementName
                         select p).SingleOrDefault();
 
             }

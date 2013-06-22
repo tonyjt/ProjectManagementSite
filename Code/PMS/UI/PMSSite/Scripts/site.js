@@ -15,7 +15,48 @@ function callback(formId) {
 
     // not sure if you wanted this, but I thought I'd add it.
     // get an associative array of just the values.
-    var values = $("#"+formId).serializeArray();
+    var values = $("#" + formId).serializeArray();
+
+    callbackToUrl(url, values, null);
+
+    //$("#overlay").show();
+
+    //var request = $.ajax({
+    //    url: url,
+    //    type: "POST",
+    //    data: values,
+    //    dataType: "html"
+    //});
+
+    //request.done(function (jsonResult) {
+
+    //    $("#overlay").hide();
+
+    //    var result = $.parseJSON(jsonResult);
+
+    //    if (result.Success) {
+    //        if (!result.Redirect) {
+    //            showMessage(true, result.Message);
+    //        }
+    //        else {
+    //            window.location.href = result.RedirectUrl;
+    //        }
+    //    }
+    //    else {
+    //        showMessage(false, result.Message);
+    //    }
+    //});
+
+    //request.fail(function (jqXHR, textStatus) {
+
+    //    $("#overlay").hide();
+    //    showMessage(false, "请求失败:出现异常:" + textStatus);
+
+    //});
+}
+
+function callbackToUrl(url, values,funcSuccess) {
+
     $("#overlay").show();
 
     var request = $.ajax({
@@ -25,34 +66,41 @@ function callback(formId) {
         dataType: "html"
     });
 
-    request.done(function (jsonResult) {
+    request.done(function (result) {
 
         $("#overlay").hide();
 
-        var result = $.parseJSON(jsonResult);
+        if (funcSuccess == null) {
+            var jsonResult = $.parseJSON(result);
 
-        if (result.Success) {
-            if (!result.Redirect) {
-                showMessage(true, result.Message);
+            if (jsonResult.Success) {
+
+                if (!jsonResult.Redirect) {
+                    showMessage(true, jsonResult.Message);
+                    //if (result.Content != null && funcSuccess != null) {
+                    //    funcSuccess(result.Content);
+                    //}
+                }
+                else {
+                    window.location.href = jsonResult.RedirectUrl;
+                }
             }
             else {
-                window.location.href = result.RedirectUrl;
+                showMessage(false, jsonResult.Message);
+
             }
         }
         else {
-            showMessage(false, result.Message);
+            funcSuccess(result);
         }
-
-
-
     });
 
     request.fail(function (jqXHR, textStatus) {
-
         $("#overlay").hide();
         showMessage(false, "请求失败:出现异常:" + textStatus);
 
     });
+
 }
 
 function showMessage(isSuccess, msg) { 

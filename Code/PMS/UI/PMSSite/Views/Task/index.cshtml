@@ -17,39 +17,39 @@
 <form class="form-search" action="@Url.Action("index")" method="get" >
     版本:
     <select class="select-small" name="version">
-        <option>不限</option>
+        <option value="" >不限</option>
         @foreach (ProjectVersion version in Model.Versions)
         {
-            <option value="@version.VersionName" @(version.VersionName == Model.Version ? "selected:selected" : "")>@version.VersionName</option>
+            <option value="@version.VersionName" @(version.VersionName == Model.Version ? "selected=selected" : "")>@version.VersionName</option>
         }
     </select>
 
     需求: 
-        <select class="select-small" id="requirement">
-            <option>不限</option>
+        <select class="select-small" id="requirement" name="requirement">
+            <option  value="">不限</option>
             @foreach (Requirement re in Model.Requirements)
             {
-                <option value="@re.Title" @(re.Title == Model.Requirement ? "selected:selected" : "")>@re.Title</option>
+                <option value="@re.Title" @(re.Title == Model.Requirement ? "selected=selected" : "")>@re.Title</option>
             }
         </select>
-    状态:<select class="select-small" id="status">
-        <option>不限</option>
+    状态:<select class="select-small" id="status" name="status">
+        <option  value="">不限</option>
         @foreach (TaskStatusModel status in Model.Statuses)
         {
-            <option value="@status.GetByteEnumValue()" @(status == Model.Status ? "selected:selected" : "")>@status.GetEnumDescription()</option>
+            <option value="@status.GetByteEnumValue()" @(status == Model.Status ? "selected=selected" : "")>@status.GetEnumDescription()</option>
         }
     </select>
-    用户:<select class="select-small" id="user">
-        <option>不限</option>
+    用户:<select class="select-small" id="user" name="user">
+        <option  value="">不限</option>
         @foreach (ProjectParticipator user in Model.Users)
         {
-            <option value="@user.User.UserName" @(user.User.UserName == Model.User ? "selected:selected" : "")>@user.User.UserName </option>
+            <option value="@user.User.UserName" @(user.User.UserName == Model.User ? "selected=selected" : "")>@user.User.UserName </option>
         }
     </select>
-    <button onclick="return false;" class="btn btn-purple btn-small">
+    <a href="javascript:void(0);" id="hrefSearch" class="btn btn-purple btn-small">
         查询
 		<i class="icon-search icon-on-right bigger-110"></i>
-    </button>
+    </a>
 
     <a href="javascript:void(0);" class="plan">显示所有计划</a>
 
@@ -63,7 +63,7 @@
             <tr>
                 <th>创建时间
                 </th>
-                <th>完成时间
+                <th>最后更新
                 </th>
                 <th>版本 
                 </th>
@@ -71,14 +71,11 @@
                 </th>
 
                 <th colspan="4" class="td-content td-right " class="td-right"></th>
-
-
             </tr>
         </thead>
         @foreach (ProjectTask task in Model.Tasks)
         {
             <tbody>
-              
                 <tr>
                     <td class="td-seprow" colspan="8">
                           <input type="hidden" value="@task.History" class="hidHistory" />
@@ -94,7 +91,7 @@
                         @task.User.UserName<br />
                         <a href="javascript:void(0);" class="hrefHistory">查看历史记录</a>
                     </td>
-                    <td class="tr-twoRow">2013-06-16 18:00<br />
+                    <td class="tr-twoRow">@task.UpdateTime.ToStandardString()<br />
                         状态:@task.StatusEnum.GetEnumDescription()<br />
                         <a href="javascript:void(0);" class="hrefPlan">显示计划</a>
                     </td>
@@ -105,8 +102,7 @@
                     <td class="tr-twoRow">
                         <a href="#">@(task.Requirement != null ? task.Requirement.Title : "--")</a>
                     </td>
-                    <td class="td-worker">设计:
-
+                    <td class="td-worker">
                     @{
 
             Html.RenderPartial("_RolePartial", new TaskRolePartialModel
@@ -117,7 +113,7 @@
             });
                     }
                     </td>
-                    <td class="td-worker">开发:
+                    <td class="td-worker">
                     @{
             Html.RenderPartial("_RolePartial", new TaskRolePartialModel
             {
@@ -127,7 +123,7 @@
             });
                     }
                     </td>
-                    <td class="td-worker">测试:
+                    <td class="td-worker">
                      @{
             Html.RenderPartial("_RolePartial", new TaskRolePartialModel
             {
@@ -138,7 +134,7 @@
                      }
                     </td>
                     <td class="td-worker td-right">
-                    运维: @{
+                     @{
             Html.RenderPartial("_RolePartial", new TaskRolePartialModel
             {
                 Task = task,
@@ -253,5 +249,15 @@
 </div>
 
 @section scripts{
+    
+    <script type="text/javascript">
+        var enableUrl = '@Url.Action("RoleEnable")';
+
+        var disableUrl = '@Url.Action("RoleDisable")';
+
+        var assignUrl = '@Url.Action("RoleAssign")';
+    </script>
+
     @Scripts.Render("~/Scripts/task.index.js")
+
 }

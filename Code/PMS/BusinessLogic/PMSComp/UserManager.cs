@@ -44,5 +44,12 @@ namespace PMS.PMSBLL
             else
                 return GetCurrentUserId();
         }
+
+        public static IEnumerable<ProjectParticipator> GetProjectParticipators(Guid projectId, RoleEnum role)
+        {
+            IEnumerable<ProjectParticipator>  pps =  GetProjectParticipators(projectId);
+
+            return pps.Where(p => (p.RoleEnum & role) != 0);
+        }
     }
 }

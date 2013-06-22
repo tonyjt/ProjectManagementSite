@@ -39,18 +39,18 @@ namespace PMS.PMSDBDataAccess
             {
                     return (from p in context.ProjectVersions
                             where p.VersionId == versionId
-                            select p).SingleOrDefault();
+                            select p).FirstOrDefault();
                 
             }
         }
 
-        public ProjectVersion GetVersion(string version)
+        public ProjectVersion GetVersion(Guid projectId,string version)
         {
             using (PMSDBContext context = new PMSDBContext())
             {
                 return (from p in context.ProjectVersions
-                        where p.VersionName == version
-                        select p).SingleOrDefault();
+                        where p.ProjectId == projectId && p.VersionName == version
+                        select p).FirstOrDefault();
 
             }
         }
@@ -63,7 +63,7 @@ namespace PMS.PMSDBDataAccess
             {
                 var model = (from p in context.ProjectVersions
                              where p.VersionId == version.VersionId
-                             select p).SingleOrDefault();
+                             select p).FirstOrDefault();
 
                 if (model != null)
                 {

@@ -22,7 +22,7 @@
         <div class="alert alert-info ">
             <div class="row-fluid">
                 <div class="span6">
-                    <input type="text" name="Title" value="@Model.Item.Title" class="margion-empty text-long" id="txtTitle" placeholder="标题" />
+                    <input type="text" name="Title" value="@Model.Item.Title" class="margin-empty text-long" id="txtTitle" placeholder="标题" />
                 </div>
                 <div class="span6">
                     <div class="pull-right">
@@ -58,7 +58,7 @@
                     </a>
                 </li>
                 <li class="pull-right margin-right-small ">当前版本: 
-                <select class="margion-empty" id="selectVersion" name="VersionId">
+                <select class="margin-empty" id="selectVersion" name="VersionId">
                     @foreach (ProjectVersion version in Model.StartVersion)
                     {
                         <option value="@version.VersionId">@version.VersionName</option>
@@ -66,7 +66,7 @@
                 </select>
                 </li>
                 <li class="pull-right margin-right-small ">上一级需求:
-            <select class="margion-empty" id="selectParent" name="ParentId">
+            <select class="margin-empty" id="selectParent" name="ParentId">
                 <option value="@Guid.Empty">@project.Name</option>
                 @foreach (Requirement re in Model.ParentableRequirement)
                 {

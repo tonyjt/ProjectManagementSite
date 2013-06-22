@@ -19,9 +19,8 @@ namespace PMS.PMSSite.Controllers
 
         public ActionResult Index(TaskIndexModel model)
         {
-
             int totalCount;
-            model.Tasks = TaskManager.SearchTask(model.Version, model.Requirement, GetStatus(model.Status), model.User, out totalCount, model.PageSize, model.PageIndex);
+            model.Tasks = TaskManager.SearchTask(this.ProjectId,model.Version, model.Requirement, GetStatus(model.Status), model.User, out totalCount, model.PageSize, model.PageIndex);
 
 
             model.TotalRecordCount = totalCount;
@@ -100,6 +99,42 @@ namespace PMS.PMSSite.Controllers
 
             return AjaxShowErrorMessage("创建任务失败,参数有误");
         }
+
+        public ActionResult RoleEnable(Guid taskId, RoleEnum role)
+        {
+            bool result = TaskManager.EnableRole(taskId, role);
+
+            return Role(taskId,role,result);
+        }
+
+        public ActionResult RoleDisable(Guid taskId, RoleEnum role)
+        {
+            bool result = TaskManager.DisableRole(taskId, role);
+
+            return Role(taskId,role, result);
+        }
+
+        private ActionResult Role(Guid taskId, RoleEnum role, bool result)
+        {
+            if (result)
+            {
+                ProjectTask task = TaskManager.GetTask(taskId);
+
+                TaskRolePartialModel model = new TaskRolePartialModel
+                {
+                    Task = task,
+                    Role = role,
+                    Users = UserManager.GetProjectParticipators(this.ProjectId, role)
+                };
+
+                return PartialView("_RolePartial", model);
+            }
+            else
+            {
+                return Content("");
+            }
+        }
+
 
         public IEnumerable<ProjectTaskStatus> GetStatus(TaskStatusModel? model)
         {

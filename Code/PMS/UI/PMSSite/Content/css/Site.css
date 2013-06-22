@@ -39,6 +39,8 @@ overflow: scroll;
 .align-center {
    text-align:center;
 }
+
+/*Margin*/
 .margin-top-mini {
     margin-top:5px;
 }
@@ -46,12 +48,17 @@ overflow: scroll;
     margin-right:12px;
 }
 
-.margion-empty {
+.margin-empty {
     margin:0 0 0 0 !important;
 }
 
-.margion-bottom-mini {
+.margin-bottom-mini {
     margin-bottom:5px;
+}
+
+/*Padding*/
+.padding-none {
+    padding:0px 0px 0px 0px;
 }
 
 .text-long {

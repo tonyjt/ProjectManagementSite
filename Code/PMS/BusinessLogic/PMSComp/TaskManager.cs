@@ -39,7 +39,7 @@ namespace PMS.PMSBLL
                 task.History = string.Format("{0}在{1}创建任务",UserManager.GetCurrentUser().Account,task.CreateTime.ToStandardString());
                 if (string.IsNullOrEmpty(task.Content)) task.Content = " ";
 
-                return ManagerHelper.CreateModel(task, dataAccess.CreateTask, log);
+                return ManagerHelper.ActionVoid(task, dataAccess.CreateTask, log);
             }
             else
                 return false;
@@ -111,14 +111,14 @@ namespace PMS.PMSBLL
             return tps;
         }
 
-        public static IEnumerable<ProjectTask>  SearchTask(string version,string requirement,IEnumerable<ProjectTaskStatus> statusList, string  user,out int totalCount, int pageSize = 10,int pageIndex =1)
+        public static IEnumerable<ProjectTask>  SearchTask(Guid projectId,string version,string requirement,IEnumerable<ProjectTaskStatus> statusList, string  user,out int totalCount, int pageSize = 10,int pageIndex =1)
         {
             try
             {
                 Guid versionId; Guid requirementId; Guid userId;
 
-                versionId = VersionManager.GetVersionId(version);
-                requirementId = RequirementManager.GetRequirementId(requirement);
+                versionId = VersionManager.GetVersionId(projectId,version);
+                requirementId = RequirementManager.GetRequirementId(projectId, requirement);
                 userId = UserManager.GetUserId(user);
                 IEnumerable<byte> statusByteList = statusList.Select(s => s.GetByteEnumValue());
 
@@ -134,6 +134,58 @@ namespace PMS.PMSBLL
 
                 return new List<ProjectTask>();
             }
+        }
+
+        public static ProjectTask GetTask(Guid taskId,bool nullable = false)
+        {
+            ProjectTask task = ManagerHelper.GetModel(taskId,dataAccess.GetTask,log);
+
+            return task != null && task.StatusEnum != ProjectTaskStatus.Canceled? task :null;
+        }
+
+        public static bool EnableRole(Guid taskId, RoleEnum role)
+        {
+            ProjectTask task = GetTask(taskId);
+
+            if(task != null)
+            {
+                //TaskParticipator tp = task.TaskParticipators.Where(t=>t.RoleEnum == role).FirstOrDefault();
+
+                if (!task.ContainRole(role)) 
+                {
+                    TaskParticipator tpNew = new TaskParticipator
+                    {
+                        TaskParticipatorId = Guid.NewGuid(),
+                        TaskId = taskId,
+                        RoleEnum = role,
+                        StatusEnum = TaskParticipatorStatus.Unassigned
+                    };
+                    return ManagerHelper.ActionVoid(tpNew, dataAccess.EnableRole, log);
+                }
+            }
+
+            return false;
+        }
+
+        public static bool DisableRole(Guid taskId, RoleEnum role)
+        {
+            ProjectTask task = GetTask(taskId);
+
+            if (task != null)
+            {
+                TaskParticipator tp = task.TaskParticipators.Where(p => p.RoleEnum == role).FirstOrDefault();
+
+                if (tp != null)
+                {
+                    TaskParticipator tpDelete = new TaskParticipator
+                    {
+                        TaskParticipatorId = tp.TaskParticipatorId
+                    };
+
+                    return ManagerHelper.ActionVoid(tpDelete, dataAccess.DisableRole, log);
+                }
+            }
+            return false;
         }
     }
 }

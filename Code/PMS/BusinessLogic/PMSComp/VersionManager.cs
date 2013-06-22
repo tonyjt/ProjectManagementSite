@@ -136,7 +136,7 @@ namespace PMS.PMSBLL
         
         }
 
-        public static ProjectVersion GetVersion(string versionName, bool nullable = false)
+        public static ProjectVersion GetVersion(Guid projectId,string versionName, bool nullable = false)
         {
             if (string.IsNullOrWhiteSpace(versionName))
             {
@@ -144,16 +144,16 @@ namespace PMS.PMSBLL
             }
             else
             {
-                 ProjectVersion version  = ManagerHelper.GetModel<ProjectVersion>(versionName, dataAccess.GetVersion, log);
+                 ProjectVersion version  = ManagerHelper.GetModel(projectId,versionName, dataAccess.GetVersion, log);
 
             return GetVersionNullable(version, nullable);
 
             }
         }
 
-        public static Guid GetVersionId(string versionName)
+        public static Guid GetVersionId(Guid projectId,string versionName)
         {
-            ProjectVersion version = GetVersion(versionName,true);
+            ProjectVersion version = GetVersion(projectId,versionName, true);
 
             return version != null?version.VersionId: GuidHelper.GetInvalidGuid();
         }

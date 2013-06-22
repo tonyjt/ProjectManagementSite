@@ -62,7 +62,7 @@
                             <option value="">待定</option>
                             @foreach (ProjectParticipator pp in Model.Paticipators.Where(p => p.RoleEnum.HasFlag(RoleEnum.Designer)))
                             {
-                                <option value="@pp.UserId">@pp.User.Account</option>
+                                <option value="@pp.UserId">@pp.User.UserName</option>
                             }
                         </select>
                     </div>
@@ -71,7 +71,7 @@
                              <option value="">待定</option>
                             @foreach (ProjectParticipator pp in Model.Paticipators.Where(p => p.RoleEnum.HasFlag(RoleEnum.Developer)))
                             {
-                                <option value="@pp.UserId">@pp.User.Account</option>
+                                <option value="@pp.UserId">@pp.User.UserName</option>
                             }
                         </select>
                     </div>
@@ -80,7 +80,7 @@
                              <option value="">待定</option>
                             @foreach (ProjectParticipator pp in Model.Paticipators.Where(p => p.RoleEnum.HasFlag(RoleEnum.Tester)))
                             {
-                                <option value="@pp.UserId">@pp.User.Account</option>
+                                <option value="@pp.UserId">@pp.User.UserName</option>
                             }
                         </select>
                     </div>
@@ -89,7 +89,7 @@
                               <option value="">待定</option>
                             @foreach (ProjectParticipator pp in Model.Paticipators.Where(p => p.RoleEnum.HasFlag(RoleEnum.Operator)))
                             {
-                                <option value="@pp.UserId">@pp.User.Account</option>
+                                <option value="@pp.UserId">@pp.User.UserName</option>
                             }
                         </select>
                     </div>

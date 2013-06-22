@@ -37,7 +37,7 @@ namespace PMS.PMSBLL
             return requirements.OrderBy(r => r.CreateTime).FirstOrDefault();
         }
 
-        public static Requirement GetRequirement(string requirementName)
+        public static Requirement GetRequirement(Guid projectId,string requirementName)
         {
             if (string.IsNullOrWhiteSpace(requirementName))
             {
@@ -45,16 +45,16 @@ namespace PMS.PMSBLL
             }
             else
             {
-                Requirement requirement = ManagerHelper.GetModel<Requirement>(requirementName, dataAccess.GetRequirement, log);
+                Requirement requirement = ManagerHelper.GetModel(projectId,requirementName, dataAccess.GetRequirement, log);
 
                 return requirement;
 
             }
         }
 
-        public static Guid GetRequirementId(string requirementName)
+        public static Guid GetRequirementId(Guid projectId,string requirementName)
         {
-            Requirement requirement = GetRequirement(requirementName);
+            Requirement requirement = GetRequirement(projectId,requirementName);
 
             return requirement != null ? requirement.RequirementId : GuidHelper.GetInvalidGuid();
         }
@@ -149,7 +149,7 @@ namespace PMS.PMSBLL
                requirement.UpdateTime = DateTime.Now;
                requirement.IsValid = true;
 
-               result = ManagerHelper.CreateModel(requirement, dataAccess.CreateRequirement, log);
+               result = ManagerHelper.ActionVoid(requirement, dataAccess.CreateRequirement, log);
 
             }
             return result;
@@ -169,7 +169,7 @@ namespace PMS.PMSBLL
             else
             {
                 requirement.UpdateTime = DateTime.Now;
-                result = ManagerHelper.UpdateModel(requirement,dataAccess.Save,log);
+                result = ManagerHelper.ActionBool(requirement,dataAccess.Save,log);
             }
             return result;
         }
@@ -222,7 +222,7 @@ namespace PMS.PMSBLL
                         List<Requirement> requires = children.ToList();
                         requires.Add(requirment);
 
-                        return ManagerHelper.UpdateModel(requires.Select(r => r.RequirementId), dataAccess.DeleteRequirements, log);
+                        return ManagerHelper.ActionBool(requires.Select(r => r.RequirementId), dataAccess.DeleteRequirements, log);
                     }
                 }
             }

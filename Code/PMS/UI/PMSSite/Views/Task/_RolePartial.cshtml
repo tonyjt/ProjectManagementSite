@@ -1,6 +1,10 @@
 ﻿@model TaskRolePartialModel
 
-
+<div style="width:100%;" class="padding-none">
+<input type="hidden" value="@Model.Task.TaskId" class="hidTask"/>
+<input type="hidden" value="@Model.Role.GetByteEnumValue()" class="hidRole" />
+    
+   @string.Format("{0}:",Model.Role.GetEnumDescription())
 @if (Model.Task.ContainRole(Model.Role))
 {
     TaskParticipator role = Model.Task.GetRole(Model.Role);
@@ -10,7 +14,7 @@
         <option>待定</option>
         @foreach (ProjectParticipator pp in Model.Users.Where(p => (p.RoleEnum & RoleEnum.Designer) != 0))
         {
-            <option value="@pp.UserId" @(pp.UserId == roleId ? "selected:selected" : "") >@pp.User.UserName</option>
+            <option value="@pp.UserId" @(pp.UserId == roleId ? "selected=selected" : "") >@pp.User.UserName</option>
         }
     </select>
     
@@ -30,14 +34,15 @@
             break;
     }                        
     
-    <a class="pull-right">
+    <a class="pull-right hrefDisable" href="javascript:void(0);" onclick="roleDisable(this);">
         <i class="icon-remove"></i>
     </a>
 }
 else
 {
     @:---- 
-    <a class="pull-right">
+    <a class="pull-right hrefEnable" href="javascript:void(0);" onclick="roleEnable(this);">
         <i class="icon-plus"></i>
     </a>
-}                    
+}                   
+</div> 
