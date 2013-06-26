@@ -31,16 +31,22 @@ namespace PMS.Model
 
     public enum TaskParticipatorStatus : byte
     {
+        [Display(Name = "未分配")]
         Unassigned = 0,
 
+        [Display(Name = "已分配")]
         Assigned = 1,
 
+        [Display(Name = "进行中")]
         Working = 2,
 
+        [Display(Name = "已完成")]
         Finished = 3,
 
+        [Display(Name = "推迟")]
         Delayed = 4,
 
+        [Display(Name = "已取消")]
         Canceled  = 5
     }
 

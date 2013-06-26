@@ -1,0 +1,94 @@
+﻿@model TaskModel
+
+
+<tr>
+    <td class="td-seprow" colspan="8">
+        <input type="hidden" value="@Model.Task.History" class="hidHistory" />
+    </td>
+</tr>
+<tr class="info">
+    <td class="td-right td-content " colspan="8">
+        @Model.Task.Content
+    </td>
+</tr>
+<tr>
+    <td>
+        创建:@Model.Task.CreateTime.ToStandardDateString()<br />
+    </td>
+    <td>创建人:@Model.Task.User.UserName</td>
+    <td>状态:<label class="label">@Model.Task.StatusEnum.GetEnumDescription()</label></td>
+    
+    <td>更新:@Model.Task.UpdateTime.ToStandardDateString()</td>
+    <td>版本: @(Model.Task.Requirement != null ? Model.Task.Requirement.ProjectVersion.VersionName : "--")</td>
+    <td>需求: 
+        <a href="@(Model.Task.Requirement != null ? Url.Action("detail", "requirement", new { requirementid = Model.Task.Requirement.RequirementId }) : "javascript:void(0);")" target="_blank">
+            @(Model.Task.Requirement != null ? Model.Task.Requirement.Title : "--")
+        </a>
+    </td>
+  <td> <a href="javascript:void(0);" class="hrefHistory" onclick="viewHistory(this);">查看历史记录</a></td>
+    <td  class="td-right"><a href="javascript:void(0);" class="hrefPlan" onclick="viewPlan(this);">显示计划</a></td>
+     @* <td class="tr-twoRow">@Model.Task.CreateTime.ToStandardString()<br />
+        @Model.Task.User.UserName<br />
+        <a href="javascript:void(0);" class="hrefHistory" onclick="viewHistory(this);">查看历史记录</a>
+    </td>
+    <td class="tr-twoRow">@Model.Task.UpdateTime.ToStandardString()<br />
+        状态:@Model.Task.StatusEnum.GetEnumDescription()<br />
+        <a href="javascript:void(0);" class="hrefPlan" onclick="viewPlan(this);">显示计划</a>
+    </td>
+
+    <td class="tr-twoRow">
+        @(Model.Task.Requirement != null ? Model.Task.Requirement.ProjectVersion.VersionName : "--")
+    </td>
+    <td class="tr-twoRow">
+        <a href="@(Model.Task.Requirement != null ? Url.Action("detail", "requirement", new { requirementid = Model.Task.Requirement.RequirementId }) : "javascript:void(0);")" target="_blank">
+            @(Model.Task.Requirement != null ? Model.Task.Requirement.Title : "--")
+        </a>
+    </td>*@
+</tr>
+<tr>
+    <td class="td-worker" colspan="2">
+        @{
+
+            Html.RenderPartial("_RolePartial", new TaskRolePartialModel(Model, RoleEnum.Designer));
+        }
+    </td>
+    <td class="td-worker" colspan="2">
+        @{
+            Html.RenderPartial("_RolePartial", new TaskRolePartialModel(Model, RoleEnum.Developer));
+        }
+    </td>
+    <td class="td-worker" colspan="2">
+        @{
+            Html.RenderPartial("_RolePartial", new TaskRolePartialModel(Model,RoleEnum.Tester));
+        }
+    </td>
+    <td class="td-worker td-right" colspan="2">
+    @{
+        Html.RenderPartial("_RolePartial", new TaskRolePartialModel(Model, RoleEnum.Operator));
+    }
+</tr>
+
+<tr class="hide tr-plan">
+    <td  colspan="2">
+        @if(Model.Task.ContainRole(RoleEnum.Designer)){
+                Html.RenderPartial("_RolePlanPartial", Model.Task.GetRole(RoleEnum.Designer));
+            }
+        
+    </td>
+    <td  colspan="2">@if (Model.Task.ContainRole(RoleEnum.Developer))
+        {
+            Html.RenderPartial("_RolePlanPartial", Model.Task.GetRole(RoleEnum.Developer));
+         }
+        
+    </td>
+    <td  colspan="2">
+        @if(Model.Task.ContainRole(RoleEnum.Tester)){
+            Html.RenderPartial("_RolePlanPartial", Model.Task.GetRole(RoleEnum.Tester));
+        }
+    </td>
+    <td  colspan="2">
+        @if(Model.Task.ContainRole(RoleEnum.Operator)){
+            Html.RenderPartial("_RolePlanPartial", Model.Task.GetRole(RoleEnum.Operator));
+        }
+    </td>
+</tr>

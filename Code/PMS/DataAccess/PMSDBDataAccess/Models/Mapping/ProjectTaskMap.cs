@@ -20,6 +20,7 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
             // Table & Column Mappings
             this.ToTable("ProjectTask");
             this.Property(t => t.TaskId).HasColumnName("TaskId");
+            this.Property(t => t.ProjectId).HasColumnName("ProjectId");
             this.Property(t => t.RequirementId).HasColumnName("RequirementId");
             this.Property(t => t.Content).HasColumnName("Content");
             this.Property(t => t.Creator).HasColumnName("Creator");
@@ -29,6 +30,9 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
             this.Property(t => t.UpdateTime).HasColumnName("UpdateTime");
 
             // Relationships
+            this.HasRequired(t => t.Project)
+                .WithMany(t => t.ProjectTasks)
+                .HasForeignKey(d => d.ProjectId);
             this.HasOptional(t => t.Requirement)
                 .WithMany(t => t.ProjectTasks)
                 .HasForeignKey(d => d.RequirementId);

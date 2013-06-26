@@ -48,6 +48,8 @@ namespace PMS.PMSSite.Models
         {
             this.PageSize = 5;
         }
+
+        public RoleEnum UserRole { get; set; }
     }
 
     public class TaskDetailModel:TaskDetailPostModel
@@ -86,6 +88,15 @@ namespace PMS.PMSSite.Models
         public bool Continue { get; set; }
     }
 
+    public class TaskModel
+    {
+        public ProjectTask Task { get; set; }
+
+        public IEnumerable<ProjectParticipator> Users { get; set; }
+
+        public RoleEnum UserRole { get; set; }
+    }
+
     public class TaskRolePartialModel
     {
         public ProjectTask Task { get; set; }
@@ -94,6 +105,15 @@ namespace PMS.PMSSite.Models
 
         public RoleEnum Role { get; set; }
 
+        public bool UserEnable { get; set; }
+
+        public TaskRolePartialModel(TaskModel taskModel,RoleEnum role)
+        {
+            this.Task = taskModel.Task;
+            this.Users = taskModel.Users;
+            this.Role = role;
+            UserEnable = (taskModel.UserRole & role) != 0;
+        }
     }
 
     public enum TaskStatusModel: byte

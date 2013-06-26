@@ -32,7 +32,7 @@ namespace PMS.PMSBLL
                 task.CreateTime = DateTime.Now;
                 task.UpdateTime = DateTime.Now;
 
-                task.StatusEnum = GetTaskStatus(task.TaskParticipators);
+                task.StatusEnum = GetTaskStatus(task);
 
                 task.RequirementId = GuidHelper.SetNullable(task.RequirementId);
                 
@@ -63,30 +63,7 @@ namespace PMS.PMSBLL
             return tps;
         }
 
-        public static ProjectTaskStatus GetTaskStatus(ICollection<TaskParticipator> tps)
-        {
-            ProjectTaskStatus status = ProjectTaskStatus.Unassigned;
-
-            int unAssignedCount = tps.Where(t => t.StatusEnum == TaskParticipatorStatus.Unassigned).Count();
-
-            if (unAssignedCount == tps.Count())
-                status = ProjectTaskStatus.Unassigned;
-            else
-            {
-                int assignedCount = tps.Where(t => t.StatusEnum == TaskParticipatorStatus.Assigned).Count();
-
-                if (assignedCount == tps.Count())
-                {
-                    status = ProjectTaskStatus.Assigned;
-                }
-                else if(assignedCount>0)
-                {
-                    status = ProjectTaskStatus.Assigning;
-                }
-            }
-
-            return status;
-        }
+       
 
         public static ICollection<TaskParticipator> MergeParticipators(IList<TaskParticipator> tps)
         {
@@ -122,7 +99,7 @@ namespace PMS.PMSBLL
                 userId = UserManager.GetUserId(user);
                 IEnumerable<byte> statusByteList = statusList.Select(s => s.GetByteEnumValue());
 
-                IEnumerable<ProjectTask> tasks = dataAccess.SearchTask(versionId, requirementId, statusByteList, userId, out totalCount, pageSize, pageIndex);
+                IEnumerable<ProjectTask> tasks = dataAccess.SearchTask(projectId,versionId, requirementId, statusByteList, userId, out totalCount, pageSize, pageIndex);
 
                 return tasks;
             }
@@ -149,8 +126,6 @@ namespace PMS.PMSBLL
 
             if(task != null)
             {
-                //TaskParticipator tp = task.TaskParticipators.Where(t=>t.RoleEnum == role).FirstOrDefault();
-
                 if (!task.ContainRole(role)) 
                 {
                     TaskParticipator tpNew = new TaskParticipator
@@ -160,7 +135,10 @@ namespace PMS.PMSBLL
                         RoleEnum = role,
                         StatusEnum = TaskParticipatorStatus.Unassigned
                     };
-                    return ManagerHelper.ActionVoid(tpNew, dataAccess.EnableRole, log);
+                    if (ManagerHelper.ActionVoid(tpNew, dataAccess.EnableRole, log))
+                    {
+                        return SetTaskStatus(taskId);
+                    }
                 }
             }
 
@@ -182,10 +160,159 @@ namespace PMS.PMSBLL
                         TaskParticipatorId = tp.TaskParticipatorId
                     };
 
-                    return ManagerHelper.ActionVoid(tpDelete, dataAccess.DisableRole, log);
+                    if (ManagerHelper.ActionVoid(tpDelete, dataAccess.DisableRole, log))
+                    {
+                        return SetTaskStatus(taskId);
+
+                    }
                 }
             }
             return false;
         }
+
+        public static bool AssignRole(Guid taskId, RoleEnum role,Guid userId)
+        {
+            ProjectTask task = GetTask(taskId);
+
+            if (task != null)
+            {
+                TaskParticipator tp = task.TaskParticipators.Where(p => p.RoleEnum == role).FirstOrDefault();
+
+                if (tp != null)
+                {
+                    tp.UserId = GuidHelper.SetNullable(userId);
+                    tp.StatusEnum = TaskParticipatorStatus.Assigned;
+                    if (ManagerHelper.ActionVoid(tp, dataAccess.AssignRole, log))
+                    {
+                        return SetTaskStatus(taskId);
+                    }
+                }
+            }
+            return false;
+        }
+
+        private static bool CheckTaskRoleStatus(TaskParticipator tp, TaskParticipatorStatus status)
+        {
+            //TaskParticipatorStatus status = tp.StatusEnum;
+
+            bool result = false;
+
+            if (tp != null)
+            {
+                if (status == TaskParticipatorStatus.Unassigned)
+                {
+                    if (!tp.UserId.HasValue) result = true;
+                }
+                else if (status == TaskParticipatorStatus.Assigned)
+                {
+                    if (tp.StatusEnum == TaskParticipatorStatus.Unassigned && tp.UserId.HasValue) result = true;
+                }
+
+                else if (status == TaskParticipatorStatus.Working)
+                {
+                    if (tp.StatusEnum == TaskParticipatorStatus.Assigned || tp.StatusEnum == TaskParticipatorStatus.Delayed)
+                    {
+                        result = true;
+                    }
+                }
+                else if (status == TaskParticipatorStatus.Delayed)
+                {
+                    if (tp.StatusEnum == TaskParticipatorStatus.Assigned || tp.StatusEnum == TaskParticipatorStatus.Working)
+                    {
+                        result = true;
+                    }
+                }
+                else if (status == TaskParticipatorStatus.Finished)
+                {
+                    if (tp.StatusEnum == TaskParticipatorStatus.Working)
+                    {
+                        result = true;
+                    }
+                }
+                else if (status == TaskParticipatorStatus.Canceled)
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        public static bool SetTaskStatus(Guid taskId)
+        {
+            ProjectTask task = GetTask(taskId);
+
+            return SetTaskStatus(task);
+        }
+
+        public static bool SetTaskStatus(ProjectTask task)
+        {
+            if (task != null)
+            {
+                ProjectTaskStatus status = GetTaskStatus(task);
+
+                task.StatusEnum = status;
+
+                return ManagerHelper.GetModel(task.TaskId, status, dataAccess.UpdateTaskStatus, log);
+            }
+            else
+                return false;
+        }
+
+        public static ProjectTaskStatus GetTaskStatus(ProjectTask task)
+        {
+            if (task == null) return ProjectTaskStatus.Unassigned;
+
+            ICollection<TaskParticipator> tps  = task.TaskParticipators;
+
+            ProjectTaskStatus status =task.StatusEnum;
+
+            if (status == ProjectTaskStatus.Unassigned || status == ProjectTaskStatus.Assigning || status == ProjectTaskStatus.Assigned)
+            {
+
+                int unAssignedCount = tps.Where(t => t.StatusEnum == TaskParticipatorStatus.Unassigned).Count();
+
+                if (unAssignedCount == tps.Count())
+
+                    status = ProjectTaskStatus.Unassigned;
+
+                else if (unAssignedCount == 0)
+                {
+                    status = ProjectTaskStatus.Assigned;
+                }
+
+                else
+                {
+                    status = ProjectTaskStatus.Assigning;
+                }
+                
+            }
+
+            return status;
+        }
+
+        //private static bool SetHistory(Task task, 
+
+        public static bool SetTaskRoleStatus(Guid taskId, RoleEnum role, TaskParticipatorStatus status)
+        {
+            bool result = false;
+            ProjectTask task = GetTask(taskId);
+
+            if (task != null)
+            {
+                TaskParticipator tp = task.TaskParticipators.Where(p => p.RoleEnum == role).FirstOrDefault();
+
+                result = CheckTaskRoleStatus(tp, status);
+
+
+                if (result)
+                {
+                    tp.StatusEnum = status;
+                    result = ManagerHelper.ActionBool(tp, dataAccess.UpdateTaskRole, log);
+                }
+            }
+            return result;
+        }
+
+
     }
 }

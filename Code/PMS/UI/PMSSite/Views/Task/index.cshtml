@@ -7,8 +7,13 @@
     <style type="text/css">
         .td-worker {
             width: 18%;
+            vertical-align:middle;
         }
 
+        .td-worker div{
+            vertical-align:middle;
+
+        }
         .td-content {
             width: 72%;
         }
@@ -59,7 +64,7 @@
 
 <div>
     <table class="table table-bordered table-norightborder">
-        <thead>
+        @*<thead>
             <tr>
                 <th>创建时间
                 </th>
@@ -72,158 +77,20 @@
 
                 <th colspan="4" class="td-content td-right " class="td-right"></th>
             </tr>
-        </thead>
+        </thead>*@
         @foreach (ProjectTask task in Model.Tasks)
         {
-            <tbody>
-                <tr>
-                    <td class="td-seprow" colspan="8">
-                          <input type="hidden" value="@task.History" class="hidHistory" />
-                    </td>
-                </tr>
-                <tr class="info">
-                    <td class="td-right td-content " colspan="8">
-                        @task.Content
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tr-twoRow">@task.CreateTime.ToStandardString()<br />
-                        @task.User.UserName<br />
-                        <a href="javascript:void(0);" class="hrefHistory">查看历史记录</a>
-                    </td>
-                    <td class="tr-twoRow">@task.UpdateTime.ToStandardString()<br />
-                        状态:@task.StatusEnum.GetEnumDescription()<br />
-                        <a href="javascript:void(0);" class="hrefPlan">显示计划</a>
-                    </td>
-
-                    <td class="tr-twoRow">
-                        @(task.Requirement != null ? task.Requirement.ProjectVersion.VersionName : "--")
-                    </td>
-                    <td class="tr-twoRow">
-                        <a href="#">@(task.Requirement != null ? task.Requirement.Title : "--")</a>
-                    </td>
-                    <td class="td-worker">
-                    @{
-
-            Html.RenderPartial("_RolePartial", new TaskRolePartialModel
+            @:<tbody>
+            Html.RenderPartial("_TaskPartial", new TaskModel
             {
                 Task = task,
-                Role = RoleEnum.Designer,
-                Users = Model.Users
+                Users = Model.Users,
+                UserRole = Model.UserRole
             });
-                    }
-                    </td>
-                    <td class="td-worker">
-                    @{
-            Html.RenderPartial("_RolePartial", new TaskRolePartialModel
-            {
-                Task = task,
-                Role = RoleEnum.Developer,
-                Users = Model.Users
-            });
-                    }
-                    </td>
-                    <td class="td-worker">
-                     @{
-            Html.RenderPartial("_RolePartial", new TaskRolePartialModel
-            {
-                Task = task,
-                Role = RoleEnum.Tester,
-                Users = Model.Users
-            });
-                     }
-                    </td>
-                    <td class="td-worker td-right">
-                     @{
-            Html.RenderPartial("_RolePartial", new TaskRolePartialModel
-            {
-                Task = task,
-                Role = RoleEnum.Operator,
-                Users = Model.Users
-            });
-                    }
-                </tr>
-
-                <tr class="hide tr-plan">
-                    <td></td>
-                    <td>状态:未分配 <a href="">修改计划</a><br />
-                        计划:暂无
-                    </td>
-                    <td>状态:未分配 <a href="">修改计划</a><br />
-                        计划:06-12 16:00 至  06-13 18:00
-                    </td>
-                    <td class="td-right">状态:未分配 <a href="">修改计划</a><br />
-                        计划:暂无
-                    </td>
-                </tr>
-            </tbody>
+            @:</tbody>
         }
 
-        @*  <tbody>
-
-            <tr>
-                <td class="td-seprow" colspan="8"></td>
-            </tr>
-            <tr class="info">
-                <td class="td-right td-content " colspan="8">asdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffff ffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffff ffffffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdffffffffff fffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdfasdfasdfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffasdfasdfasdf
-                </td>
-            </tr>
-            <tr>
-                <td rowspan="2">2013-06-12 14:44<br />
-                    liuhasiy@hotmail.com<br />
-                    <a href="">查看历史记录</a>
-                </td>
-                <td rowspan="2">2013-06-16 18:00<br />
-                    状态:分配中
-                </td>
-
-                <td rowspan="2">0.1
-                </td>
-                <td rowspan="2">
-                    <a href="#">显示任务</a>
-                </td>
-                <td class="td-worker">设计:<select class="select-small">
-                    <option>liujiangtao@hotmai.com</option>
-                    <option>----</option>
-                    <option>待定</option>
-                </select>
-                    <a href="#">设计图</a>
-                </td>
-                <td class="td-worker">开发:<select class="select-small">
-                    <option>待定</option>
-                    <option>liujiangtao@hotmai.com</option>
-                </select>
-                    <a href="">接受</a>
-
-                </td>
-                <td class="td-worker">测试:<select class="select-small">
-                    <option>liujiangtao@hotmai.com</option>
-                    <option>待定</option>
-                </select>
-                    <a href="#">测试用例</a>
-                </td>
-                <td class="td-worker td-right">运维:<select class="select-small">
-                    <option>待定</option>
-                </select>
-                    <a href="#">统一运维</a>
-
-                </td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td>状态:未分配 <a href="">修改计划</a><br />
-                    计划:暂无
-                </td>
-                <td>状态:未分配 <a href="">修改计划</a><br />
-                    计划:06-12 16:00 至  06-13 18:00
-                </td>
-                <td class="td-right">状态:未分配 <a href="">修改计划</a><br />
-                    计划:暂无
-                </td>
-            </tr>
-        </tbody>*@
-
+      
     </table>
     @{
         Html.RenderPartial("_PagerPartial", new SharedPagerModel
@@ -256,6 +123,12 @@
         var disableUrl = '@Url.Action("RoleDisable")';
 
         var assignUrl = '@Url.Action("RoleAssign")';
+
+        var takeUrl = '@Url.Action("RoleTake")';
+
+        var startUrl = '@Url.Action("RoleStart")';
+
+        var finishUrl = '@Url.Action("RoleFinish")';
     </script>
 
     @Scripts.Render("~/Scripts/task.index.js")

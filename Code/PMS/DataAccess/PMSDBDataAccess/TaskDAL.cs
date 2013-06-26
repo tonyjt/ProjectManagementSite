@@ -25,7 +25,7 @@ namespace PMS.PMSDBDataAccess
             }
         }
 
-        public IEnumerable<ProjectTask> SearchTask(Guid versionId, Guid requirementId, IEnumerable<byte> statusList, Guid userId,out int totalCount, int pageSize, int pageIndex) 
+        public IEnumerable<ProjectTask> SearchTask(Guid projectId,Guid versionId, Guid requirementId, IEnumerable<byte> statusList, Guid userId,out int totalCount, int pageSize, int pageIndex) 
         {
             using (PMSDBContext context = new PMSDBContext())
             {
@@ -34,7 +34,8 @@ namespace PMS.PMSDBDataAccess
                                 .Include(r => r.TaskParticipators)
                                 .Include(r => r.Requirement.ProjectVersion)
                                 .Include(r => r.User)
-                            where (versionId == Guid.Empty || (t.Requirement != null && t.Requirement.VersionId == versionId))
+                            where t.ProjectId == projectId
+                                &&(versionId == Guid.Empty || (t.Requirement != null && t.Requirement.VersionId == versionId))
                                 && (requirementId== Guid.Empty  || t. RequirementId == requirementId)
                                 && (userId== Guid.Empty  || t.TaskParticipators.Select(p => p.UserId).Contains(userId))
                                 && ((statusList.Count() == 0 && t.Status!= (byte)ProjectTaskStatus.Canceled) || statusList.Contains(t.Status))
@@ -51,8 +52,10 @@ namespace PMS.PMSDBDataAccess
             using (PMSDBContext context = new PMSDBContext())
             {
                 return (from t in context.ProjectTasks
-                            .Include(t=>t.TaskParticipators)
-                            .Include(t=>t.Requirement)
+                                .Include(r => r.Requirement)
+                                .Include(r => r.TaskParticipators)
+                                .Include(r => r.Requirement.ProjectVersion)
+                                .Include(t => t.User)
                         where t.TaskId == TaskId
                         select t).FirstOrDefault();
             }
@@ -75,6 +78,63 @@ namespace PMS.PMSDBDataAccess
                 context.Entry(tp).State = EntityState.Deleted;
 
                 context.SaveChanges();
+            }
+        }
+        public void AssignRole(TaskParticipator tp)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var model = (from t in context.TaskParticipators
+                             where t.TaskParticipatorId == tp.TaskParticipatorId
+                             select t).FirstOrDefault();
+
+                if (model != null)
+                {
+                    model.UserId = tp.UserId;
+                    model.Status = tp.Status;
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public bool UpdateTaskStatus(Guid taskId, ProjectTaskStatus status)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var model = (from t in context.ProjectTasks
+                             where t.TaskId == taskId
+                             select t).FirstOrDefault();
+
+                if (model != null)
+                {
+                    model.StatusEnum = status;
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
+            }
+
+        }
+
+        public bool UpdateTaskRole(TaskParticipator tp)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var model = (from t in context.TaskParticipators
+                             where t.TaskParticipatorId == tp.TaskParticipatorId
+                             select t).FirstOrDefault();
+
+                if (model != null)
+                {
+                    model.StatusEnum = tp.StatusEnum;
+                    model.UserId = tp.UserId;
+
+                    context.SaveChanges();
+                    return true;
+                }
+                else
+                    return false;
             }
         }
     }

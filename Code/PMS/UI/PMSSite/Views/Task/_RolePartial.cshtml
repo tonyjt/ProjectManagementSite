@@ -1,23 +1,56 @@
 ﻿@model TaskRolePartialModel
-
-<div style="width:100%;" class="padding-none">
+@{
+   Guid userId = ViewBag.UserId;
+}
+<div style="width:100%;" class="padding-none row-fluid">
+   <div class="span2">
+       
 <input type="hidden" value="@Model.Task.TaskId" class="hidTask"/>
 <input type="hidden" value="@Model.Role.GetByteEnumValue()" class="hidRole" />
-    
    @string.Format("{0}:",Model.Role.GetEnumDescription())
+    </div> 
+    
 @if (Model.Task.ContainRole(Model.Role))
 {
     TaskParticipator role = Model.Task.GetRole(Model.Role);
 
     Guid roleId = role != null && role.UserId.HasValue ? role.UserId.Value : Guid.Empty;
-    <select class="select-small">
-        <option>待定</option>
-        @foreach (ProjectParticipator pp in Model.Users.Where(p => (p.RoleEnum & RoleEnum.Designer) != 0))
+
+    bool isMine = roleId == userId;
+         
+    <div class="span9">
+    <select class="span9" onchange="userAssign(this);">
+
+        @if(!GuidHelper.IsValid(roleId)){
+            <option value="@Guid.Empty">待定</option>
+        }
+        @foreach (ProjectParticipator pp in Model.Users.Where(p => p.UserId == roleId || p.RoleEnum.HasFlag(Model.Role)))
         {
             <option value="@pp.UserId" @(pp.UserId == roleId ? "selected=selected" : "") >@pp.User.UserName</option>
         }
     </select>
-    
+
+
+   @if (role.StatusEnum == TaskParticipatorStatus.Unassigned)
+   {
+       if(Model.UserEnable)
+       {   
+           <a href="javascript:void(0);" onclick="userTake(this);" title="接受任务">接受</a>
+       }
+   }
+   else if (isMine)
+   {
+       if(role.StatusEnum == TaskParticipatorStatus.Assigned)
+       {
+            <a href="javascript:void(0);" onclick="roleStart(this);" title="开始任务">开始</a>
+       }
+
+       else if (role.StatusEnum == TaskParticipatorStatus.Working)
+       {
+           <a href="javascript:void(0);" onclick="roleFinish(this);" title="开始任务">完成</a>
+       }
+   }
+        @*
     switch(Model.Role){
         case RoleEnum.Designer:
             <a href="#">设计图</a>
@@ -34,15 +67,25 @@
             break;
     }                        
     
+    *@
+    </div>
+    <div class="span1">
     <a class="pull-right hrefDisable" href="javascript:void(0);" onclick="roleDisable(this);">
         <i class="icon-remove"></i>
     </a>
+    </div>
 }
 else
 {
-    @:---- 
+    
+    <div class="span9">
+    ---- 
+    </div>
+    <div class="span1">
     <a class="pull-right hrefEnable" href="javascript:void(0);" onclick="roleEnable(this);">
         <i class="icon-plus"></i>
     </a>
-}                   
+    </div>    
+}               
+        
 </div> 

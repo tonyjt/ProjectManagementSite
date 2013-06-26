@@ -412,6 +412,8 @@
     <Content Include="Views\Task\index.cshtml" />
     <Content Include="Views\Task\_RolePartial.cshtml" />
     <Content Include="Views\Shared\_PagerPartial.cshtml" />
+    <Content Include="Views\Task\_TaskPartial.cshtml" />
+    <Content Include="Views\Task\_RolePlanPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

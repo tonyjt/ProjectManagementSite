@@ -8,6 +8,7 @@ namespace PMS.Model
         public Project()
         {
             this.ProjectParticipators = new List<ProjectParticipator>();
+            this.ProjectTasks = new List<ProjectTask>();
             this.ProjectVersions = new List<ProjectVersion>();
         }
 
@@ -20,6 +21,7 @@ namespace PMS.Model
         public Nullable<System.DateTime> StartDate { get; set; }
         public virtual User User { get; set; }
         public virtual ICollection<ProjectParticipator> ProjectParticipators { get; set; }
+        public virtual ICollection<ProjectTask> ProjectTasks { get; set; }
         public virtual ICollection<ProjectVersion> ProjectVersions { get; set; }
     }
 }

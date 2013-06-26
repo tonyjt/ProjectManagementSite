@@ -33,6 +33,9 @@ namespace PMS.PMSSite.Controllers
 
             model.Statuses = EnumHelper.GetList<TaskStatusModel>();
 
+
+            model.UserRole = model.Users.Where(p => p.UserId == this.CurrentUserId).FirstOrDefault().RoleEnum;
+
             return View("index",model);
         }
         [HttpGet]
@@ -85,7 +88,8 @@ namespace PMS.PMSSite.Controllers
                     RequirementId = model.RequirementId,
                     Content = model.Content,
                     Creator = this.CurrentUserId,
-                    TaskParticipators = tpc
+                    TaskParticipators = tpc,
+                    ProjectId = this.ProjectId
                 };
 
                 bool result = TaskManager.CreateTask(task);
@@ -114,20 +118,50 @@ namespace PMS.PMSSite.Controllers
             return Role(taskId,role, result);
         }
 
+        public ActionResult RoleAssign(Guid taskId, RoleEnum role, Guid userId)
+        {
+            bool result = TaskManager.AssignRole(taskId, role,userId);
+
+            return Role(taskId, role, result);
+        }
+
+        public ActionResult RoleTake(Guid taskId, RoleEnum role)
+        {
+
+            bool result = TaskManager.AssignRole(taskId, role,this.CurrentUserId);
+
+            return Role(taskId, role, result);
+        }
+
+        public ActionResult RoleStart(Guid taskId, RoleEnum role)
+        {
+            bool result = TaskManager.SetTaskRoleStatus(taskId, role, TaskParticipatorStatus.Working);
+
+            return Role(taskId, role, result);
+        }
+
+        public ActionResult RoleFinish(Guid taskId, RoleEnum role)
+        {
+            bool result = TaskManager.SetTaskRoleStatus(taskId, role, TaskParticipatorStatus.Finished);
+
+            return Role(taskId, role, result);
+        }
+
         private ActionResult Role(Guid taskId, RoleEnum role, bool result)
         {
             if (result)
             {
                 ProjectTask task = TaskManager.GetTask(taskId);
 
-                TaskRolePartialModel model = new TaskRolePartialModel
+                TaskModel model = new TaskModel
                 {
                     Task = task,
-                    Role = role,
-                    Users = UserManager.GetProjectParticipators(this.ProjectId, role)
+                    Users = UserManager.GetProjectParticipators(this.ProjectId)
+                    
                 };
+                model.UserRole = model.Users.Where(p => p.UserId == this.CurrentUserId).FirstOrDefault().RoleEnum;
 
-                return PartialView("_RolePartial", model);
+                return PartialView("_TaskPartial", model);
             }
             else
             {

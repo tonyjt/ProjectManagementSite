@@ -1,0 +1,9 @@
+﻿@model TaskParticipator
+
+@if (Model != null)
+{
+    @: 状态:
+    <label class="label">@Model.StatusEnum.GetEnumDescription()</label>
+    <a href="">修改计划</a><br />
+    @: 计划:暂无
+}

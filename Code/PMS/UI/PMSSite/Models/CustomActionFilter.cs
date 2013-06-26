@@ -17,7 +17,9 @@ namespace PMS.PMSSite.Models
         {
             object objProject;
             string strProject;
-            
+
+            filterContext.Controller.ViewData["UserId"] = UserManager.GetCurrentUserId();
+   
             if (filterContext.RouteData.Values.TryGetValue("project", out objProject))
             {
                 strProject = objProject.ToString();

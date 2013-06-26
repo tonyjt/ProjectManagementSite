@@ -23,7 +23,8 @@ namespace PMS.Model
         }
     }
 
-    public class RequirementHistory_Validation{
+    public class RequirementHistory_Validation
+    {
 
         //[Key]
         //public System.Guid HistoryId { get; set; }
