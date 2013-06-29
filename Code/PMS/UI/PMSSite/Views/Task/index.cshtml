@@ -44,6 +44,14 @@
             <option value="@status.GetByteEnumValue()" @(status == Model.Status ? "selected=selected" : "")>@status.GetEnumDescription()</option>
         }
     </select>
+
+    角色:<select class="select-small" id="role" name="role">
+        <option  value="">不限</option>
+        @foreach (RoleEnum role in Model.Roles)
+        {
+            <option value="@role.GetByteEnumValue()" @(role == Model.Role ? "selected=selected" : "")>@role.GetEnumDescription()</option>
+        }
+       </select>
     用户:<select class="select-small" id="user" name="user">
         <option  value="">不限</option>
         @foreach (ProjectParticipator user in Model.Users)
@@ -59,7 +67,15 @@
     <a href="javascript:void(0);" class="plan">显示所有计划</a>
 
     <a class="btn pull-right btn-small btn-success" href="@Url.Action("new")">
-        <i class="icon-plus"></i>添加任务</a>
+        <i class="icon-plus"></i>添加任务</a> 
+    
+    <br />
+
+    我的未完任务：
+    <a href="">设计</a>
+    <a href="">开发</a>
+    <a href="">测试</a>
+    <a href="">设计</a>
 </form>
 
 <div>
@@ -129,6 +145,8 @@
         var startUrl = '@Url.Action("RoleStart")';
 
         var finishUrl = '@Url.Action("RoleFinish")';
+
+        var cancelUrl = '@Url.Action("Cancel")';
     </script>
 
     @Scripts.Render("~/Scripts/task.index.js")

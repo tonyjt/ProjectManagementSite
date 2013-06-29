@@ -25,7 +25,7 @@ namespace PMS.PMSDBDataAccess
             }
         }
 
-        public IEnumerable<ProjectTask> SearchTask(Guid projectId,Guid versionId, Guid requirementId, IEnumerable<byte> statusList, Guid userId,out int totalCount, int pageSize, int pageIndex) 
+        public IEnumerable<ProjectTask> SearchTask(Guid projectId,Guid versionId, Guid requirementId, IEnumerable<byte> statusList,short role, Guid userId,out int totalCount, int pageSize, int pageIndex) 
         {
             using (PMSDBContext context = new PMSDBContext())
             {
@@ -37,7 +37,7 @@ namespace PMS.PMSDBDataAccess
                             where t.ProjectId == projectId
                                 &&(versionId == Guid.Empty || (t.Requirement != null && t.Requirement.VersionId == versionId))
                                 && (requirementId== Guid.Empty  || t. RequirementId == requirementId)
-                                && (userId== Guid.Empty  || t.TaskParticipators.Select(p => p.UserId).Contains(userId))
+                                && (userId== Guid.Empty  || t.TaskParticipators.Where(p=> role == 0 || p.Roles == role).Select(p => p.UserId).Contains(userId))
                                 && ((statusList.Count() == 0 && t.Status!= (byte)ProjectTaskStatus.Canceled) || statusList.Contains(t.Status))
                             orderby t.CreateTime descending
                             select t;

@@ -51,5 +51,10 @@ namespace PMS.PMSBLL
 
             return pps.Where(p => (p.RoleEnum & role) != 0);
         }
+
+        public static ProjectParticipator GetUserRole(Guid projectId, Guid userId)
+        {
+            return ManagerHelper.GetModel(projectId,userId, ppDataAccess.GetProjectParticipators, log);
+        }
     }
 }

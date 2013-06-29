@@ -17,10 +17,22 @@ namespace PMS.PMSSite.Controllers
         //
         // GET: /Task/
 
+        //public ActionResult Default()
+        //{
+        //    ProjectParticipator pp = UserManager.GetUserRole(this.ProjectId, this.CurrentUserId);
+
+        //    TaskIndexModel model = new TaskIndexModel();
+        //    if (pp.RoleEnum.HasFlag(RoleEnum.Designer))
+        //    {
+        //        model.Role = RoleEnum.Designer;
+        //    }
+        //    else if(
+        //}
+
         public ActionResult Index(TaskIndexModel model)
         {
             int totalCount;
-            model.Tasks = TaskManager.SearchTask(this.ProjectId,model.Version, model.Requirement, GetStatus(model.Status), model.User, out totalCount, model.PageSize, model.PageIndex);
+            model.Tasks = TaskManager.SearchTask(this.ProjectId,model.Version, model.Requirement, GetStatus(model.Status),model.Role, model.User, out totalCount, model.PageSize, model.PageIndex);
 
 
             model.TotalRecordCount = totalCount;
@@ -33,6 +45,7 @@ namespace PMS.PMSSite.Controllers
 
             model.Statuses = EnumHelper.GetList<TaskStatusModel>();
 
+            model.Roles = EnumHelper.GetList<RoleEnum>();
 
             model.UserRole = model.Users.Where(p => p.UserId == this.CurrentUserId).FirstOrDefault().RoleEnum;
 
@@ -169,7 +182,17 @@ namespace PMS.PMSSite.Controllers
             }
         }
 
+        public ActionResult Cancel(Guid taskId)
+        {
+            bool result = TaskManager.Cancel(taskId);
 
+            if (result)
+                return AjaxShowSuccessMessage("删除任务成功",true,"");
+            else
+            {
+                return AjaxShowErrorMessage("删除任务失败，请稍后重试");
+            }
+        }
         public IEnumerable<ProjectTaskStatus> GetStatus(TaskStatusModel? model)
         {
             List<ProjectTaskStatus> statusList = new List<ProjectTaskStatus>();
@@ -185,6 +208,21 @@ namespace PMS.PMSSite.Controllers
                     case TaskStatusModel.Finishing:
                         statusList.Add(ProjectTaskStatus.Assigned);
                         statusList.Add(ProjectTaskStatus.Finishing);
+                        break;
+                    case TaskStatusModel.UnFinished:
+                        statusList.Add(ProjectTaskStatus.Unassigned);
+                        statusList.Add(ProjectTaskStatus.Assigning);
+                        statusList.Add(ProjectTaskStatus.Assigned);
+                        statusList.Add(ProjectTaskStatus.Finishing);
+                        break;
+                    case TaskStatusModel.DesignFinish:
+                        statusList.Add(ProjectTaskStatus.DesignFinish);
+                        break;
+                    case TaskStatusModel.NeedTest:
+                        statusList.Add(ProjectTaskStatus.NeedTest);
+                        break;
+                    case TaskStatusModel.NeedDeploy:
+                        statusList.Add(ProjectTaskStatus.NeedDeploy);
                         break;
                     case TaskStatusModel.Finished:
                         statusList.Add(ProjectTaskStatus.Finished);

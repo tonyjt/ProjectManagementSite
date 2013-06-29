@@ -88,7 +88,7 @@ namespace PMS.PMSBLL
             return tps;
         }
 
-        public static IEnumerable<ProjectTask>  SearchTask(Guid projectId,string version,string requirement,IEnumerable<ProjectTaskStatus> statusList, string  user,out int totalCount, int pageSize = 10,int pageIndex =1)
+        public static IEnumerable<ProjectTask>  SearchTask(Guid projectId,string version,string requirement,IEnumerable<ProjectTaskStatus> statusList,RoleEnum? role, string  user,out int totalCount, int pageSize = 10,int pageIndex =1)
         {
             try
             {
@@ -99,7 +99,8 @@ namespace PMS.PMSBLL
                 userId = UserManager.GetUserId(user);
                 IEnumerable<byte> statusByteList = statusList.Select(s => s.GetByteEnumValue());
 
-                IEnumerable<ProjectTask> tasks = dataAccess.SearchTask(projectId,versionId, requirementId, statusByteList, userId, out totalCount, pageSize, pageIndex);
+                short shortRole = role.HasValue ? (short)role.Value : (short)0;
+                IEnumerable<ProjectTask> tasks = dataAccess.SearchTask(projectId, versionId, requirementId, statusByteList, shortRole, userId, out totalCount, pageSize, pageIndex);
 
                 return tasks;
             }
@@ -252,41 +253,74 @@ namespace PMS.PMSBLL
 
                 task.StatusEnum = status;
 
-                return ManagerHelper.GetModel(task.TaskId, status, dataAccess.UpdateTaskStatus, log);
+                return UpdateTaskStatus(task);
             }
             else
                 return false;
+        }
+
+        public static bool UpdateTaskStatus(ProjectTask task)
+        {
+            return ManagerHelper.GetModel(task.TaskId, task.StatusEnum, dataAccess.UpdateTaskStatus, log);
         }
 
         public static ProjectTaskStatus GetTaskStatus(ProjectTask task)
         {
             if (task == null) return ProjectTaskStatus.Unassigned;
 
-            ICollection<TaskParticipator> tps  = task.TaskParticipators;
+            List<TaskParticipator> tps  = task.TaskParticipators.ToList();
 
             ProjectTaskStatus status =task.StatusEnum;
 
-            if (status == ProjectTaskStatus.Unassigned || status == ProjectTaskStatus.Assigning || status == ProjectTaskStatus.Assigned)
+            if (status != ProjectTaskStatus.Canceled)
             {
+                int countFinished = tps.Where(t => t.StatusEnum == TaskParticipatorStatus.Finished).Count();
 
-                int unAssignedCount = tps.Where(t => t.StatusEnum == TaskParticipatorStatus.Unassigned).Count();
-
-                if (unAssignedCount == tps.Count())
-
-                    status = ProjectTaskStatus.Unassigned;
-
-                else if (unAssignedCount == 0)
+                if (countFinished == tps.Count())
                 {
-                    status = ProjectTaskStatus.Assigned;
+                    status = ProjectTaskStatus.Finished;
                 }
-
+                else if (tps.Exists(t => t.RoleEnum == RoleEnum.Operator) && tps.Exists(t => t.RoleEnum == RoleEnum.Tester && t.StatusEnum == TaskParticipatorStatus.Finished))
+                {
+                    status = ProjectTaskStatus.NeedDeploy;
+                }
+                else if (tps.Exists(t => t.RoleEnum == RoleEnum.Tester) && tps.Exists(t => t.RoleEnum == RoleEnum.Developer && t.StatusEnum == TaskParticipatorStatus.Finished))
+                {
+                    status = ProjectTaskStatus.NeedTest;
+                }
+                else if (tps.Exists(t => t.RoleEnum == RoleEnum.Designer && t.StatusEnum == TaskParticipatorStatus.Finished))
+                {
+                    status = ProjectTaskStatus.DesignFinish;
+                }
                 else
                 {
-                    status = ProjectTaskStatus.Assigning;
-                }
-                
-            }
+                    int countStart = tps.Where(t => t.StatusEnum == TaskParticipatorStatus.Working).Count();
 
+                    if (countStart > 0)
+                    {
+                        status = ProjectTaskStatus.Finishing;
+                    }
+                    else
+                    {
+
+                        int unAssignedCount = tps.Where(t => t.StatusEnum == TaskParticipatorStatus.Unassigned).Count();
+
+                        if (unAssignedCount == tps.Count())
+
+                            status = ProjectTaskStatus.Unassigned;
+
+                        else if (unAssignedCount == 0)
+                        {
+                            status = ProjectTaskStatus.Assigned;
+                        }
+
+                        else
+                        {
+                            status = ProjectTaskStatus.Assigning;
+                        }
+                    }
+                }
+            }
             return status;
         }
 
@@ -308,11 +342,41 @@ namespace PMS.PMSBLL
                 {
                     tp.StatusEnum = status;
                     result = ManagerHelper.ActionBool(tp, dataAccess.UpdateTaskRole, log);
+
+                    if (result)
+                    {
+                        result = SetTaskStatus(task);
+
+                    }
                 }
             }
             return result;
         }
 
+        public static bool Cancel(Guid taskId)
+        {
+            bool result;
 
+            if (GuidHelper.IsValid(taskId))
+            {
+                ProjectTask task = GetTask(taskId, true);
+
+                if (task == null) result = false;
+
+                else if (task.StatusEnum == ProjectTaskStatus.Canceled) result = true;
+
+                else
+                {
+                    task.StatusEnum = ProjectTaskStatus.Canceled;
+
+                    result = UpdateTaskStatus(task);
+                }
+
+            }
+            else
+                result = false;
+
+            return result;
+        }
     }
 }

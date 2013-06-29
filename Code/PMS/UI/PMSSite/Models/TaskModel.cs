@@ -19,6 +19,8 @@ namespace PMS.PMSSite.Models
 
         public TaskStatusModel? Status { get; set; }
 
+        public RoleEnum? Role { get; set; }
+
         public new NameValueCollection GetRequestParameters()
         {
                 NameValueCollection parameters = new NameValueCollection();
@@ -28,7 +30,8 @@ namespace PMS.PMSSite.Models
                 parameters.Add("user", User);
                 if(Status.HasValue)
                     parameters.Add("status", Status.GetByteEnumValueToString());
-                
+                if (Role.HasValue)
+                    parameters.Add("role", Role.GetByteEnumValueToString());
 
                 return parameters;
          
@@ -43,6 +46,8 @@ namespace PMS.PMSSite.Models
         public IEnumerable<TaskStatusModel> Statuses { get; set; }
 
         public IEnumerable<ProjectParticipator> Users{get;set;}
+
+        public IEnumerable<RoleEnum> Roles { get; set; }
 
         public TaskIndexModel()
         {
@@ -118,17 +123,29 @@ namespace PMS.PMSSite.Models
 
     public enum TaskStatusModel: byte
     {
-        [Display(Name="需要分配")]
+        [Display(Name="需分配")]
         NeedAssign = 0,
 
         [Display(Name = "已分配")]
-        Finishing = 1,
+        Finishing,
+
+        [Display(Name="未完成")]
+        UnFinished,
+
+        [Display(Name = "设计完成")]
+        DesignFinish,
+
+        [Display(Name = "需要测试")]
+        NeedTest,
+
+        [Display(Name = "需要部署")]
+        NeedDeploy,
 
         [Display(Name = "已完成")]
-        Finished = 2,
+        Finished,
 
         [Display(Name="已取消")]
-        Cacneled = 3
+        Cacneled,
     }
 
 

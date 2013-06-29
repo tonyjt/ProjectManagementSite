@@ -13,19 +13,28 @@ namespace PMS.Model
         Unassigned = 0,
 
         [Display(Name = "分配中")]
-        Assigning = 1,
+        Assigning,
 
         [Display(Name = "已分配")]
-        Assigned = 2,
+        Assigned ,
 
         [Display(Name = "进行中")]
-        Finishing = 3,
+        Finishing,
+
+        [Display(Name="设计完成")]
+        DesignFinish,
+
+        [Display(Name="需要测试")]
+        NeedTest,
+        
+        [Display(Name="需要部署")]
+        NeedDeploy,
 
         [Display(Name = "已完成")]
-        Finished = 4,
+        Finished ,
 
         [Display(Name = "已取消")]
-        Canceled = 5
+        Canceled 
     }
 
 

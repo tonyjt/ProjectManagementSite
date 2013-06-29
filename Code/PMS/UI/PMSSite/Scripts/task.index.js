@@ -91,6 +91,23 @@ function roleFinish(htmlTag) {
 
     roleAction(url, htmlTag, null, null);
 }
+
+function cancelTask(htmlTag, taskId) {
+    
+    if (confirm('确认取消任务？取消后无法回复')) {
+
+        var url = cancelUrl;
+        var values = {
+            "TaskId": taskId,
+        };
+
+        callbackToUrl(url, values,null, function removeSuccess(result) {
+            var tbody = $(htmlTag).parents("td").parents("tr").parents("tbody");
+                $(tbody).remove();
+
+        });
+    }
+}
 function roleAction(url, htmlObject,key,value) {
 
     var tDiv = $(htmlObject).parents("div").children("div .span2");
@@ -116,7 +133,7 @@ function roleAction(url, htmlObject,key,value) {
         else {
             alert('出现异常');
         }
-    });
+    },null);
 }
 
 

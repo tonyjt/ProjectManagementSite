@@ -49,6 +49,12 @@
        {
            <a href="javascript:void(0);" onclick="roleFinish(this);" title="开始任务">完成</a>
        }
+       else{
+           @role.StatusEnum.GetEnumDescription()
+       }
+   }
+   else{
+       @role.StatusEnum.GetEnumDescription()
    }
         @*
     switch(Model.Role){

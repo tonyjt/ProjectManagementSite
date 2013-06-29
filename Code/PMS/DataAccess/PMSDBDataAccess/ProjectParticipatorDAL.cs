@@ -44,7 +44,18 @@ namespace PMS.PMSDBDataAccess
                 return pp.ToArray();
             }
         }
+        public ProjectParticipator GetProjectParticipators(Guid projectId,Guid userId)
+        {
+            using (PMSDBContext context = new PMSDBContext())
+            {
+                var pp = from p in context.ProjectParticipators
+                            .Include(p => p.User)
+                         where p.ProjectId == projectId && p.UserId == userId
+                         select p;
 
+                return pp.FirstOrDefault();
+            }
+        }
         //public IEnumerable<ProjectParticipator> GetProjectParticipators(Guid projectId,RoleEnum role)
         //{
         //    using (PMSDBContext context = new PMSDBContext())

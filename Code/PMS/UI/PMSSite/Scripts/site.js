@@ -55,7 +55,7 @@ function callback(formId) {
     //});
 }
 
-function callbackToUrl(url, values,funcSuccess) {
+function callbackToUrl(url, values,funcSuccess,funcSuccessExtra) {
 
     $("#overlay").show();
 
@@ -77,12 +77,16 @@ function callbackToUrl(url, values,funcSuccess) {
 
                 if (!jsonResult.Redirect) {
                     showMessage(true, jsonResult.Message);
+
                     //if (result.Content != null && funcSuccess != null) {
                     //    funcSuccess(result.Content);
                     //}
+                    if(funcSuccessExtra!= null) funcSuccessExtra();
                 }
                 else {
-                    window.location.href = jsonResult.RedirectUrl;
+                    if (jsonResult.RedirectUrl != "") window.location.href = jsonResult.RedirectUrl;
+                    else
+                        window.location.href = window.location.href;
                 }
             }
             else {
