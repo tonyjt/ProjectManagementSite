@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "计划";
+    Layout = "~/Views/Shared/_ContentLayout.cshtml";
+}
+
+@section styles{
+    @Styles.Render("~/Content/css/fullcalendar.css")
+    <style type="text/css">
+        #calendar {
+            margin: 0 auto;
+        }
+
+        .fc td, .fc th {
+            vertical-align: top !important;
+        }
+    </style>
+}
+<div class="row-fluid">
+    <div class="span9">
+        <div id='calendar'></div>
+    </div>
+    <div class="span3">
+        <div class="widget-box transparent">
+            <div class="widget-header">
+                <h4>说明</h4>
+            </div>
+
+            <div class="widget-main">
+                <div id="external-events">
+                    <div class="external-event event-example label-grey ui-draggable" data-class="label-grey" style="position: relative;">
+                        草稿
+                    </div>
+
+                    <div class="external-event event-example  label-purple" data-class="label-success" style="position: relative;">
+                        确认中的, 等待确认
+                    </div>
+
+                    <div class="external-event event-example  label-info" data-class="label-important" style="position: relative;">
+                        已经确认的
+                    </div>
+
+                    <div class="external-event event-example label-success" data-class="label-purple" style="position: relative;">
+                        已经完成的
+                    </div>
+
+                    <div class="external-event event-example label-yellow" data-class="label-yellow" style="position: relative; z-index: auto; left: 0px; top: 0px;">
+                        过期未完成的
+                    </div>
+
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    @Scripts.Render("~/Scripts/fullcalendar.js",
+                    "~/Scripts/plan.index.js")
+}

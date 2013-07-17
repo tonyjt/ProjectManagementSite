@@ -17,6 +17,7 @@
     <mvcSiteMapNode title="任务管理" controller="Task" action="Index">
       <mvcSiteMapNode title="添加新任务" controller="Task" action="New"/>
     </mvcSiteMapNode>
+    <mvcSiteMapNode title="计划管理" controller="Plan" action="Index"/>
   </mvcSiteMapNode>
  
 </mvcSiteMap>
