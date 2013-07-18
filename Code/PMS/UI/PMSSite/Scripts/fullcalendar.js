@@ -3290,7 +3290,7 @@ function AgendaView(element, calendar, viewName) {
 		
 		slotScroller.height(bodyHeight - allDayHeight - 1);
 		
-		slotHeight = slotTableFirstInner.height() + 1; // +1 for border
+		slotHeight = slotTable.height() / slotCnt; //slotTableFirstInner.height() + 1; // +1 for border
 
 		snapRatio = opt('slotMinutes') / snapMinutes;
 		snapHeight = slotHeight / snapRatio;

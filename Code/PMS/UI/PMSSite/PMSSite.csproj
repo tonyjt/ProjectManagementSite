@@ -436,6 +436,7 @@
     <Content Include="Views\Task\_TaskPartial.cshtml" />
     <Content Include="Views\Task\_RolePlanPartial.cshtml" />
     <Content Include="Views\Plan\Index.cshtml" />
+    <Content Include="Views\Plan\_NewPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

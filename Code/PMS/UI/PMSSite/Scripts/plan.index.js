@@ -14,6 +14,11 @@
         editable: true,
         firstDay: 1,
         defaultView: 'agendaWeek',
+        selectable: true,
+        selectHelper: true,
+        select: function(start, end, allDay) {
+            $("#modalNew").modal('show');
+        },
         events: [
                     {
                         title: 'All Day Event',

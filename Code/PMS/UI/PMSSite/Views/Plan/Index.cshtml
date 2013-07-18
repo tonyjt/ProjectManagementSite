@@ -53,7 +53,9 @@
         </div>
     </div>
 </div>
+@Html.Partial("_NewPartial")
 @section scripts{
-    @Scripts.Render("~/Scripts/fullcalendar.js",
+    @Scripts.Render("~/bundles/jqueryui",
+                    "~/Scripts/fullcalendar.js",
                     "~/Scripts/plan.index.js")
 }
