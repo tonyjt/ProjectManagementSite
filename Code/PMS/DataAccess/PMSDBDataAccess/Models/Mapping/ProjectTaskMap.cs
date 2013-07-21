@@ -11,6 +11,10 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
             this.HasKey(t => t.TaskId);
 
             // Properties
+            this.Property(t => t.Title)
+                .IsRequired()
+                .HasMaxLength(128);
+
             this.Property(t => t.Content)
                 .IsRequired();
 
@@ -20,6 +24,7 @@ namespace PMS.PMSDBDataAccess.Models.Mapping
             // Table & Column Mappings
             this.ToTable("ProjectTask");
             this.Property(t => t.TaskId).HasColumnName("TaskId");
+            this.Property(t => t.Title).HasColumnName("Title");
             this.Property(t => t.ProjectId).HasColumnName("ProjectId");
             this.Property(t => t.RequirementId).HasColumnName("RequirementId");
             this.Property(t => t.Content).HasColumnName("Content");

@@ -1,54 +1,62 @@
-﻿<div id="modalNew" class="hide modal fade in" tabindex="-1" style="overflow: hidden;" aria-hidden="false">
+﻿@model PlanNewModel
+
+<div id="modalNew" class="hide modal fade in" tabindex="-1" style="overflow: hidden;" aria-hidden="false">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
         <h3>新的计划:</h3>
     </div>
     <div class="modal-body">
         <div class="row-fluid">
-            <div class="span10">
-<div class="form-horizontal">
-            <div class="control-group">
-                <label class="control-label">
-                    任务
-                </label>
-                <div class="controls">
-                    <select class="select-small">
-                        <option>设计</option>
-                        <option>开发</option>
-                        <option>测试</option>
-                        <option>运维</option>
-                    </select>
-                    <br />
-                    <select class="select-small">
-                        <option>任务1</option>
-                        <option>任务2</option>
-                        <option>任务3</option>
-                        <option>任务4</option>
-                    </select>
+            <div class="span12">
+                <div class="form-horizontal">
+                    <div class="control-group">
+                        <label class="control-label">
+                            任务
+                        </label>
+                        <div class="controls">
+                            <select class="select-small" id="selectRole">
+                                @foreach (RoleEnum role in Model.Roles)
+                                {
+                                    <option value="@role.GetByteEnumValue()" @(Model.SelectedRole == role ? "selected" : "")>@role.GetEnumDescription()</option>
+                                }
+                            </select>
+                            <br />
+                            <select class="select-small" style="margin-top: 10px;" id="selectTask">
+                                @foreach (PlanTaskModel item in Model.Tasks)
+                                {
+                                    <option  value="@item.TaskParticipatorId" @(Model.SelectedTaskParticipator!= null &&Model.SelectedTaskParticipator.TaskParticipatorId == item.TaskParticipatorId?"selected" : "") class="task-@item.Role.GetByteEnumValue() @(Model.SelectedRole == item.Role ? "" : "hide")">@item.TaskTitle</option>
+                           
+                                }
+                            </select>
 
-                </div>
-            </div>
-            <div class="control-group">
-                <label class="control-label">
-                    名称
-                </label>
-                <div class="controls">
-                    <input type="text" />
-                </div>
-            </div>
-            <div class="control-group">
-                 <label class="control-label">
-                    时间
-                </label>
-                <div class="controls">
-                     <label>2013-07-19 18:00  至 2013-08-10 18:00</label>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            名称
+                        </label>
+                        <div class="controls">
+                            <input type="text" id="inputTitle" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            时间
+                        </label>
+                        <div class="controls">
+                            <input type="hidden" id="inputAllDay" name="allDay" />
+                            <div id="divTimeRange" >
+                                <input type="text" disabled id="txtStart" class="text-small" name="startTime" />
+                                    至
+                                <input type="text" disabled id="txtEnd" class="text-small" name="endTime" />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-            </div>
-        </div>
-        
-       @* 任务:
+
+        @* 任务:
         
         <select>
             <option>测试任务123</option>
@@ -57,7 +65,8 @@
         计划:<input class="" autocomplete="off" type="text" value="">*@
     </div>
     <div class="modal-footer">
+        <a data-handler="1" class="btn btn-primary" href="javascript:void(0);" id="btnNew">确认</a>
         <a data-handler="0" class="btn null" href="javascript:;" data-dismiss="modal">取消</a>
-        <a data-handler="1" class="btn btn-primary" href="javascript:;">确认</a>
+
     </div>
 </div>

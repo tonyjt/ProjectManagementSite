@@ -112,3 +112,28 @@ function showMessage(isSuccess, msg) {
 
     showViewMessage(strCalss,msg);
 }
+
+function getStandardDateTimeString(time) {
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var day = time.getDate();
+
+    var hour = time.getHours();
+    var minute = time.getMinutes();
+    var second = time.getSeconds();
+
+    return year + "-" + zeroPad(month, 2) + "-" + zeroPad(day,2) + " " + zeroPad(hour, 2) + ":" + zeroPad(minute, 2);// + ":" + second;
+}
+function getStandardDateString(time) {
+
+    var year = time.getFullYear();
+    var month = time.getMonth() + 1;
+    var day = time.getDate();
+
+    return year + "-" +zeroPad(month,2) + "-" + zeroPad(day,2);
+}
+
+function zeroPad(num, places) {
+    var zero = places - num.toString().length + 1;
+    return Array(+(zero > 0 && zero)).join("0") + num;
+}

@@ -21,7 +21,14 @@ td {
     border-right:1px solid #dddddd !important;
 }
 
+/*text*/
 
+.text-small {
+    width:115px;
+}
+.text-long {
+    width:500px !important;
+}
 .text-center {
     text-align:center;
 }
@@ -39,7 +46,7 @@ overflow: scroll;
 .align-center {
    text-align:center;
 }
-
+ 
 /*Margin*/
 .margin-top-mini {
     margin-top:5px;
@@ -61,9 +68,7 @@ overflow: scroll;
     padding:0px 0px 0px 0px;
 }
 
-.text-long {
-    width:500px !important;
-}
+
 /*sidebar*/
 
 .sidebar-right-content {
@@ -134,4 +139,12 @@ select {
 }
 .event-example {
     padding-left:10px;
+}
+
+/*
+    control
+    */
+
+.controls-label {
+    padding-top:5px;
 }

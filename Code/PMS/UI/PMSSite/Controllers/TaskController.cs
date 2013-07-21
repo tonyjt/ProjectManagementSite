@@ -69,6 +69,7 @@ namespace PMS.PMSSite.Controllers
 
             return View("Detail", model);
         }
+
         [HttpPost]
         public ActionResult New(TaskDetailPostModel model)
         {
@@ -102,7 +103,8 @@ namespace PMS.PMSSite.Controllers
                     Content = model.Content,
                     Creator = this.CurrentUserId,
                     TaskParticipators = tpc,
-                    ProjectId = this.ProjectId
+                    ProjectId = this.ProjectId,
+                    Title = model.Title
                 };
 
                 bool result = TaskManager.CreateTask(task);

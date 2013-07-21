@@ -15,3 +15,4 @@ G:\Code\github\ProjectManagementSite\Code\PMS\Tool\Extentsion\bin\Debug\log4net.
 G:\Code\github\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\Tool.csprojResolveAssemblyReference.cache
 G:\Code\github\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\PMS.Tool.dll
 G:\Code\github\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\PMS.Tool.pdb
+C:\Users\tony\Documents\GitHub\ProjectManagementSite\Code\PMS\Tool\Extentsion\obj\Debug\Tool.csprojResolveAssemblyReference.cache

@@ -34,7 +34,6 @@ namespace PMS.Model
                 Status = (byte)value;
             }
         }
-        public TaskParticipator() { }
 
         public TaskParticipator(RoleEnum role, Guid userId)
         {

@@ -18,6 +18,7 @@ namespace PMS.PMSDBDataAccess.Models
         }
 
         public DbSet<C__RefactorLog> C__RefactorLog { get; set; }
+        public DbSet<Plan> Plans { get; set; }
         public DbSet<Project> Projects { get; set; }
         public DbSet<ProjectParticipator> ProjectParticipators { get; set; }
         public DbSet<ProjectTask> ProjectTasks { get; set; }
@@ -30,6 +31,7 @@ namespace PMS.PMSDBDataAccess.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new C__RefactorLogMap());
+            modelBuilder.Configurations.Add(new PlanMap());
             modelBuilder.Configurations.Add(new ProjectMap());
             modelBuilder.Configurations.Add(new ProjectParticipatorMap());
             modelBuilder.Configurations.Add(new ProjectTaskMap());

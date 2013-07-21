@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Models\C__RefactorLog.cs" />
     <Compile Include="Models\Mapping\C__RefactorLogMap.cs" />
+    <Compile Include="Models\Mapping\PlanMap.cs" />
     <Compile Include="Models\Mapping\ProjectMap.cs" />
     <Compile Include="Models\Mapping\ProjectParticipatorMap.cs" />
     <Compile Include="Models\Mapping\ProjectTaskMap.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Models\Mapping\TaskParticipatorMap.cs" />
     <Compile Include="Models\Mapping\UserMap.cs" />
     <Compile Include="Models\PMSDBContext.cs" />
+    <Compile Include="PlanDAL.cs" />
     <Compile Include="ProjectDAL.cs" />
     <Compile Include="ProjectParticipatorDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

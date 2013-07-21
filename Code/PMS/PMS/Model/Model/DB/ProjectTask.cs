@@ -11,6 +11,7 @@ namespace PMS.Model
         }
 
         public System.Guid TaskId { get; set; }
+        public string Title { get; set; }
         public System.Guid ProjectId { get; set; }
         public Nullable<System.Guid> RequirementId { get; set; }
         public string Content { get; set; }

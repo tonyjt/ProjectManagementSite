@@ -90,27 +90,32 @@ namespace PMS.PMSBLL
 
         public static IEnumerable<ProjectTask>  SearchTask(Guid projectId,string version,string requirement,IEnumerable<ProjectTaskStatus> statusList,RoleEnum? role, string  user,out int totalCount, int pageSize = 10,int pageIndex =1)
         {
-            try
-            {
+            
                 Guid versionId; Guid requirementId; Guid userId;
 
                 versionId = VersionManager.GetVersionId(projectId,version);
                 requirementId = RequirementManager.GetRequirementId(projectId, requirement);
                 userId = UserManager.GetUserId(user);
-                IEnumerable<byte> statusByteList = statusList.Select(s => s.GetByteEnumValue());
 
-                short shortRole = role.HasValue ? (short)role.Value : (short)0;
-                IEnumerable<ProjectTask> tasks = dataAccess.SearchTask(projectId, versionId, requirementId, statusByteList, shortRole, userId, out totalCount, pageSize, pageIndex);
+                return SearchTask(projectId, userId, versionId, requirementId, statusList, role, out totalCount, pageSize, pageIndex);
+        
+        }
 
-                return tasks;
+        public static IEnumerable<ProjectTask> SearchTask(Guid projectId, Guid userId, Guid versionId, Guid requirementId, IEnumerable<ProjectTaskStatus> statusList, RoleEnum? role, out int totalCount, int pageSize = 10, int pageIndex = 1)
+        {
+            IEnumerable<byte> statusByteList = statusList.Select(s => s.GetByteEnumValue());
+
+            short shortRole = role.HasValue ? (short)role.Value : (short)0;
+
+            try
+            {
+                return dataAccess.SearchTask(projectId, versionId, requirementId, statusByteList, shortRole, userId, out totalCount, pageSize, pageIndex);
             }
             catch (Exception ex)
             {
                 log.ErrorInFunction(ex);
-
                 totalCount = 0;
-
-                return new List<ProjectTask>();
+                return null;
             }
         }
 
@@ -377,6 +382,60 @@ namespace PMS.PMSBLL
                 result = false;
 
             return result;
+        }
+
+        public static IEnumerable<ProjectTask> GetMyRunningTask(Guid projectId, Guid userId)
+        {
+            Guid emptyGuid = GuidHelper.GetInvalidGuid();
+
+            IEnumerable<ProjectTaskStatus> statusList = new List<ProjectTaskStatus>{
+                ProjectTaskStatus.Assigning,
+                ProjectTaskStatus.Assigned,
+                ProjectTaskStatus.DesignFinish,
+                ProjectTaskStatus.Finishing,
+                ProjectTaskStatus.NeedDeploy,
+                ProjectTaskStatus.NeedTest
+            };
+
+            int totalCount;
+
+            IEnumerable<ProjectTask> tasks = SearchTask(projectId, userId, emptyGuid, emptyGuid, statusList, null, out totalCount, 100000, 1);
+
+            List<ProjectTask> myTasks = new List<ProjectTask>();
+
+            if (tasks != null)
+            {
+                IEnumerable<TaskParticipatorStatus> runningStatuses = GetRunningTaskParticipatorStatuses();
+                foreach (ProjectTask item in tasks)
+                {
+                    if (item.TaskParticipators.Select(p => p.UserId == userId && runningStatuses.Contains(p.StatusEnum)).Count() > 0)
+                    {
+                        myTasks.Add(item);
+                    }
+                }
+            }
+            return myTasks;
+        }
+
+        public static IEnumerable<TaskParticipatorStatus> GetRunningTaskParticipatorStatuses()
+        {
+            return new List<TaskParticipatorStatus>{
+                TaskParticipatorStatus.Assigned ,
+                TaskParticipatorStatus.Delayed ,
+                TaskParticipatorStatus.Working
+            };
+        }
+
+        public static IEnumerable<RoleEnum> GetMyRunningRoles(IEnumerable<ProjectTask> tasks, Guid userId)
+        {
+            if(tasks == null) return new List<RoleEnum>();
+
+            IEnumerable<TaskParticipatorStatus> runningStatuses = GetRunningTaskParticipatorStatuses();
+
+            var tp = tasks.SelectMany(p=>p.TaskParticipators.Where(t=> t.UserId == userId && runningStatuses.Contains(t.StatusEnum)));
+
+            return tp.Select(p => p.RoleEnum).Distinct();
+
         }
     }
 }

@@ -2,5 +2,5 @@
 
 @if (Model != null)
 {
-    @: 计划:暂无 <a href="">修改计划</a><br />
+    @: 计划:暂无 <a target="_blank" href="@Url.Action("index", "plan", new {tpId=Model.TaskParticipatorId})">修改计划</a><br />
 }

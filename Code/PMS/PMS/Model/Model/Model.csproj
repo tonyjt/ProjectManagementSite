@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom\Plan.cs" />
     <Compile Include="Custom\Project.cs" />
     <Compile Include="Custom\ProjectParticipator.cs" />
     <Compile Include="Custom\ProjectTask.cs" />
@@ -47,6 +48,7 @@
     <Compile Include="Custom\RequirementHistory.cs" />
     <Compile Include="Custom\RequirementWithChildren.cs" />
     <Compile Include="Custom\TaskParticipator.cs" />
+    <Compile Include="DB\Plan.cs" />
     <Compile Include="DB\ProjectTask.cs">
       <SubType>
       </SubType>
@@ -63,6 +65,7 @@
       <SubType>
       </SubType>
     </Compile>
+    <Compile Include="Enum\PlanStatus.cs" />
     <Compile Include="Enum\ProjectStatus.cs" />
     <Compile Include="DB\Project.cs">
       <SubType>

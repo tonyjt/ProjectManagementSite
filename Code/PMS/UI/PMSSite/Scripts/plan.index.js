@@ -16,8 +16,26 @@
         defaultView: 'agendaWeek',
         selectable: true,
         selectHelper: true,
-        select: function(start, end, allDay) {
-            $("#modalNew").modal('show');
+        select: function (start, end, allDay) {
+
+            if (start.getTime() >= Date.now()) {
+
+                if (allDay) {
+
+                    $("#inputAllDay").val("true");
+
+                    $("#txtStart").val(getStandardDateString(start));
+                    $("#txtEnd").val(getStandardDateString(end));
+                }
+                else {
+                    $("#inputAllDay").val("false");
+
+                    $("#txtStart").val(getStandardDateTimeString(start));
+                    $("#txtEnd").val(getStandardDateTimeString(end));
+
+                }
+                $("#modalNew").modal('show');
+            }
         },
         events: [
                     {
@@ -69,4 +87,53 @@
                     }
             ]
     })
+
+    $("#selectRole").change(function () {
+ 
+        //$(".task-" + value);
+        roleSelect();
+    });
+    if (needLoadSelect) {
+        roleSelect();
+    }
+    $("#btnNew").click(newPlan);
 });
+
+function roleSelect() {
+    var value = $("#selectRole").val();
+
+    $("option[class^='task-']").hide().prop("selected", false);
+
+    $(".task-" + value).show().first().prop("selected", true);
+}
+
+function newPlan() {
+
+    //var tDiv = $(htmlObject).parents("div").children("div .span2");
+
+
+    var taskId = $("#selectTask").val();
+
+    var title = $("#inputTitle").val();
+
+    var allDay = $("#inputAllDay").val();
+
+    var startTime = $("#txtStart").val();
+
+    var endTime = $("#txtEnd").val();
+
+
+
+    var values = {
+        "TaskParticipatorId": taskId,
+        "Title": title,
+        "AllDay": allDay,
+        "StartTime": startTime,
+        "EndTime": endTime
+    };
+    
+
+    callbackToUrl(newUrl, values,null, function funSuccess() {
+        $("#modalNew").modal('hide');
+    });
+}

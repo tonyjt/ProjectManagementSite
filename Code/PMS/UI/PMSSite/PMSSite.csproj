@@ -208,6 +208,7 @@
     <Compile Include="Models\BaseModel.cs" />
     <Compile Include="Models\CustomActionFilter.cs" />
     <Compile Include="Models\ErrorModel.cs" />
+    <Compile Include="Models\PlanModel.cs" />
     <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Models\RequirementModel.cs" />
     <Compile Include="Models\SharedModel.cs" />
@@ -332,6 +333,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
+    <Content Include="Scripts\date.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\gcal.js" />

@@ -72,6 +72,7 @@ namespace PMS.PMSSite.Models
     {
         public Guid RequirementId { get; set; }
 
+        public string Title { get; set; }
         public string Content { get; set; }
 
         public bool NeedDesigner { get; set; }

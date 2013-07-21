@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PlanIndexModel
+@{
     ViewBag.Title = "计划";
     Layout = "~/Views/Shared/_ContentLayout.cshtml";
 }
@@ -53,9 +54,15 @@
         </div>
     </div>
 </div>
-@Html.Partial("_NewPartial")
+@Html.Partial("_NewPartial",Model.NewModel)
 @section scripts{
     @Scripts.Render("~/bundles/jqueryui",
                     "~/Scripts/fullcalendar.js",
                     "~/Scripts/plan.index.js")
+
+    <script type="text/javascript">
+        var newUrl = "@Url.Action("new","plan")";
+
+        var needLoadSelect = '@(Model.NewModel.SelectedTaskParticipator == null ?"true":"false")';
+    </script>
 }
